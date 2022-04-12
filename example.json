@@ -1,0 +1,24 @@
+{
+    "testedby": {
+        "saket": {
+            "creator": {
+                "name": "Software Testing Help",
+                "location": [
+                    "Pune",
+                    "Bangalore",
+                    "Ranchi"
+                ]
+            }
+        }
+    },
+    "booksToRead": [
+        {
+            "title": "7 habits of highly effective people",
+            "price": 120.00
+        },
+        {
+            "title2": "the business of 21st century",
+            "price2": 125.00
+        }
+    ]
+}
