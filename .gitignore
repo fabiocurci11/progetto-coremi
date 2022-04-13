@@ -105,3 +105,7 @@ dist
 
 # System Files
 .DS_Store
+.angular
+.vscode
+.editorconfig
+.browserslistrc
