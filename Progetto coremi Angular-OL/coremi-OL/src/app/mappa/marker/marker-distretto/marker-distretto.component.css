@@ -17,14 +17,20 @@
   
   }
   
-  /*
-  .overlay-container #feature-additional-info::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -10px;
-    border-width: 10px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-  }*/
+
+
+  .areaUrb1{
+    /*background-color: white;*/
+    width: 99%;
+    height: 99%;
+    border-radius: 32px;
+    margin-left: 1px
+  }
+
+  .areaUrb2{
+    /*background-color: blue;*/
+    width: 99%;
+    height: 99%;
+    border-radius: 32px;
+    margin-left: 1px
+  }

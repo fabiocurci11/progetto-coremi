@@ -37,6 +37,7 @@ export class MapComponent implements OnInit{
 
    //Metodi
 
+  //Crea Mappa
   createMap(): void{
     MapComponent.mappa = new Map({
 
@@ -58,7 +59,7 @@ export class MapComponent implements OnInit{
   }
       
   
-
+  //Crea Layer per dati geojson e immagini
   createLayerVectorImage(): void {
 
     //Icon Marker Style

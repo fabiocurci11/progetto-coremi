@@ -1,12 +1,5 @@
 .map{
-    height: 600px;
+    height: 90vh;
     width: 100%;
 }
 
-#div_sidebar{
-    background-color: blue;
-    z-index: 1;
-    height: 80px;
-    width: 30%;
-    position: absolute;
-}

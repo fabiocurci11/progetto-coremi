@@ -13,7 +13,18 @@ export class MarkerDistrettoComponent implements OnInit {
     this.clickOnMarker();
   }
 
-   
+  //Proprietà
+
+  showDiv: boolean = true;
+
+  //Metodi
+
+  clickFenUrb(): void{
+    this.showDiv = !this.showDiv;
+    console.log('showDiv = ' + this.showDiv);
+  }
+
+
   clickOnMarker(){
     //create Overlay
     let overlayContainerElement = document.querySelector('.overlay-container')
