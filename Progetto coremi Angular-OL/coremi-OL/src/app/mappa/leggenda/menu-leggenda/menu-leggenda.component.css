@@ -1,45 +1,70 @@
-
-#div_sidebar{
-    background-color: blue;
+#container-Leggenda{
     z-index: 1;
-    height: 30px;
-    width: 5%;
-    position: absolute;
-    top: 50%;
+    top: 48%;
+    margin-left: 2px;
 }
 
-#menuButton{
-    width: 100%;
+#btn-ShowHideLeggenda{
+    
+    width: 50px;
+    height: 100%;
+    background-color: #00AD7C;
+    /*
+    width: 1.375em;
+    height: 1.375em;
+    */
+}
+
+#divLeggenda{
+    z-index: 1;
+    height: 53vh;
+    width: 30vw;
+    position: absolute;
+    top: 15%;
+    background-color: white;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+#container-indiceFelicità{
+    /*background-color: #00AD7C;*/
+    font-size: 20px;
+    color: #00AD7C;
+}
+
+#table-corema{
+    width:60%;
+}
+
+#cont-leg-cor{
+    background-color: #00AD7C;
+    font-size: 23px;
+}
+
+#table-head{
+   background-color: #00AD7C;
+}
+
+.row-cor{
+    margin-right: 5px;
+    margin-left: 5px;
+   
+}
+
+#td-color{
+    background-color: #FFF8B5;
+}
+
+.col-3{
+    padding-top: 12px;
+    padding-bottom: 12px;
     height: 100%;
 }
 
-#div_leggenda{
-    z-index: 1;
-    height: 80%;
-    width: 30%;
-    position: absolute;
-    top: 20%;
-    background-color: #00000040;
+.col-3:hover{
+    background-color: #00AD7C;
 }
 
-.div_leggenda{
-    z-index: 1;
-    height: 80%;
-    width: 30%;
-    position: absolute;
-    top: 20%;
-    background-color: #00000040;
-}
-
-#div_leggenda_open{
-    background-color: #b93939;
-    top: 50%;
-    z-index: 1;
-    height: 30px;
-    width: 5%;
-    position: absolute;
-    margin-right: auto;
-    left: 30%;
-    right: 0;
-    text-align: center;
+p{
+    margin-bottom: 0px;
 }

@@ -1,0 +1,30 @@
+<div class="container" id="container-legenda">
+    <div class="row" >
+        <div class="col-12">
+            <button class="btn" id="btn-filtro" (click)="showDivFil()" style="float: right;"> 
+                <img  src="assets/icon-menu.png" width="100%" height="100%" alt="">
+            </button>
+        </div>
+    </div>
+
+
+    <div class="row" *ngIf="showFiltro" id="row-filtro">
+        <h1 class="text-center mb-3">Filtra distretti</h1>
+        <div class="col-2 text-end">
+            <p>0</p>
+        </div>
+        <div class="col-8 text-center">
+            <input type="range" id="rangeInput" class="form-range" name="points" min="0" max="10" value="0" (click)="range()"><br>
+            <h5>UHI: {{valoreFiltro}}</h5>
+        </div>
+        <div class="col-2">
+            <p>10</p>
+        </div>
+    </div>
+
+  
+   
+   
+</div>
+
+<!--[(ngModel)]="range()"-->
