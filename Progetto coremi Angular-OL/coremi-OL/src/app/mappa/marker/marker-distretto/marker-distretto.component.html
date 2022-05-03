@@ -1,8 +1,4 @@
 <div class="overlay-container">
-    <!--
-    <span class='overlay-text' id='feature-name'></span><br>
-    <span class='overlay-text' id='feature-additional-info'></span><br>
-    -->
     <div class="areaUrb1" *ngIf="showDiv">
         <img src='assets/fen_urb_icon/fen_urb.png' alt="" (click)="clickFenUrb()" *ngIf="showDiv">
        
@@ -11,6 +7,14 @@
     <div class="areaUrb2" *ngIf="!showDiv">
         <img src='assets/fen_urb_icon/back.png' alt="" (click)="clickFenUrb()" *ngIf="!showDiv">
     </div>
-
-    
 </div>
+
+<!--
+<app-modifica-uhi
+    *ngIf="showMenu"
+    [prop_figlio] = 'prop_padre'
+>
+</app-modifica-uhi>
+
+<app-filtro-distretto *ngIf="!showMenu"></app-filtro-distretto>    
+-->

@@ -2,11 +2,17 @@
 <div id="js-map" class="map container-fluid pt-12 pb-12">
     <app-menu-leggenda></app-menu-leggenda>
     
-    <app-marker-distretto>
-       
-    </app-marker-distretto>
-    <app-filtro-distretto></app-filtro-distretto>     
-    
+    <app-marker-distretto (markerChildNotify)='markerNotifyMappa($event)'></app-marker-distretto>
+
+    <app-modifica-uhi
+    *ngIf="showChild"
+    [showModUHIComp]='showChild'>
+    </app-modifica-uhi>
+
+    <app-filtro-distretto
+    *ngIf="!showChild">
+    </app-filtro-distretto> 
+
 </div>
 
  

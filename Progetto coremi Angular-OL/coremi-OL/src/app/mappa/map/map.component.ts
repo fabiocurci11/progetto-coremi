@@ -20,18 +20,26 @@ import Icon from 'ol/style/Icon';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit{
-  //Proprietà
-
-  public static mappa: Map | undefined;
-
-  //Coordinate Salerno
-  long: number = 14.7226162;
-  lat: number = 40.6747225;
-
 
   ngOnInit(): void {
     this.createMap();
     this.createLayerVectorImage();
+  }
+
+  //Proprietà
+
+  public static mappa: Map | undefined;
+  //Coordinate Salerno
+  long: number = 14.7226162;
+  lat: number = 40.6747225;
+  //Dati da passare ai figli (filtro, modificaUHI)
+  showChild: boolean = false;
+
+  //Dati dal figlio (marker)
+
+  markerNotifyMappa(showMenu: boolean): void{
+    this.showChild = showMenu;
+    console.log('Mappa - ShowChild: ' + this.showChild);
   }
 
 

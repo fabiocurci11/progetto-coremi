@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Map, Overlay } from 'ol';
+import { ObjectEvent } from 'ol/Object';
 import { MapComponent } from '../../map/map.component';
 
 @Component({
@@ -16,7 +17,15 @@ export class MarkerDistrettoComponent implements OnInit {
   //Proprietà
 
   showDiv: boolean = true;
+  showMenu: boolean = false;
+  figlioString: string = 'string figlio';
+  
+  //@Output() dati dal figlio (marker) al padre (mappa)
+ 
+  @Output() markerChildNotify: EventEmitter<boolean> = new EventEmitter<boolean>()
 
+
+  
   //Metodi
 
   clickFenUrb(): void{
@@ -37,14 +46,19 @@ export class MarkerDistrettoComponent implements OnInit {
     MapComponent.mappa!.on('click', (e) =>{
       console.log("click map");
       overlayLayer.setPosition(undefined);
+      this.showMenu = false;
+      this.markerChildNotify.emit(this.showMenu);
     
-      MapComponent.mappa!.forEachFeatureAtPixel(e.pixel, function(feature: any, layer: any){
+      MapComponent.mappa!.forEachFeatureAtPixel(e.pixel, (feature: any, layer: any) =>{
         console.log("click point");
         let clickedCoordinate = e.coordinate;
         overlayLayer.setPosition(clickedCoordinate);
 
         MapComponent.mappa!.getView().setCenter(e.coordinate);
         MapComponent.mappa!.getView().setZoom(7);
+        this.showMenu = true;
+        console.log('Marker - showMenu: ' + this.showMenu);
+        this.markerChildNotify.emit(this.showMenu);
       },
       )}
     )
