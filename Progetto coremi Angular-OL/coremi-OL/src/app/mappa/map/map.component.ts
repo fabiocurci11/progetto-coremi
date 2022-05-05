@@ -70,9 +70,9 @@ export class MapComponent implements OnInit{
   //Crea Layer per dati geojson e immagini
   createLayerVectorImage(): void {
 
-    //Icon Marker Style
+    //Icon Marker Style 
     const iconMarkerStyle = new Icon({
-      src: 'assets/icon.png',
+      src: 'assets/home.png', 
       size: [100, 100],
       offset: [0,0],
       opacity: 1,
