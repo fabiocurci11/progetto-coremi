@@ -28,10 +28,10 @@ export class MenuLeggendaComponent implements OnInit {
   showDivLeg(): void{
     this.showLeggenda = !this.showLeggenda
     if(this.showLeggenda){
-      document.getElementById("container-Leggenda")!.style.left = "31%";
+      document.getElementById("container-Leggenda")!.style.left = "30%";
     }
     else if(!this.showLeggenda){
-      document.getElementById("container-Leggenda")!.style.left = "12px";
+      document.getElementById("container-Leggenda")!.style.left = "0px";
     }
     console.log('showLeg = ' + this.showLeggenda);
   }

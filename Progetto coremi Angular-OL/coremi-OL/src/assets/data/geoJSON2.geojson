@@ -1,0 +1,80 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 1,
+      "properties": {
+        "color": "red",
+        "CoesioneSpaziale": 4,
+        "QualitaDelloSpazio": 4,
+        "OrientamentoPedonale": 5,
+        "BuonaVegetazione": 5,
+        "OrientamentoCiclabile": 5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.45849609375,
+          42.08191667830631
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2,
+      "properties": {
+        
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.743652343749998,
+          41.04621681452063
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 3,
+      "properties": {
+        
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.58935546875,
+          39.06184913429154
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 4,
+      "properties": {
+        
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.80908203125,
+          41.1455697310095
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 5,
+      "properties": {
+        
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.474243164062498,
+          40.613952441166596
+        ]
+      }
+    }
+  ]
+}

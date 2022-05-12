@@ -1,9 +1,18 @@
-<div class="container-fluid position-absolute" id="container-Leggenda">
+<div class="container" id="container-Leggenda">
+    <div class="row">
+       <div class="col">
+        <button class="btn" id="btn-ShowHideLeggenda" (click)="showDivLeg()"> 
+            <img  src="assets/info.png" width="100%" height="100%" alt="">
+        </button>
+       </div>
+   </div>
+    <!--
     <div class="row">
          <button class="btn" id="btn-ShowHideLeggenda" (click)="showDivLeg()"> 
             <img  src="assets/info.png" width="100%" height="100%" alt="">
         </button>
     </div>
+    -->
 </div>
 
 <div class="container rounded-3" id="divLeggenda" *ngIf="showLeggenda" style="overflow-y: scroll">
@@ -102,7 +111,7 @@
         </div>
     </div>
 
-    <div class="container-fluid bg-warning text-white text-center mt-3 mb-3" id="contcorema" tabindex="0" *ngIf='infoCorema'>
+    <div class="container-fluid text-white text-center mt-3 mb-3" id="contcorema" tabindex="0" *ngIf='infoCorema'>
         <p mb-2>
             {{nomeCorema}}
             <img class="img-fluid" src={{imgCorema}} width="20" height="20" alt="">

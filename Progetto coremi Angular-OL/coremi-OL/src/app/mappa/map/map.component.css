@@ -1,7 +1,9 @@
+/*
 .map{
     height: 88vh;
     width: 100%;
 }
+
 
 .container-fluid{
     /*
@@ -9,5 +11,14 @@
     padding-bottom: 2vh;
     padding-left: 2vw;
     padding-right: 2vw;
-    */
+    
+}
+*/
+
+.map{
+    height: 100%;
+    width: 100%; 
+    position:fixed;
+    padding-left: 0px;
+    padding-right: 0px;
 }
