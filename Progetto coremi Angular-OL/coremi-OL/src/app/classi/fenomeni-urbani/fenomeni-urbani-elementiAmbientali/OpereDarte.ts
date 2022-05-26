@@ -1,25 +1,21 @@
-import { Corema } from "../coremi";
-import { ColorMapping } from "./ColorMapping";
+import { Corema } from "../../coremi";
 
-export class QualitaSpazio implements Corema{
+export class OpereDarte implements Corema{
     name: string;
-    type?: string;
+    type?: string ;
     means: string;
     icon?: string;
-    value: number;
+    
+    value: number
     color?: string;
-
+    
 
     constructor(value: number){
-        this.name = 'Qualita dello spazio';
-        this.type = 'spaziale';
+        this.name = 'Opere di arte';
+        this.type = 'spazialeOP';
         this.means = 'il significato è';
     
         this.value = value;
-    }
-
-    calculateColor(value: number): void {
-      this.color = ColorMapping.mapValueToColor(value);
     }
 
 
@@ -75,6 +71,5 @@ export class QualitaSpazio implements Corema{
     setColor(color: string): void {
         this.color = color;
     }
-
 
 }

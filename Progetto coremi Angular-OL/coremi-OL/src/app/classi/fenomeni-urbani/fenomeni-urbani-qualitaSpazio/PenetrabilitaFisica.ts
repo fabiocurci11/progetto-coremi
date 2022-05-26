@@ -1,27 +1,21 @@
-import { Corema } from "../coremi";
-import { ColorMapping } from "./ColorMapping";
+import { Corema } from "../../coremi";
 
-export class OrientamentoCiclabile implements Corema{
-
+export class PenetrabilitaFisica implements Corema{
     name: string;
-    type?: string;
+    type?: string ;
     means: string;
     icon?: string;
-
+    
     value: number
     color?: string;
     
 
     constructor(value: number){
-        this.name = 'Orientamento Ciclabile';
-        this.type = 'spazialeOC';
+        this.name = 'PenetrabilitaFisica';
+        this.type = 'spazialeOP';
         this.means = 'il significato è';
     
         this.value = value;
-    }
-
-    calculateColor(value: number){
-      ColorMapping.mapValueToColor(value);
     }
 
 
@@ -77,6 +71,5 @@ export class OrientamentoCiclabile implements Corema{
     setColor(color: string): void {
         this.color = color;
     }
-
 
 }

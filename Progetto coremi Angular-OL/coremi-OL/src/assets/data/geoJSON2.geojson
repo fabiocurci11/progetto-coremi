@@ -8,6 +8,7 @@
         "nomeDistretto": "Distretto1",
         "AreaUrbana": "areaUrbDistretto1",
 
+        
           "OrientamentoPedonale": 5,
           "ElementiAmbientali": {
             "Value": 0,
@@ -15,7 +16,8 @@
             "Panchine": 0,
             "OpereDarte": 4,
             "Fontane": 1,
-            "Illuminazione": 0
+            "Illuminazione": 0,
+            "AccessoWC": 0
           },
 
           "CoesioneSpaziale": 0,
@@ -29,7 +31,7 @@
             "Leggibilita": 0
           },
 
-          "BuonaVegetazione": 0
+          "BuonaVegetazione": 9
           
       },
       "geometry": {
@@ -54,7 +56,8 @@
             "Panchine": 0,
             "OpereDarte": 4,
             "Fontane": 2,
-            "Illuminazione": 0
+            "Illuminazione": 0,
+            "AccessoWC": 0
           },
 
           "CoesioneSpaziale": 0,
@@ -92,7 +95,8 @@
             "Panchine": 0,
             "OpereDarte": 4,
             "Fontane": 3,
-            "Illuminazione": 0
+            "Illuminazione": 0,
+            "AccessoWC": 0
           },
 
           "CoesioneSpaziale": 0,
@@ -129,7 +133,8 @@
             "Panchine": 0,
             "OpereDarte": 4,
             "Fontane": 4,
-            "Illuminazione": 0
+            "Illuminazione": 0,
+            "AccessoWC": 0
           },
 
           "CoesioneSpaziale": 0,
@@ -166,7 +171,8 @@
             "Panchine": 0,
             "OpereDarte": 4,
             "Fontane": 5,
-            "Illuminazione": 0
+            "Illuminazione": 0,
+            "AccessoWC": 0
           },
 
           "CoesioneSpaziale": 0,

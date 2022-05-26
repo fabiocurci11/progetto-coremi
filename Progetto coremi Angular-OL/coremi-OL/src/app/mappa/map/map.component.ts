@@ -8,18 +8,18 @@ import VectorImageLayer from 'ol/layer/VectorImage';
 import VectorSource from 'ol/source/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
 import Vector from 'ol/source/Vector';
-//import mygeojsonObject from 'src/data/geoJSON.geojson'
+//import mygeojsonObject from 'src/data/geoJSON.geojson'  
 import VectorLayer from 'ol/layer/Vector';
 import VectorImage from 'ol/layer/VectorImage';
 import Style, { StyleFunction } from 'ol/style/Style';
 import Icon from 'ol/style/Icon';
 import Layer from 'ol/layer/Layer';
-import { FenomenoUrbanoService } from '../services/fenomeni-urbani.service';
+import { FenomenoUrbanoService } from '../../classi/fenomeni-urbani.service';
 import { xhr } from 'ol/featureloader';
-import { Distretto } from '../services/distretto';
+import { Distretto } from '../../classi/distretto';
 import Geometry from 'ol/geom/Geometry';
 import Feature from 'ol/Feature';
-import { QualitaSpazio } from '../services/fenomeni-urbani/QualitaSpazio';
+import { QualitaSpazio } from '../../classi/fenomeni-urbani/QualitaSpazio';
 import { FeatureHandler } from './FeatureHandler';
 
 @Component({
@@ -29,10 +29,6 @@ import { FeatureHandler } from './FeatureHandler';
 })
 export class MapComponent implements OnInit{
 
-  constructor(/*jsonPath: string*/){
-    //this.jsonPath = jsonPath;
-    //this.distretti = extractDistrettiFromJson(jsonPath)
-  }
 
   ngOnInit(): void {
     this.createMap();
@@ -40,20 +36,17 @@ export class MapComponent implements OnInit{
   } 
 
   
-
-  //Proprietà
+//Proprietà
   jsonPath: string = 'assets/data/geoJSON2.geojson'
-  //jsonPath: string;
-  //distretti: Distretto[];
   public static mappa: Map | undefined;
   //Coordinate Salerno
   long: number = 14.7226162;
   lat: number = 40.6747225;
+
   //Dati da passare ai figli (filtro, modificaUHI)
   showChild: boolean = false;
 
   //Dati dal figlio (marker)
-
   markerNotifyMappa(showMenu: boolean): void{
     this.showChild = showMenu;
     console.log('Mappa - ShowChild: ' + this.showChild);
@@ -61,7 +54,7 @@ export class MapComponent implements OnInit{
 
 
 
-   //Metodi
+//Metodi
 
   //Crea Mappa
   createMap(): void{
@@ -101,7 +94,7 @@ export class MapComponent implements OnInit{
       style: function(){ //imposta un'icona diversa per ogni feature (punto sulla mappa)
         vectorLayer.getSource()!.getFeatures().map(feature => FeatureHandler.elaborateFeature(feature))   
 
-       // console.log(vectorLayer.getSource()!.getFeatures()[0].get('ElementiAmbientali').Fontane);
+       //console.log(vectorLayer.getSource()!.getFeatures()[0].get('ElementiAmbientali').Fontane);
        //console.log(vectorLayer.getSource()!.getFeatures()[0].getProperties()['ElementiAmbientali']['Fontane']);
       }
         

@@ -1,27 +1,21 @@
-import { Corema } from "../coremi";
-import { ColorMapping } from "./ColorMapping";
+import { Corema } from "../../coremi";
 
-export class OrientamentoPedonale implements Corema{
-
+export class IdentitaLuogo implements Corema{
     name: string;
-    type?: string;
+    type?: string ;
     means: string;
     icon?: string;
-
+    
     value: number
     color?: string;
     
 
     constructor(value: number){
-        this.name = 'Orientamento Pedonale';
+        this.name = 'Identita luogo';
         this.type = 'spazialeOP';
         this.means = 'il significato è';
     
         this.value = value;
-    }
-
-    calculateColor(value: number){
-      ColorMapping.mapValueToColor(value);
     }
 
 

@@ -6,7 +6,7 @@ import { OrientamentoPedonale } from "./fenomeni-urbani/OrientamentoPedonale";
 import { QualitaSpazio } from "./fenomeni-urbani/QualitaSpazio";
 
 export class AreaUrbana implements Corema{
-
+ 
     name: string;
     type?: string;
     means: string;

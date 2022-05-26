@@ -1,27 +1,21 @@
-import { Corema } from "../coremi";
-import { ColorMapping } from "./ColorMapping";
+import { Corema } from "../../coremi";
 
-export class BuonaVegetazione implements Corema{
-
+export class CaffeRistoranti implements Corema{
     name: string;
-    type?: string;
-    means: string; 
+    type?: string ;
+    means: string;
     icon?: string;
-
+    
     value: number
     color?: string;
     
 
     constructor(value: number){
-        this.name = 'Orientamento Pedonale';
+        this.name = 'Caffe e Ristorani';
         this.type = 'spazialeOP';
         this.means = 'il significato è';
     
         this.value = value;
-    }
-
-    calculateColor(value: number){
-      ColorMapping.mapValueToColor(value);
     }
 
 

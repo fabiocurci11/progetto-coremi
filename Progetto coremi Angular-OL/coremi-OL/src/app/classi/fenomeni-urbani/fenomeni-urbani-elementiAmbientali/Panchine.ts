@@ -1,8 +1,6 @@
-import { Corema } from "../coremi";
-import { ColorMapping } from "./ColorMapping";
+import { Corema } from "../../coremi";
 
-
-export class CoesioneSpaziale implements Corema{
+export class Panchine implements Corema{
     name: string;
     type?: string ;
     means: string;
@@ -13,15 +11,11 @@ export class CoesioneSpaziale implements Corema{
     
 
     constructor(value: number){
-        this.name = 'Coesione Spaziale';
+        this.name = 'Panchine';
         this.type = 'spazialeOP';
         this.means = 'il significato è';
     
         this.value = value;
-    }
-
-    calculateColor(value: number){
-      ColorMapping.mapValueToColor(value);
     }
 
 

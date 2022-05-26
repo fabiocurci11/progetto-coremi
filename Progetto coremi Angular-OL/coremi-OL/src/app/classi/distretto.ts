@@ -1,6 +1,7 @@
 import { AreaUrbana } from "./areaUrbana";
 import { Corema } from "./coremi";
-import { Peso } from "./Peso";
+import { ColorMapping } from "./fenomeni-urbani/ColorMapping";
+
 
 export class Distretto implements Corema{
 
@@ -9,7 +10,6 @@ export class Distretto implements Corema{
     means: string;
     icon?: string;
 
-    colore!: string;
     value?: number;
     color?: string;
 
@@ -33,11 +33,16 @@ export class Distretto implements Corema{
         let orCicl = this.urbanArea.orientamentoCiclabile.value
 
         return coesSpaz * 1 + qualSpaz * 1 + orPed * 1 + buonaVeg * 1 + orCicl * 1;
-
     }
 
-    getColore() {
-        return this.colore
+
+    calculateColor(value: number): void {
+        this.color = ColorMapping.mapValueToColor(value);
+    }
+  
+
+    getColore(): string {
+        return this.color!
     }
 
 }
