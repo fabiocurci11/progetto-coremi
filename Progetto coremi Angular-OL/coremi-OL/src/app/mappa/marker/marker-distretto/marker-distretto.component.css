@@ -16,8 +16,35 @@
       border: 2px solid black;
   
   }
-  
 
+  .container{
+   /*background-color: blueviolet;*/
+    width: 90%;
+    height: 100%;
+  }
+
+  .row{
+    margin-top: 23px;
+  }
+  
+  .container-icon{
+    width: 70px;
+    height: 65px;
+    background-color: #ff0000;
+    border-radius: 32px;
+    padding: 2px 0;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    top: -125px;
+    border: 2px solid black;
+  }
+
+  .imgCity{
+    width: 48px;
+    margin-top: 3px;
+  }
+  
 
   .areaUrb1{
     /*background-color: white;*/

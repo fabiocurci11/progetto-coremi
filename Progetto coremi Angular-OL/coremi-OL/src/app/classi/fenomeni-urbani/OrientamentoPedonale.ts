@@ -1,5 +1,5 @@
-import { Corema } from "../coremi";
-import { ColorMapping } from "./ColorMapping";
+import { Corema } from "../coremi/coremi";
+import { ColorMapping } from "../../../services/ColorMapping";
 
 export class OrientamentoPedonale implements Corema{
 
@@ -16,6 +16,7 @@ export class OrientamentoPedonale implements Corema{
         this.name = 'Orientamento Pedonale';
         this.type = 'spazialeOP';
         this.means = 'il significato è';
+        
     
         this.value = value;
     }

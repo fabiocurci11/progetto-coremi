@@ -14,13 +14,14 @@ import VectorImage from 'ol/layer/VectorImage';
 import Style, { StyleFunction } from 'ol/style/Style';
 import Icon from 'ol/style/Icon';
 import Layer from 'ol/layer/Layer';
-import { FenomenoUrbanoService } from '../../classi/fenomeni-urbani.service';
 import { xhr } from 'ol/featureloader';
-import { Distretto } from '../../classi/distretto';
+import { Distretto } from '../../classi/distretti/distretto';
 import Geometry from 'ol/geom/Geometry';
 import Feature from 'ol/Feature';
 import { QualitaSpazio } from '../../classi/fenomeni-urbani/QualitaSpazio';
-import { FeatureHandler } from './FeatureHandler';
+
+import { FirebaseService } from 'src/services/firebase/firebase.service';
+import { FeatureHandlerService } from '../../../services/feature-handler.service';
 
 @Component({
   selector: 'app-map',
@@ -34,6 +35,10 @@ export class MapComponent implements OnInit{
     this.createMap();
     this.createLayerVectorImage();
   } 
+
+  constructor(private featureHandlerService: FeatureHandlerService){
+  
+  }
 
   
 //Proprietà
@@ -83,6 +88,8 @@ export class MapComponent implements OnInit{
   //Crea Layer per dati geojson e immagini
   createLayerVectorImage(): void {
 
+    let featureService = this.featureHandlerService
+
     let vectorLayer = new VectorLayer({
       source: new VectorSource({
         url: this.jsonPath,
@@ -92,10 +99,9 @@ export class MapComponent implements OnInit{
       visible: true,
 
       style: function(){ //imposta un'icona diversa per ogni feature (punto sulla mappa)
-        vectorLayer.getSource()!.getFeatures().map(feature => FeatureHandler.elaborateFeature(feature))   
 
-       //console.log(vectorLayer.getSource()!.getFeatures()[0].get('ElementiAmbientali').Fontane);
-       //console.log(vectorLayer.getSource()!.getFeatures()[0].getProperties()['ElementiAmbientali']['Fontane']);
+        //vectorLayer.getSource()!.getFeatures().map(feature => FeatureHandler.elaborateFeature(feature))   
+        vectorLayer.getSource()!.getFeatures().map(feature => featureService.elaborateFeature(feature))   
       }
         
     })
@@ -110,23 +116,3 @@ export class MapComponent implements OnInit{
 } 
 
 
-
-
-/*
-    vectorLayer.getSource()!.getFeatures().map(feature => {
-
-          if(feature.getId() == 1){
-            let valoreQS: number = feature.get('QualitaDelloSpazio');
-            let qs = new QualitaSpazio(valoreQS)
-           // console.log('signifacato: ' + qs.getMeans());
-           console.log('CP: ' + feature.get('CoesioneSpaziale'));             
-
-            feature.setStyle(new Style({
-                image: iconMarkerStyle2
-              }))
-          }
-
-        })
-
-
-*/

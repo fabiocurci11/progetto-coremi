@@ -1,4 +1,4 @@
-import { Corema } from "../../coremi";
+import { Corema } from "../../coremi/coremi";
 
 export class Leggibilita implements Corema{
     name: string;

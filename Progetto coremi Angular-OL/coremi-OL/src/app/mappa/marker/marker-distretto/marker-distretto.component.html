@@ -1,11 +1,102 @@
+<!--Il click su un distretto(marker), mostra un'area urbana(div quadrato) con i fenomeni urbani(immagini) al suo interno-->
 <div class="overlay-container">
-    <div class="areaUrb1" *ngIf="showDiv">
-        <img src='assets/fen_urb_icon/fen_urb.png' alt="" (click)="clickFenUrb()" *ngIf="showDiv">
-       
+
+    <div class="container">
+        <div class="row mt-0">
+            <div class="col-4" *ngIf="showDiv">
+                <div class="container-icon" 
+                    [ngStyle]="{'backgroundColor': buonaVegBackColor }">
+
+                    <img src='{{ buonaVegImg }}' class="imgCity" alt="" (click)="clickFenUrb()" *ngIf="showDiv">
+                </div>
+            </div>
+
+            <div class="col-4 offset-4" *ngIf="showDiv">
+                <div class="container-icon">
+                    <img src='{{ buonaVegImg }}' class="imgCity" alt="" (click)="clickFenUrb()" *ngIf="showDiv">
+                </div>
+            </div>
+
+             <!--div appaiono dopo click-->
+             <div class="col-4" *ngIf="!showDiv">
+                <div class="container-icon">
+                    <img src='assets/fen_urb_icon/city.png' class="imgCity" alt="" (click)="clickFenUrb()" *ngIf="!showDiv">
+                </div>
+            </div>
+
+            <div class="col-4 offset-4" *ngIf="!showDiv">
+                <div class="container-icon">
+                    <img src='assets/fen_urb_icon/city.png' class="imgCity" alt="" (click)="clickFenUrb()" *ngIf="!showDiv">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4" *ngIf="showDiv">
+                <div class="container-icon">
+                    <img src='assets/fen_urb_icon/fen_urb.png' alt="" (click)="clickFenUrb()" *ngIf="showDiv">
+                </div>
+            </div>
+
+            <div class="col-4 offset-4" *ngIf="showDiv">
+                <div class="container-icon">
+                    <img src='assets/fen_urb_icon/fen_urb.png' alt="" (click)="clickFenUrb()" *ngIf="showDiv">
+                </div>
+            </div>
+
+             <!--div appaiono dopo click-->
+             <div class="col-4" *ngIf="!showDiv">
+                <div class="container-icon">
+                    <img src='assets/fen_urb_icon/city.png' class="imgCity" alt="" (click)="clickFenUrb()" *ngIf="!showDiv">
+                </div>
+            </div>
+
+            <div class="col-4 offset-4" *ngIf="!showDiv">
+                <div class="container-icon">
+                    <img src='assets/fen_urb_icon/city.png' class="imgCity" alt="" (click)="clickFenUrb()" *ngIf="!showDiv">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4" *ngIf="showDiv">
+                <div class="container-icon">
+                    <img src='assets/fen_urb_icon/fen_urb.png' alt="" (click)="clickFenUrb()" *ngIf="showDiv">
+                </div>
+            </div>
+
+            <div class="col-4 offset-4" *ngIf="showDiv">
+                <div class="container-icon">
+                    <img src='assets/fen_urb_icon/fen_urb.png' alt="" (click)="clickFenUrb()" *ngIf="showDiv">
+                </div>
+            </div>
+
+            <!--div appaiono dopo click-->
+            <div class="col-4" *ngIf="!showDiv">
+                <div class="container-icon">
+                    <img src='assets/fen_urb_icon/city.png' class="imgCity" alt="" (click)="clickFenUrb()" *ngIf="!showDiv">
+                </div>
+            </div>
+
+            <div class="col-4 offset-4" *ngIf="!showDiv">
+                <div class="container-icon">
+                    <img src='assets/fen_urb_icon/city.png' class="imgCity" alt="" (click)="clickFenUrb()" *ngIf="!showDiv">
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="areaUrb2" *ngIf="!showDiv">
-        <img src='assets/fen_urb_icon/back.png' alt="" (click)="clickFenUrb()" *ngIf="!showDiv">
-    </div>
+
+      
+
+    
 </div>
+
+
+
+
+
+
 

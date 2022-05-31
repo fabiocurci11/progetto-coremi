@@ -1,5 +1,5 @@
-import { Corema } from "../coremi";
-import { ColorMapping } from "./ColorMapping";
+import { Corema } from "../coremi/coremi";
+import { ColorMapping } from "../../../services/ColorMapping";
 import { Flessibilita } from "./fenomeni-urbani-qualitaSpazio/Flessibilita";
 import { IdentitaLuogo } from "./fenomeni-urbani-qualitaSpazio/IdentitaLuogo";
 import { Leggibilita } from "./fenomeni-urbani-qualitaSpazio/Leggibilita";

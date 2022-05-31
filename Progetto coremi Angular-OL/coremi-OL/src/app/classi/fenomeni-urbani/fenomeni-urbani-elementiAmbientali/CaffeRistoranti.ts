@@ -1,4 +1,4 @@
-import { Corema } from "../../coremi";
+import { Corema } from "../../coremi/coremi";
 
 export class CaffeRistoranti implements Corema{
     name: string;

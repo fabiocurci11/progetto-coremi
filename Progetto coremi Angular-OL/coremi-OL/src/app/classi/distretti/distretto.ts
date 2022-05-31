@@ -1,6 +1,6 @@
 import { AreaUrbana } from "./areaUrbana";
-import { Corema } from "./coremi";
-import { ColorMapping } from "./fenomeni-urbani/ColorMapping";
+import { Corema } from "../coremi/coremi";
+import { ColorMapping } from "../../../services/ColorMapping";
 
 
 export class Distretto implements Corema{
@@ -12,10 +12,12 @@ export class Distretto implements Corema{
 
     value?: number;
     color?: string;
+    id:string | number | undefined
 
     urbanArea: AreaUrbana;
 
-    constructor(nome: string, areaUrbana: AreaUrbana, /*pesi: Peso,*/ tipo?: string, icona?: string){
+    constructor(id: string | number | undefined, nome: string, areaUrbana: AreaUrbana, /*pesi: Peso,*/ tipo?: string, icona?: string){
+        this.id = id;
         this.name = nome;
         this.type = tipo;
         this.means = 'significato';
@@ -44,5 +46,14 @@ export class Distretto implements Corema{
     getColore(): string {
         return this.color!
     }
+
+    getNome(): string {
+        return this.name
+    }
+
+    getId(): string | number | undefined{
+        return this.id
+    }
+    
 
 }

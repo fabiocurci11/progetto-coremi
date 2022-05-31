@@ -109,7 +109,7 @@
             "Flessibilita": 1,
             "Leggibilita": 0
           },
-          "BuonaVegetazione": 0
+          "BuonaVegetazione": 10
       },
       "geometry": {
         "type": "Point",
@@ -128,24 +128,24 @@
 
           "OrientamentoPedonale": 0,
           "ElementiAmbientali": {
-            "Value": 0,
-            "CaffeRistoranti": 0,
-            "Panchine": 0,
+            "Value": 1,
+            "CaffeRistoranti": 2,
+            "Panchine": 3,
             "OpereDarte": 4,
-            "Fontane": 4,
-            "Illuminazione": 0,
-            "AccessoWC": 0
-          },
+            "Fontane": 5,
+            "Illuminazione": 6,
+            "AccessoWC": 7
+          }, 
 
           "CoesioneSpaziale": 0,
           "OrientamentoCiclabile": 0,
           "QualitaDelloSpazio": {
-            "Value": 0,
-            "Varieta": 0,
-            "PenetrabilitaFisica": 0,
-            "IdentitaLuogo": 4,
-            "Flessibilita": 1,
-            "Leggibilita": 0
+            "Value": 7,
+            "Varieta": 7,
+            "PenetrabilitaFisica": 7,
+            "IdentitaLuogo": 7,
+            "Flessibilita": 7,
+            "Leggibilita": 7
           },
           "BuonaVegetazione": 0
       },
@@ -185,7 +185,7 @@
             "Flessibilita": 1,
             "Leggibilita": 0
           },
-          "BuonaVegetazione": 0
+          "BuonaVegetazione": 7
       },
       "geometry": {
         "type": "Point",

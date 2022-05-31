@@ -1,4 +1,4 @@
-import { Corema } from "../coremi";
+import { Corema } from "../coremi/coremi";
 import { AccessoWC } from "./fenomeni-urbani-elementiAmbientali/AccessoWC";
 import { CaffeRistoranti } from "./fenomeni-urbani-elementiAmbientali/CaffeRistoranti";
 import { Fontane } from "./fenomeni-urbani-elementiAmbientali/Fontane";
@@ -14,7 +14,7 @@ export class ElementiAmbientali implements Corema{
     value: number;
     color?: string;
 
-    cafRist: CaffeRistoranti;
+    caffeRistoranti: CaffeRistoranti;
     panchine: Panchine;
     opereDarte: OpereDarte;
     fontane: Fontane;
@@ -29,7 +29,7 @@ export class ElementiAmbientali implements Corema{
     
         this.value = value;
 
-        this.cafRist = cafRist
+        this.caffeRistoranti = cafRist
         this.panchine = panchine
         this.opereDarte = opereDarte;
         this.fontane = fontane;
@@ -39,7 +39,7 @@ export class ElementiAmbientali implements Corema{
 
     
     calculateUHIElemAmb(): void{
-        let cafRistVal = this.cafRist.value;
+        let cafRistVal = this.caffeRistoranti.value;
         let panchineVal = this.panchine.value;
         let opereDarteVal = this.opereDarte.value;
         let fontaneVal = this.fontane.value;

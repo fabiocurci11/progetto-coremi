@@ -4,6 +4,7 @@ export class ColorMapping {
 
     //static srcIcon: string = ''
 
+    //Icone per i distretti (devono essere di 5 colori, ognuno per ogni tipo di criticità)
     static iconMarkerStyleMarrone = new Icon({
         src: 'assets/home2.png', 
         size: [100, 100],
@@ -72,7 +73,17 @@ export class ColorMapping {
         return this.valueColorDict.get(value)!;
     }
 
-    //static setFenUrbColor(){}
+    
+    static setFenUrbColor(color: string): string{
+      if(color == "marrone") return color = 'brown';
+      if(color == "rosso") return color = 'red';
+      if(color == "arancione") return color = 'orange';
+      if(color == "giallo") return color = 'yellow';
+      if(color == "verde") return color = 'green';
+
+      //colorError
+      return color = 'white';
+    }
 
     static setStyleIconFromColor(color: string): Icon{
         if(color == "marrone") return this.iconMarkerStyleMarrone;
@@ -84,7 +95,6 @@ export class ColorMapping {
         if(color == "colorError") return this.iconMarkerStyleVoid;
 
         return this.iconMarkerStyleVoid;
-        
     }
 
     

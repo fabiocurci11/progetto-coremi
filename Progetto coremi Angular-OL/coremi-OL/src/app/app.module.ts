@@ -8,6 +8,10 @@ import { MenuLeggendaComponent } from './mappa/leggenda/menu-leggenda/menu-legge
 import { FiltroDistrettoComponent } from './mappa/filtro/filtro-distretto/filtro-distretto.component';
 import { ModificaUhiComponent } from './mappa/modifica UHI/modifica-uhi/modifica-uhi.component';
 
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +22,9 @@ import { ModificaUhiComponent } from './mappa/modifica UHI/modifica-uhi/modifica
     ModificaUhiComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]

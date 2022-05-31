@@ -1,6 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Map, Overlay } from 'ol';
 import { ObjectEvent } from 'ol/Object';
+import { Distretto } from 'src/app/classi/distretti/distretto';
+import { ColorMapping } from 'src/services/ColorMapping';
+import { FeatureHandlerService } from '../../../../services/feature-handler.service';
 import { MapComponent } from '../../map/map.component';
 
 @Component({
@@ -9,6 +12,10 @@ import { MapComponent } from '../../map/map.component';
   styleUrls: ['./marker-distretto.component.css']
 })
 export class MarkerDistrettoComponent implements OnInit {
+
+  constructor(private featureHandlerService: FeatureHandlerService){
+
+  }
 
   ngOnInit(): void {
     this.clickOnMarker();
@@ -25,6 +32,61 @@ export class MarkerDistrettoComponent implements OnInit {
   @Output() markerChildNotify: EventEmitter<boolean> = new EventEmitter<boolean>()
 
 
+  //Proprietà distretti (img fen urb)
+  pathImg = 'assets/fen_urb_icon/';
+
+  //var Img impostano l'immagine, var BackColor impostano il colore dello sfondo dell'immagine
+  orPedImg = '';
+  orPedBackColor: string = '';
+
+  elAmbImg = '';
+  elAmbBackColor: string = '';
+
+    caffeRistoImg = '';
+    caffeRistoBackColor: string = '';
+
+    panchineImg = '';
+    panchineBackColor: string = '';
+
+    opereDarteImg = '';
+    opereDarteBackColor: string = '';
+
+    fontaneImg = '';
+    fontaneBackColor: string = '';
+
+    illumImg = '';
+    illumBackColor: string = '';
+
+    accessoWCImg = '';
+    accessoWCBackColor: string = '';
+
+  coesSpazImg = ''; 
+  coesSpazBackColor: string = '';
+
+  orCiclImg = ''; 
+  orCiclBackColor: string = '';
+
+  qualSpazImg = ''; 
+  qualSpazBackColor: string = '';
+
+    varietaImg = '';  
+    varietaBackColor: string = '';
+
+    penFisImg = '';   
+    penFisBackColor: string = '';
+
+    idLuogImg = '';   
+    idLuogBackColor: string = '';
+
+    flessImg = '';   
+    flessImgBackColor: string = '';
+
+    leggImg = '';   
+    leggBackColor: string = ''; 
+
+  buonaVegImg = ''; 
+  buonaVegBackColor: string = '';
+
   
   //Metodi
 
@@ -32,6 +94,7 @@ export class MarkerDistrettoComponent implements OnInit {
     this.showDiv = !this.showDiv;
     console.log('showDiv = ' + this.showDiv);
   }
+
 
 
   clickOnMarker(){
@@ -48,9 +111,24 @@ export class MarkerDistrettoComponent implements OnInit {
       overlayLayer.setPosition(undefined);
       this.showMenu = false;
       this.markerChildNotify.emit(this.showMenu);
+
     
       MapComponent.mappa!.forEachFeatureAtPixel(e.pixel, (feature: any, layer: any) =>{
         console.log("click point");
+      
+        let distretto: Distretto = this.featureHandlerService.getDistrettoById(feature.getId());
+        this.addPathForImg(distretto);
+        
+        this.addBackColorForImg(distretto);
+        //dichiarare in questa classe le variabili del colore per ogni fenurb
+
+        let buonaVegValue = distretto.urbanArea.buonaVegetazione.getValue();
+        console.log(feature.getId())
+        console.log('VALUE FOR COLOR: ' + buonaVegValue)
+        console.log('BUONAVEG FOR COLOR: ' + this.buonaVegBackColor)
+        //console.log("BUONA VEG: " + distretto.urbanArea.buonaVegetazione.calculateColor());
+
+        console.log('PATH: ' + this.buonaVegImg)
         let clickedCoordinate = e.coordinate;
         overlayLayer.setPosition(clickedCoordinate);
 
@@ -64,5 +142,82 @@ export class MarkerDistrettoComponent implements OnInit {
     )
 
   }
+  
+
+  addPathForImg(distretto: Distretto){
+    this.orPedImg = this.pathImg + distretto.urbanArea.orientamentoPedonale.getIcon();
+    this.elAmbImg = this.pathImg + distretto.urbanArea.elementiAmbientali.getIcon();
+      this.caffeRistoImg = this.pathImg + distretto.urbanArea.elementiAmbientali.caffeRistoranti.getIcon();
+      this.panchineImg = this.pathImg + distretto.urbanArea.elementiAmbientali.panchine.getIcon();
+      this.opereDarteImg = this.pathImg + distretto.urbanArea.elementiAmbientali.opereDarte.getIcon();
+      this.fontaneImg = this.pathImg + distretto.urbanArea.elementiAmbientali.fontane.getIcon();
+      this.illumImg = this.pathImg + distretto.urbanArea.elementiAmbientali.illuminazione.getIcon();
+      this.accessoWCImg = this.pathImg + distretto.urbanArea.elementiAmbientali.accessoWC.getIcon();
+    this.coesSpazImg = this.pathImg + distretto.urbanArea.coesioneSpaziale.getIcon();
+    this.orCiclImg = this.pathImg + distretto.urbanArea.orientamentoCiclabile.getIcon();
+    this.qualSpazImg = this.pathImg + distretto.urbanArea.qualitaDelloSpazio.getIcon();
+      this.varietaImg = this.pathImg + distretto.urbanArea.qualitaDelloSpazio.varieta.getIcon();
+      this.penFisImg = this.pathImg + distretto.urbanArea.qualitaDelloSpazio.penFis.getIcon();
+      this.idLuogImg = this.pathImg + distretto.urbanArea.qualitaDelloSpazio.identLuogo.getIcon();
+      this.flessImg = this.pathImg + distretto.urbanArea.qualitaDelloSpazio.fless.getIcon();
+      this.leggImg = this.pathImg + distretto.urbanArea.qualitaDelloSpazio.legg.getIcon();
+    this.buonaVegImg = this.pathImg + distretto.urbanArea.buonaVegetazione.getIcon();
+  }
+
+  addBackColorForImg(distretto: Distretto){
+    //Prende il colore di ogni fen urb (in italiano), e lo imposta nel css corrispondente
+    this.orPedBackColor = distretto.urbanArea.orientamentoPedonale.getColor();
+    this.orPedBackColor = ColorMapping.setFenUrbColor(this.orPedBackColor);
+
+    this.elAmbBackColor = distretto.urbanArea.elementiAmbientali.getColor();
+    this.elAmbBackColor = ColorMapping.setFenUrbColor(this.elAmbBackColor);
+  
+      this.caffeRistoBackColor = distretto.urbanArea.elementiAmbientali.caffeRistoranti.getColor();
+      this.caffeRistoBackColor = ColorMapping.setFenUrbColor(this.caffeRistoBackColor);
+      
+      this.panchineBackColor = distretto.urbanArea.elementiAmbientali.panchine.getColor();
+      this.panchineBackColor = ColorMapping.setFenUrbColor(this.panchineBackColor);
+      
+      this.opereDarteBackColor = distretto.urbanArea.elementiAmbientali.opereDarte.getColor();
+      this.opereDarteBackColor = ColorMapping.setFenUrbColor(this.opereDarteBackColor);
+  
+      this.fontaneBackColor = distretto.urbanArea.elementiAmbientali.fontane.getColor();
+      this.fontaneBackColor = ColorMapping.setFenUrbColor(this.fontaneBackColor);
+  
+      this.illumBackColor = distretto.urbanArea.elementiAmbientali.illuminazione.getColor();
+      this.illumBackColor = ColorMapping.setFenUrbColor(this.illumBackColor);
+  
+      this.accessoWCBackColor = distretto.urbanArea.elementiAmbientali.accessoWC.getColor();
+      this.accessoWCBackColor = ColorMapping.setFenUrbColor(this.accessoWCBackColor);
+  
+    this.coesSpazBackColor = distretto.urbanArea.coesioneSpaziale.getColor();
+    this.coesSpazBackColor = ColorMapping.setFenUrbColor(this.coesSpazBackColor);
+    
+    this.orCiclBackColor = distretto.urbanArea.orientamentoCiclabile.getColor();
+    this.orCiclBackColor = ColorMapping.setFenUrbColor(this.orCiclBackColor);
+    
+    this.qualSpazBackColor = distretto.urbanArea.qualitaDelloSpazio.getColor();
+    this.qualSpazBackColor = ColorMapping.setFenUrbColor(this.qualSpazBackColor);
+      
+      this.varietaBackColor = distretto.urbanArea.qualitaDelloSpazio.varieta.getColor();
+      this.varietaBackColor = ColorMapping.setFenUrbColor(this.varietaBackColor);
+  
+      this.penFisBackColor = distretto.urbanArea.qualitaDelloSpazio.penFis.getColor();
+      this.penFisBackColor = ColorMapping.setFenUrbColor(this.penFisBackColor);
+          
+      this.idLuogBackColor = distretto.urbanArea.qualitaDelloSpazio.identLuogo.getColor();
+      this.idLuogBackColor = ColorMapping.setFenUrbColor(this.idLuogBackColor);
+       
+      this.flessImgBackColor = distretto.urbanArea.qualitaDelloSpazio.fless.getColor();
+      this.flessImgBackColor = ColorMapping.setFenUrbColor(this.flessImgBackColor);
+  
+      this.leggBackColor = distretto.urbanArea.qualitaDelloSpazio.legg.getColor();
+      this.leggBackColor = ColorMapping.setFenUrbColor(this.leggBackColor); 
+  
+    this.buonaVegBackColor = distretto.urbanArea.buonaVegetazione.getColor();
+    this.buonaVegBackColor = ColorMapping.setFenUrbColor(this.buonaVegBackColor);
+  }
+ 
+
 
 }

@@ -1,4 +1,4 @@
-import { Corema } from "../../coremi";
+import { Corema } from "../../coremi/coremi";
 
 export class Illuminazione implements Corema{
     name: string;

@@ -1,5 +1,6 @@
-import { Corema } from "../coremi";
-import { ColorMapping } from "./ColorMapping";
+import { Corema } from "../coremi/coremi";
+import { ColorMapping } from "../../../services/ColorMapping";
+
 
 
 export class CoesioneSpaziale implements Corema{
