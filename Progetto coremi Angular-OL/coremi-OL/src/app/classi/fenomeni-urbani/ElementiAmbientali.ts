@@ -23,7 +23,7 @@ export class ElementiAmbientali implements Corema{
 
 
     constructor(value: number, cafRist: CaffeRistoranti, panchine: Panchine, opereDarte: OpereDarte, fontane: Fontane, illuminazione: Illuminazione, accessoWC: AccessoWC){
-        this.name = 'Qualita dello spazio';
+        this.name = 'Elemanenti Ambientali';
         this.type = 'spaziale';
         this.means = 'il significato è';
     
@@ -49,7 +49,7 @@ export class ElementiAmbientali implements Corema{
         let w = 1/6
 
         this.value = cafRistVal * w + panchineVal * w + opereDarteVal * w + fontaneVal * w + illuminazioneVal * w + accessoWCVal * w;
-        console.log('this.valueElAmb: ' + this.value);
+        //console.log('this.valueElAmb: ' + this.value);
     }
     
 

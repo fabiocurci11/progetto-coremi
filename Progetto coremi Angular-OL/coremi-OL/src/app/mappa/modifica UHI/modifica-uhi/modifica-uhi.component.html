@@ -7,52 +7,36 @@
         </div>
     </div>
 
-    <div class='row' *ngIf='showModUHI' id='row-filtro'>
+    <div class='row' *ngIf='showModUHI' id='row-filtro' style="overflow-y: scroll;">
         <h1 class="text-center mb-3">Simula Modifica UHI</h1>
            
-        <div class="row item-row">
+        <div class="row item-row" *ngFor="let fenUrb of tupla">
             <div class="col-4 text-end">
-                <img  src='assets/icon.png' class="img-modUHI">
+                <img  src={{fenUrb[0]}} class="img-modUHI">
             </div>
             <div class="col-8 name-modUHI">
-                <p>Qualità dello spazio</p>
+                <p>{{fenUrb[1]}}</p>
             </div>
 
             <div class="col-2 text-end">
                 <p>0</p>
             </div>
             <div class="col-8 text-center">
-                <input type="range" id="rangeInput" class="form-range" name="points" min="0" max="10" value="0" (click)="range()"><br>
-                <h5>UHI: {{valoreFiltro}}</h5>
+                <input type="range" id='{{fenUrb[3]}}' class="form-range" name="points" min="0" step="0.5" max="10" value={{fenUrb[2]}} (click)="updateValueRange(fenUrb[3])"><br>
+                <h5>UHI: {{fenUrb[2]}}</h5>
             </div>
             <div class="col-2">
                 <p>10</p>
             </div>
+            <hr>
         </div>
 
-        <hr>
-
-        <div class="row item-row">
-            <div class="col-4 text-end">
-                <img  src='assets/icon.png' class="img-modUHI">
-            </div>
-            <div class="col-8">
-                <p>Qualità dello spazio</p>
-            </div>
-
-            <div class="col-2 text-end">
-                <p>0</p>
-            </div>
-            <div class="col-8 text-center">
-                <input type="range" id="rangeInput" class="form-range" name="points" min="0" max="10" value="0" (click)="range()"><br>
-                <h5>UHI: {{valoreFiltro}}</h5>
-            </div>
-            <div class="col-2">
-                <p>10</p>
-            </div>
-        </div>
         
-
+        <div class="row item-row">
+            <div class="col-12" style="text-align: center;">
+                <button class="btn btn-primary" type="submit" (click)="saveOnFirebase()">Save on Firebase</button>
+            </div>
+        </div>
 
     </div>
 </div>

@@ -28,13 +28,17 @@ export class Distretto implements Corema{
 
 
     calculateUHI(){
-        let coesSpaz = this.urbanArea.coesioneSpaziale.value
-        let qualSpaz = this.urbanArea.qualitaDelloSpazio.value
         let orPed = this.urbanArea.orientamentoPedonale.value
-        let buonaVeg = this.urbanArea.buonaVegetazione.value
+        let elAmb = this.urbanArea.elementiAmbientali.value
+        let coesSpaz = this.urbanArea.coesioneSpaziale.value
         let orCicl = this.urbanArea.orientamentoCiclabile.value
-
-        return coesSpaz * 1 + qualSpaz * 1 + orPed * 1 + buonaVeg * 1 + orCicl * 1;
+        let qualSpaz = this.urbanArea.qualitaDelloSpazio.value
+        let buonaVeg = this.urbanArea.buonaVegetazione.value
+        
+        //Uso il metodo floor per arrotondare un numero con la virgola
+        let uhiFloor = (orPed * 1 + elAmb * 1 + coesSpaz * 1 + orCicl * 1 + qualSpaz * 1 + buonaVeg *1)/6;
+        uhiFloor = Math.floor(uhiFloor);
+        return uhiFloor
     }
 
 

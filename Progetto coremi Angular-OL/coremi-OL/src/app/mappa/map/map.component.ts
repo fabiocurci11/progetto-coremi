@@ -23,6 +23,7 @@ import { QualitaSpazio } from '../../classi/fenomeni-urbani/QualitaSpazio';
 import { FirebaseService } from 'src/services/firebase/firebase.service';
 import { FeatureHandlerService } from '../../../services/feature-handler.service';
 
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -34,9 +35,10 @@ export class MapComponent implements OnInit{
   ngOnInit(): void {
     this.createMap();
     this.createLayerVectorImage();
+  
   } 
 
-  constructor(private featureHandlerService: FeatureHandlerService){
+  constructor(private featureHandlerService: FeatureHandlerService, private firebaseService: FirebaseService){
   
   }
 
@@ -50,13 +52,18 @@ export class MapComponent implements OnInit{
 
   //Dati da passare ai figli (filtro, modificaUHI)
   showChild: boolean = false;
+  idDistrettoFromMarker: number = 0;
 
   //Dati dal figlio (marker)
   markerNotifyMappa(showMenu: boolean): void{
     this.showChild = showMenu;
-    console.log('Mappa - ShowChild: ' + this.showChild);
+    //console.log('Mappa - ShowChild: ' + this.showChild);
   }
 
+  markerChildGetIdDistretto(idDistretto: number): void{
+    this.idDistrettoFromMarker = idDistretto
+    //console.log('ID DISTRETTO DAL MARKER A MAPPA: ' + idDistretto)
+  }
 
 
 //Metodi
@@ -86,9 +93,11 @@ export class MapComponent implements OnInit{
   
   
   //Crea Layer per dati geojson e immagini
+  
   createLayerVectorImage(): void {
 
     let featureService = this.featureHandlerService
+    let fireService = this.firebaseService
 
     let vectorLayer = new VectorLayer({
       source: new VectorSource({
@@ -99,15 +108,14 @@ export class MapComponent implements OnInit{
       visible: true,
 
       style: function(){ //imposta un'icona diversa per ogni feature (punto sulla mappa)
-
-        //vectorLayer.getSource()!.getFeatures().map(feature => FeatureHandler.elaborateFeature(feature))   
         vectorLayer.getSource()!.getFeatures().map(feature => featureService.elaborateFeature(feature))   
+        //fireService.retrieveObservableItems('id1')
       }
         
     })
 
     MapComponent.mappa!.addLayer(vectorLayer);
-   
+    
   }//fine metodo
 
   

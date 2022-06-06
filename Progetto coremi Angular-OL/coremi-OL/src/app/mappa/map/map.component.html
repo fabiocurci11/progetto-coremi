@@ -2,37 +2,23 @@
 <div id="js-map" class="map container-fluid">
     <app-menu-leggenda></app-menu-leggenda>
 
-     
-    <app-marker-distretto (markerChildNotify)='markerNotifyMappa($event)'></app-marker-distretto>
+    <app-marker-distretto 
+        (markerChildNotify)='markerNotifyMappa($event)'
+        (markerChildIdDistretto)='markerChildGetIdDistretto($event)' 
+        >
+    </app-marker-distretto>
 
     <app-modifica-uhi
-    *ngIf="showChild"
-    [showModUHIComp]='showChild'>
+        *ngIf="showChild"
+        [showModUHIComp]='showChild'
+        [idDistretto] = 'idDistrettoFromMarker'
+        >
     </app-modifica-uhi>
 
     <app-filtro-distretto
-    *ngIf="!showChild">
+        *ngIf="!showChild">
     </app-filtro-distretto>  
 
 </div> 
-
-
-<!--
-    <div id="js-map" class="map container-fluid pt-12 pb-12">
-    <app-menu-leggenda></app-menu-leggenda>
-    
-    <app-marker-distretto (markerChildNotify)='markerNotifyMappa($event)'></app-marker-distretto>
-
-    <app-modifica-uhi
-    *ngIf="showChild"
-    [showModUHIComp]='showChild'>
-    </app-modifica-uhi>
-
-    <app-filtro-distretto
-    *ngIf="!showChild">
-    </app-filtro-distretto> 
-
-</div>
--->
  
   

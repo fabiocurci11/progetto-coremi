@@ -13,7 +13,7 @@ export class BuonaVegetazione implements Corema{
     
 
     constructor(value: number){
-        this.name = 'Orientamento Pedonale';
+        this.name = 'Buona Vegetazione';
         this.type = 'spazialeOP';
         this.means = 'il significato è';
         this.icon = 'buonaVegetazione.png'

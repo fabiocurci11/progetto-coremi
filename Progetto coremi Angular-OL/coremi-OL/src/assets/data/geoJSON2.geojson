@@ -49,7 +49,7 @@
         "nomeDistretto": "Distretto2",
         "AreaUrbana": "areaUrbDistretto3",
 
-          "OrientamentoPedonale": 0,
+          "OrientamentoPedonale": 1,
           "ElementiAmbientali": {
             "Value": 0,
             "CaffeRistoranti": 0,
@@ -88,7 +88,7 @@
         "nomeDistretto": "Distretto3",
         "AreaUrbana": "areaUrbDistretto3",
 
-          "OrientamentoPedonale": 0,
+          "OrientamentoPedonale": 7,
           "ElementiAmbientali": {
             "Value": 0,
             "CaffeRistoranti": 0,

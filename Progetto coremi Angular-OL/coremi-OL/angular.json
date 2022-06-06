@@ -25,6 +25,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/assets/distretti_icon",
               "src/assets/icon.png",
               "src/assets/data/geoJSON.geojson" 
             ],

@@ -1,34 +1,106 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Distretto } from '../../app/classi/distretti/distretto';
+import Feature from "ol/Feature";
+import Geometry from "ol/geom/Geometry";
+import Style from 'ol/style/Style';
+import { ColorMapping } from '../ColorMapping';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class FirebaseService{
-
+export class FirebaseService {
+  //Proprietà
   items: Observable<any>;
+  valuesOfFenUrb = new Map<string, number>();
 
   constructor(private db: AngularFireDatabase) {
     this.items = db.object('distretti').valueChanges()
-        console.log('############ TEST FIREBASE ############')
-        console.log(this.items)
+    
    }
-
   
-   retrieveObservableItems(){
-    this.items!.forEach(function (value) {
-      console.log('idVALUE: ' + value.nomeDistretto);
-    });  
-  }
+   retrieveObservableItems(id: string, distretto: Distretto, feature: Feature<Geometry>){
+    this.items = this.db.object('distretti/'+id).valueChanges()
+    
 
-  updateDistretto(){
-    //this.db.object('distretto1').update({ buonaVeg: '9' })
-    //this.db.object('distretto2').update({ buonaVeg: '10' })
-    //this.db.object('distretto1/elAmb/newItem').update({ newItem: 9})
+    this.items.forEach( (value) => {
+      alert('in foreach: '+value.nomeDistretto )
+      this.setValueFenUrbFromFirebase(distretto, value, feature)
+    });  
+
+
     
   }
+
+  setValueFenUrbFromFirebase(distretto: Distretto, value: any, feature: Feature<Geometry>){
+    //Assegno valori dei fen urb agli oggetti
+    distretto.urbanArea.orientamentoPedonale.setValue(value.orientamentoPedonale)
+    distretto.urbanArea.elementiAmbientali.setValue(value.elementiAmbientali.valoreElementiAmbientali)
+      distretto.urbanArea.elementiAmbientali.caffeRistoranti.setValue(value.elementiAmbientali.caffeRistoranti)
+      distretto.urbanArea.elementiAmbientali.panchine.setValue(value.elementiAmbientali.panchine)
+      distretto.urbanArea.elementiAmbientali.opereDarte.setValue(value.elementiAmbientali.opereDarte)
+      distretto.urbanArea.elementiAmbientali.fontane.setValue(value.elementiAmbientali.fontane)
+      distretto.urbanArea.elementiAmbientali.illuminazione.setValue(value.elementiAmbientali.illuminazione)
+      distretto.urbanArea.elementiAmbientali.accessoWC.setValue(value.elementiAmbientali.accessoWC)
+    distretto.urbanArea.coesioneSpaziale.setValue(value.coesioneSpaziale)
+    distretto.urbanArea.orientamentoCiclabile.setValue(value.orientamentoCiclabile)
+    distretto.urbanArea.qualitaDelloSpazio.setValue(value.qualitaDelloSpazio.valoreQualitaDelloSpazio)
+      distretto.urbanArea.qualitaDelloSpazio.varieta.setValue(value.qualitaDelloSpazio.varieta)
+      distretto.urbanArea.qualitaDelloSpazio.penFis.setValue(value.qualitaDelloSpazio.penetrabilitaFisica)
+      distretto.urbanArea.qualitaDelloSpazio.identLuogo.setValue(value.qualitaDelloSpazio.identitaLuogo)
+      distretto.urbanArea.qualitaDelloSpazio.fless.setValue(value.qualitaDelloSpazio.flessibilita)
+      distretto.urbanArea.qualitaDelloSpazio.legg.setValue(value.qualitaDelloSpazio.leggibilita)
+    distretto.urbanArea.buonaVegetazione.setValue(value.buonaVegetazione)
+
+    //Calcolo indice di felicità (UHI) del distretto
+    let uhiDistretto = distretto.calculateUHI()
+    alert(uhiDistretto);
+    
+    //Calcolo colore del distretto in base all'indice di felicità
+    distretto.calculateColor(uhiDistretto);  
+
+    //Imposto l'icona per ogni feature in base al colore
+    feature.setStyle(new Style({
+      image: ColorMapping.setStyleIconFromColor(distretto.getColore())
+    }))
+
+    //Salva/aggiorna i valori presi da firebase in firebase
+   // this.saveDistrettoFirebase(distretto)
+  } 
+
+
+
+  //RISOLVERE PROBLEMA SALVATAGGIO VALORI (dovrebbero salvarsi come tipo number ma vengono salvati come tipo string)
+  updateDistretto(id: string, distretto: Distretto){
+    
+    let promise = this.db.object('distretti/'+id).update
+      ({
+        orientamentoPedonale: distretto.urbanArea.orientamentoPedonale.getValue(),
+        coesioneSpaziale: distretto.urbanArea.coesioneSpaziale.getValue(),
+        orientamentoCiclabile: distretto.urbanArea.orientamentoCiclabile.getValue(),
+        buonaVegetazione: <number>distretto.urbanArea.buonaVegetazione.getValue(),
+      })
+    
+    let promise2 = this.db.object('distretti/'+ id + '/elementiAmbientali').update
+      ({
+        valoreElementiAmbientali: distretto.urbanArea.elementiAmbientali.getValue(),
+        
+      })
+
+    let promise3 =   this.db.object('distretti/'+ id + '/qualitaDelloSpazio').update
+    ({
+      valoreQualitaDelloSpazio: <number>distretto.urbanArea.qualitaDelloSpazio.getValue(),
+     
+    })
+    
+    promise
+      .then(_ => console.log('success update'))
+      .catch(err => console.log(err, 'You dont have access!'));
+  }
+
+  
 
   //Salvo i distretti (valori) presi dal geojson in firebase
   saveDistrettoFirebase(distretto: Distretto){
@@ -40,8 +112,8 @@ export class FirebaseService{
     let orCicl = distretto.urbanArea.orientamentoCiclabile.getValue()
     let buonVeg = distretto.urbanArea.buonaVegetazione.getValue()
 
-    console.log(id)
-    console.log(idDistretto)
+    //console.log(id)
+    //console.log(idDistretto)
 
     //Salvo fen urb 
     this.db.object('distretti/'+id).update

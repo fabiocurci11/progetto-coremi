@@ -6,52 +6,46 @@ export class ColorMapping {
 
     //Icone per i distretti (devono essere di 5 colori, ognuno per ogni tipo di criticità)
     static iconMarkerStyleMarrone = new Icon({
-        src: 'assets/home2.png', 
-        size: [100, 100],
+      src: 'assets/distretti_icon/house_brown.png', 
         offset: [0,0],
         opacity: 1,
-        scale: 0.5
+        scale: 0.1
       })
 
     //Icon Marker Style 
     static iconMarkerStyleRosso = new Icon({
-        src: 'assets/home2.png', 
-        size: [100, 100],
+        src: 'assets/distretti_icon/house_red.png', 
         offset: [0,0],
         opacity: 1,
-        scale: 0.5
+        scale: 0.1
       })
   
     static iconMarkerStyleArancione = new Icon({
-        src: 'assets/home2.png', 
-        size: [100, 100],
+        src: 'assets/distretti_icon/house_orange.png', 
         offset: [0,0],
         opacity: 1,
-        scale: 0.5
+        scale: 0.1
       })
 
       static iconMarkerStyleGiallo = new Icon({
-        src: 'assets/home.png', 
-        size: [100, 100],
+        src: 'assets/distretti_icon/house_yellow.png', 
         offset: [0,0],
         opacity: 1,
-        scale: 0.5
+        scale: 0.1
       })
 
       static iconMarkerStyleVerde = new Icon({
-        src: 'assets/home.png', 
-        size: [100, 100],
+        src: 'assets/distretti_icon/house_green.png', 
         offset: [0,0],
         opacity: 1,
-        scale: 0.5
+        scale: 0.1
       })
 
       static iconMarkerStyleVoid = new Icon({
-        src: 'assets/home.png', 
-        size: [100, 100],
+        src: 'assets/distretti_icon/home_icon.png', 
         offset: [0,0],
         opacity: 1,
-        scale: 0.5
+        scale: 0.1
       })
 
     static valueColorDict = new Map([
@@ -69,7 +63,7 @@ export class ColorMapping {
     ]);
 
     static mapValueToColor(value: number): string{
-        console.log('colormapping: ' + this.valueColorDict.get(value)! );
+        //console.log('colormapping: ' + this.valueColorDict.get(value)! );
         return this.valueColorDict.get(value)!;
     }
 
@@ -86,6 +80,7 @@ export class ColorMapping {
     }
 
     static setStyleIconFromColor(color: string): Icon{
+      
         if(color == "marrone") return this.iconMarkerStyleMarrone;
         if(color == "rosso") return this.iconMarkerStyleRosso;
         if(color == "arancione") return this.iconMarkerStyleArancione;

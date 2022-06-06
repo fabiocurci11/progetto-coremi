@@ -44,7 +44,7 @@ export class QualitaSpazio implements Corema{
         let leggVal = this.legg.value;
 
         this.value = varietaVal * 1 + penFisVal * 1 + identLuogoVal * 1 + flessVal * 1 + leggVal * 1;
-        console.log('this.valueQualSpaz: ' + this.value);
+        //console.log('this.valueQualSpaz: ' + this.value);
     }
     
 

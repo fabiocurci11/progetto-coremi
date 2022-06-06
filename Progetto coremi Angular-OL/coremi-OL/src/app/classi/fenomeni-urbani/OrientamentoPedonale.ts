@@ -16,7 +16,7 @@ export class OrientamentoPedonale implements Corema{
         this.name = 'Orientamento Pedonale';
         this.type = 'spazialeOP';
         this.means = 'il significato è';
-        
+        this.icon = 'assets/fen_urb_icon/fen_urb.png'
     
         this.value = value;
     }

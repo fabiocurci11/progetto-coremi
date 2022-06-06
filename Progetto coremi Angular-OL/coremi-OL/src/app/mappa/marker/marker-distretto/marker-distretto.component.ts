@@ -13,9 +13,7 @@ import { MapComponent } from '../../map/map.component';
 })
 export class MarkerDistrettoComponent implements OnInit {
 
-  constructor(private featureHandlerService: FeatureHandlerService){
-
-  }
+  constructor(private featureHandlerService: FeatureHandlerService){}
 
   ngOnInit(): void {
     this.clickOnMarker();
@@ -31,6 +29,7 @@ export class MarkerDistrettoComponent implements OnInit {
  
   @Output() markerChildNotify: EventEmitter<boolean> = new EventEmitter<boolean>()
 
+  @Output() markerChildIdDistretto: EventEmitter<number> = new EventEmitter<number>()
 
   //Proprietà distretti (img fen urb)
   pathImg = 'assets/fen_urb_icon/';
@@ -88,6 +87,7 @@ export class MarkerDistrettoComponent implements OnInit {
   buonaVegBackColor: string = '';
 
   
+  
   //Metodi
 
   clickFenUrb(): void{
@@ -118,17 +118,13 @@ export class MarkerDistrettoComponent implements OnInit {
       
         let distretto: Distretto = this.featureHandlerService.getDistrettoById(feature.getId());
         this.addPathForImg(distretto);
-        
         this.addBackColorForImg(distretto);
-        //dichiarare in questa classe le variabili del colore per ogni fenurb
 
-        let buonaVegValue = distretto.urbanArea.buonaVegetazione.getValue();
-        console.log(feature.getId())
-        console.log('VALUE FOR COLOR: ' + buonaVegValue)
-        console.log('BUONAVEG FOR COLOR: ' + this.buonaVegBackColor)
-        //console.log("BUONA VEG: " + distretto.urbanArea.buonaVegetazione.calculateColor());
 
-        console.log('PATH: ' + this.buonaVegImg)
+        console.log('ID in Marker: '+ feature.getId())
+        this.markerChildIdDistretto.emit(feature.getId())
+
+
         let clickedCoordinate = e.coordinate;
         overlayLayer.setPosition(clickedCoordinate);
 
@@ -145,6 +141,8 @@ export class MarkerDistrettoComponent implements OnInit {
   
 
   addPathForImg(distretto: Distretto){
+    //Aggiunge il path dell'immagine per ogni fen urb
+
     this.orPedImg = this.pathImg + distretto.urbanArea.orientamentoPedonale.getIcon();
     this.elAmbImg = this.pathImg + distretto.urbanArea.elementiAmbientali.getIcon();
       this.caffeRistoImg = this.pathImg + distretto.urbanArea.elementiAmbientali.caffeRistoranti.getIcon();
