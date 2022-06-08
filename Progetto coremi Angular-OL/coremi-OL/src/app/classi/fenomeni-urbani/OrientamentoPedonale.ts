@@ -16,11 +16,15 @@ export class OrientamentoPedonale implements Corema{
         this.name = 'Orientamento Pedonale';
         this.type = 'spazialeOP';
         this.means = 'il significato è';
-        this.icon = 'assets/fen_urb_icon/fen_urb.png'
+        this.icon = 'orientamentoPedonale.png'
     
         this.value = value;
     }
 
+    calculateColor(value: number): void {
+        let valueFloor =  Math.floor(value);
+        this.color = ColorMapping.mapValueToColor(valueFloor);
+    }
     
     getName(): string {
         return this.name;

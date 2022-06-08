@@ -32,32 +32,32 @@
                 <tbody>
                     <tr id="td-color">
                         <td>1-2</td>
-                        <td></td>
-                        <td></td>
+                        <td style="background-color: #87461C;"></td>
+                        <td>Critico</td>
                     </tr>
 
                     <tr>
                         <td>3-4</td>
-                        <td>Yes</td>
-                        <td>10%</td>
+                        <td style="background-color: red;"></td>
+                        <td>Basso</td>
                     </tr>
 
                     <tr id="td-color">
                         <td>5-6</td>
-                        <td>Maybe</td>
-                        <td>1%</td>
+                        <td style="background-color: orange;"></td>
+                        <td>Medio</td>
                     </tr>
 
                     <tr>
                         <td>7-8</td>
-                        <td>Yes</td>
-                        <td>10%</td>
+                        <td style="background-color: yellow;"></td>
+                        <td>Buono</td>
                     </tr>
 
                     <tr id="td-color">
                         <td>9-10</td>
-                        <td>Maybe</td>
-                        <td>1%</td>
+                        <td style="background-color: green;"></td>
+                        <td>Molto buono</td>
                     </tr>
                 </tbody>
             </table>
@@ -68,39 +68,39 @@
 
     <div class="row row-cor m-20px">
     
-            <div class="col-3 text-center">
-                <img class="img-fluid" src="assets/icon.png" width="30" height="30" alt="">
-                <p>Fen 1</p>
+            <div class="col-3 text-center" (click)="showInfoCorema(orPedNome, orPedImg, $event)">
+                <img class="img-fluid" src="{{orPedImg}}" width="30" height="30" alt="">
+                <p>{{orPedNome}} </p>
             </div>
 
-            <div class="col-3 text-center">
-                <img class="img-fluid" src="assets/fen_urb_icon/fen_urb.png" width="30" height="30" alt="">
-                <p>Fen 2</p>
+            <div class="col-3 text-center" (click)="showInfoCorema(elAmbNome, elAmbImg, $event)">
+                <img class="img-fluid" src="{{elAmbImg}}" width="30" height="30" alt="">
+                <p>{{elAmbNome}}</p>
             </div>
 
-            <div class="col-3 text-center">
-                <img class="img-fluid" src="assets/fen_urb_icon/fenUrb2.png" width="30" height="30" alt="">
-                <p>Fen 3</p>
+            <div class="col-3 text-center" (click)="showInfoCorema(coesSpazNome, coesSpazImg, $event)">
+                <img class="img-fluid" src="{{coesSpazImg}}" width="30" height="30" alt="">
+                <p>{{coesSpazNome}}</p>
             </div>
 
-            <div class="col-3 text-center">
-                <img class="img-fluid" src="assets/icon.png" width="30" height="30" alt="">
-                <p>Fen 4</p>
+            <div class="col-3 text-center" (click)="showInfoCorema(orCiclNome, orCiclImg, $event)">
+                <img class="img-fluid" src="{{orCiclImg}}" width="30" height="30" alt="">
+                <p>{{orCiclNome}}</p>
             </div>
     </div>
 
     <div class="row row-cor">
-        <div class="col-3 text-center" (click)="showInfoCorema('Fen 5', 'assets/icon.png', $event)">
-            <img class="img-fluid" src="assets/icon.png" width="30" height="30" alt="">
-            <p>Fen 5</p>
+        <div class="col-3 text-center" (click)="showInfoCorema(qualSpazNome, qualSpazImg, $event)">
+            <img class="img-fluid" src="{{qualSpazImg}}" width="30" height="30" alt="">
+            <p>{{qualSpazNome}}</p>
         </div>
 
-        <div class="col-3 text-center">
-            <img class="img-fluid" src="assets/fen_urb_icon/fen_urb.png" width="30" height="30" alt="">
-            <p>Fen 6</p>
+        <div class="col-3 text-center" (click)="showInfoCorema(buonaVegNome, buonaVegImg, $event)">
+            <img class="img-fluid" src="{{buonaVegImg}}" width="30" height="30" alt="">
+            <p>{{buonaVegNome}}</p>
         </div>
 
-        <div class="col-3 text-center">
+        <div class="col-3 text-center" >
             <img class="img-fluid" src="assets/fen_urb_icon/fenUrb2.png" width="30" height="30" alt="">
             <p>Fen 7</p>
         </div>

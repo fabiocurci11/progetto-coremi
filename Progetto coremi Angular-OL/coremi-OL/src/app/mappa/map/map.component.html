@@ -5,6 +5,7 @@
     <app-marker-distretto 
         (markerChildNotify)='markerNotifyMappa($event)'
         (markerChildIdDistretto)='markerChildGetIdDistretto($event)' 
+        [updateBackColorFenUrb] = "updateBackColorFromModUhi"
         >
     </app-marker-distretto>
 
@@ -12,6 +13,7 @@
         *ngIf="showChild"
         [showModUHIComp]='showChild'
         [idDistretto] = 'idDistrettoFromMarker'
+        (modUhiChildUpdateBackColorFenUrb) = "modUhiUpdateBack($event)"
         >
     </app-modifica-uhi>
 

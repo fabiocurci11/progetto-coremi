@@ -11,32 +11,34 @@ export class ElementiAmbientali implements Corema{
     type?: string;
     means: string;
     icon?: string;
-    value: number;
+    value!: number;
     color?: string;
 
-    caffeRistoranti: CaffeRistoranti;
-    panchine: Panchine;
-    opereDarte: OpereDarte;
-    fontane: Fontane;
-    illuminazione: Illuminazione;
-    accessoWC: AccessoWC;
+    caffeRistoranti!: CaffeRistoranti;
+    panchine!: Panchine;
+    opereDarte!: OpereDarte;
+    fontane!: Fontane;
+    illuminazione!: Illuminazione;
+    accessoWC!: AccessoWC;
 
 
-    constructor(value: number, cafRist: CaffeRistoranti, panchine: Panchine, opereDarte: OpereDarte, fontane: Fontane, illuminazione: Illuminazione, accessoWC: AccessoWC){
+    constructor(value?: number, cafRist?: CaffeRistoranti, panchine?: Panchine, opereDarte?: OpereDarte, fontane?: Fontane, illuminazione?: Illuminazione, accessoWC?: AccessoWC){
         this.name = 'Elemanenti Ambientali';
         this.type = 'spaziale';
         this.means = 'il significato è';
+        this.icon = 'elementiAmbientali.png'
     
-        this.value = value;
+        if(value) this.value = value;
 
-        this.caffeRistoranti = cafRist
-        this.panchine = panchine
-        this.opereDarte = opereDarte;
-        this.fontane = fontane;
-        this.illuminazione = illuminazione;
-        this.accessoWC = accessoWC;
+        if(cafRist) this.caffeRistoranti = cafRist
+        if(panchine) this.panchine = panchine
+        if(opereDarte) this.opereDarte = opereDarte;
+        if(fontane) this.fontane = fontane;
+        if(illuminazione) this.illuminazione = illuminazione;
+        if(accessoWC) this.accessoWC = accessoWC;
     }
 
+    
     
     calculateUHIElemAmb(): void{
         let cafRistVal = this.caffeRistoranti.value;

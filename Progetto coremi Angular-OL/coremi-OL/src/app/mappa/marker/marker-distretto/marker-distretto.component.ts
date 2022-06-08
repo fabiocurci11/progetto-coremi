@@ -1,8 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Map, Overlay } from 'ol';
 import { ObjectEvent } from 'ol/Object';
 import { Distretto } from 'src/app/classi/distretti/distretto';
 import { ColorMapping } from 'src/services/ColorMapping';
+import { FirebaseService } from 'src/services/firebase/firebase.service';
 import { FeatureHandlerService } from '../../../../services/feature-handler.service';
 import { MapComponent } from '../../map/map.component';
 
@@ -19,17 +20,32 @@ export class MarkerDistrettoComponent implements OnInit {
     this.clickOnMarker();
   }
 
-  //Proprietà
+  ngOnChanges() {
+    //alert('OnChanges: '+this.updateBackColorFenUrb)
+    if(this.updateBackColorFenUrb){
+     // alert('update back color')
+      this.addBackColorForImg(this.distrettoClicked)
+      //alert(this.distrettoClicked.urbanArea.orientamentoPedonale.getColor())
+    }
+    //alert(FirebaseService.varNotify)
+    if(FirebaseService.varNotify){
+      this.addBackColorForImg(this.distrettoClicked)
+    }
+  }
 
+  //Proprietà
   showDiv: boolean = true;
   showMenu: boolean = false;
   figlioString: string = 'string figlio';
+  distrettoClicked!: Distretto
   
   //@Output() dati dal figlio (marker) al padre (mappa)
  
   @Output() markerChildNotify: EventEmitter<boolean> = new EventEmitter<boolean>()
 
   @Output() markerChildIdDistretto: EventEmitter<number> = new EventEmitter<number>()
+
+  @Input() updateBackColorFenUrb: boolean = false;
 
   //Proprietà distretti (img fen urb)
   pathImg = 'assets/fen_urb_icon/';
@@ -95,7 +111,7 @@ export class MarkerDistrettoComponent implements OnInit {
     console.log('showDiv = ' + this.showDiv);
   }
 
-
+  
 
   clickOnMarker(){
     //create Overlay
@@ -117,6 +133,7 @@ export class MarkerDistrettoComponent implements OnInit {
         console.log("click point");
       
         let distretto: Distretto = this.featureHandlerService.getDistrettoById(feature.getId());
+        this.distrettoClicked = distretto
         this.addPathForImg(distretto);
         this.addBackColorForImg(distretto);
 
@@ -165,9 +182,11 @@ export class MarkerDistrettoComponent implements OnInit {
   addBackColorForImg(distretto: Distretto){
     //Prende il colore di ogni fen urb (in italiano), e lo imposta nel css corrispondente
     this.orPedBackColor = distretto.urbanArea.orientamentoPedonale.getColor();
+    //alert('orPed: '+ this.orPedBackColor)
     this.orPedBackColor = ColorMapping.setFenUrbColor(this.orPedBackColor);
 
     this.elAmbBackColor = distretto.urbanArea.elementiAmbientali.getColor();
+    //alert('elAmb: '+ this.elAmbBackColor)
     this.elAmbBackColor = ColorMapping.setFenUrbColor(this.elAmbBackColor);
   
       this.caffeRistoBackColor = distretto.urbanArea.elementiAmbientali.caffeRistoranti.getColor();

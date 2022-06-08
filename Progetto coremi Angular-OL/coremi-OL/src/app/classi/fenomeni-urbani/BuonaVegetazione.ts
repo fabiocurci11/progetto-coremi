@@ -23,7 +23,8 @@ export class BuonaVegetazione implements Corema{
 
     
     calculateColor(value: number): void {
-        this.color = ColorMapping.mapValueToColor(value);
+        let valueFloor =  Math.floor(value);
+        this.color = ColorMapping.mapValueToColor(valueFloor);
     }
   
 

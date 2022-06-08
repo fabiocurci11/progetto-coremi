@@ -53,6 +53,7 @@ export class MapComponent implements OnInit{
   //Dati da passare ai figli (filtro, modificaUHI)
   showChild: boolean = false;
   idDistrettoFromMarker: number = 0;
+  updateBackColorFromModUhi: boolean = false;
 
   //Dati dal figlio (marker)
   markerNotifyMappa(showMenu: boolean): void{
@@ -63,6 +64,11 @@ export class MapComponent implements OnInit{
   markerChildGetIdDistretto(idDistretto: number): void{
     this.idDistrettoFromMarker = idDistretto
     //console.log('ID DISTRETTO DAL MARKER A MAPPA: ' + idDistretto)
+  }
+
+  modUhiUpdateBack(updateBackColorFenUrb: boolean){
+    console.log('MODUHIBACK: ' + updateBackColorFenUrb)
+    this.updateBackColorFromModUhi = updateBackColorFenUrb
   }
 
 

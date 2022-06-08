@@ -16,11 +16,15 @@ export class OrientamentoCiclabile implements Corema{
         this.name = 'Orientamento Ciclabile';
         this.type = 'spazialeOC';
         this.means = 'il significato è';
+        this.icon = 'orientamentoCiclabile.png'
     
         this.value = value;
     }
 
-    
+    calculateColor(value: number): void {
+        let valueFloor =  Math.floor(value);
+        this.color = ColorMapping.mapValueToColor(valueFloor);
+    }
 
     getName(): string {
         return this.name;

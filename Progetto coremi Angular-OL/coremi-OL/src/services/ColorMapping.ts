@@ -69,7 +69,7 @@ export class ColorMapping {
 
     
     static setFenUrbColor(color: string): string{
-      if(color == "marrone") return color = 'brown';
+      if(color == "marrone") return color = '#87461C';
       if(color == "rosso") return color = 'red';
       if(color == "arancione") return color = 'orange';
       if(color == "giallo") return color = 'yellow';

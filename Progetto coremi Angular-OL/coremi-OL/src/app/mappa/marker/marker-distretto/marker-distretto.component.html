@@ -5,82 +5,95 @@
         <div class="row mt-0">
             <div class="col-4" *ngIf="showDiv">
                 <div class="container-icon" 
+                    [ngStyle]="{'backgroundColor': orPedBackColor }">
+
+                    <img src='{{ orPedImg }}' class="imgCity" alt="" *ngIf="showDiv">
+                </div>
+            </div>
+
+            <div class="col-4 offset-4" *ngIf="showDiv">
+                <div class="container-icon"
+                    [ngStyle]="{'backgroundColor': elAmbBackColor }">
+
+                    <img src='{{ elAmbImg }}' class="imgCity" style="cursor: pointer;" alt="" (click)="clickFenUrb()" *ngIf="showDiv">
+                </div>
+            </div>
+
+             <!--div appaiono dopo click-->
+             <div class="col-4" *ngIf="!showDiv">
+                <div class="container-icon">
+                    <img src='assets/fen_urb_icon/city.png' class="imgCity" alt="" *ngIf="!showDiv">
+                </div>
+            </div>
+
+            
+            <div class="col-4 offset-4" *ngIf="!showDiv">
+                <div class="container-icon">
+                    <img src='assets/fen_urb_icon/city.png' class="imgCity" alt="" *ngIf="!showDiv">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4" *ngIf="showDiv">
+                <div class="container-icon"
+                    [ngStyle]="{'backgroundColor': coesSpazBackColor }">
+                    <img src='{{ coesSpazImg }}'  class="imgCity" alt="" *ngIf="showDiv">
+                </div>
+            </div>
+
+            <div class="col-4 offset-4" *ngIf="showDiv">
+                <div class="container-icon"
+                    [ngStyle]="{'backgroundColor': orCiclBackColor }">
+                    <img src='{{ orCiclImg }}'  class="imgCity" alt="" *ngIf="showDiv">
+                </div>
+            </div>
+
+             <!--div appaiono dopo click-->
+             <div class="col-4" *ngIf="!showDiv">
+                <div class="container-icon">
+                    <img src='assets/fen_urb_icon/city.png' class="imgCity" alt=""  *ngIf="!showDiv">
+                </div>
+            </div>
+
+            <div class="col-4" *ngIf="!showDiv">
+                <div class="container-back-icon">
+                    <img src='assets/back-arrow-black.png' class="imgCity" alt="" style="cursor: pointer;" (click)="clickFenUrb()" *ngIf="!showDiv">
+                </div>
+            </div>
+
+            <div class="col-4 " *ngIf="!showDiv">
+                <div class="container-icon">
+                    <img src='assets/fen_urb_icon/city.png' class="imgCity" alt=""  *ngIf="!showDiv">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4" *ngIf="showDiv">
+                <div class="container-icon"
+                    [ngStyle]="{'backgroundColor': qualSpazBackColor }">
+                    <img src='{{ qualSpazImg }}' class="imgCity" alt="" style="cursor: pointer;" (click)="clickFenUrb()" *ngIf="showDiv">
+                </div>
+            </div>
+
+            <div class="col-4 offset-4" *ngIf="showDiv">
+                <div class="container-icon"
                     [ngStyle]="{'backgroundColor': buonaVegBackColor }">
-
-                    <img src='{{ buonaVegImg }}' class="imgCity" alt="" (click)="clickFenUrb()" *ngIf="showDiv">
-                </div>
-            </div>
-
-            <div class="col-4 offset-4" *ngIf="showDiv">
-                <div class="container-icon">
-                    <img src='{{ buonaVegImg }}' class="imgCity" alt="" (click)="clickFenUrb()" *ngIf="showDiv">
-                </div>
-            </div>
-
-             <!--div appaiono dopo click-->
-             <div class="col-4" *ngIf="!showDiv">
-                <div class="container-icon">
-                    <img src='assets/fen_urb_icon/city.png' class="imgCity" alt="" (click)="clickFenUrb()" *ngIf="!showDiv">
-                </div>
-            </div>
-
-            <div class="col-4 offset-4" *ngIf="!showDiv">
-                <div class="container-icon">
-                    <img src='assets/fen_urb_icon/city.png' class="imgCity" alt="" (click)="clickFenUrb()" *ngIf="!showDiv">
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-4" *ngIf="showDiv">
-                <div class="container-icon">
-                    <img src='assets/fen_urb_icon/fen_urb.png' alt="" (click)="clickFenUrb()" *ngIf="showDiv">
-                </div>
-            </div>
-
-            <div class="col-4 offset-4" *ngIf="showDiv">
-                <div class="container-icon">
-                    <img src='assets/fen_urb_icon/fen_urb.png' alt="" (click)="clickFenUrb()" *ngIf="showDiv">
-                </div>
-            </div>
-
-             <!--div appaiono dopo click-->
-             <div class="col-4" *ngIf="!showDiv">
-                <div class="container-icon">
-                    <img src='assets/fen_urb_icon/city.png' class="imgCity" alt="" (click)="clickFenUrb()" *ngIf="!showDiv">
-                </div>
-            </div>
-
-            <div class="col-4 offset-4" *ngIf="!showDiv">
-                <div class="container-icon">
-                    <img src='assets/fen_urb_icon/city.png' class="imgCity" alt="" (click)="clickFenUrb()" *ngIf="!showDiv">
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-4" *ngIf="showDiv">
-                <div class="container-icon">
-                    <img src='assets/fen_urb_icon/fen_urb.png' alt="" (click)="clickFenUrb()" *ngIf="showDiv">
-                </div>
-            </div>
-
-            <div class="col-4 offset-4" *ngIf="showDiv">
-                <div class="container-icon">
-                    <img src='assets/fen_urb_icon/fen_urb.png' alt="" (click)="clickFenUrb()" *ngIf="showDiv">
+                    <img src='{{ buonaVegImg }}'  class="imgCity" alt="" *ngIf="showDiv">
                 </div>
             </div>
 
             <!--div appaiono dopo click-->
             <div class="col-4" *ngIf="!showDiv">
                 <div class="container-icon">
-                    <img src='assets/fen_urb_icon/city.png' class="imgCity" alt="" (click)="clickFenUrb()" *ngIf="!showDiv">
+                    <img src='assets/fen_urb_icon/city.png' class="imgCity" alt=""  *ngIf="!showDiv">
                 </div>
             </div>
 
             <div class="col-4 offset-4" *ngIf="!showDiv">
                 <div class="container-icon">
-                    <img src='assets/fen_urb_icon/city.png' class="imgCity" alt="" (click)="clickFenUrb()" *ngIf="!showDiv">
+                    <img src='assets/fen_urb_icon/city.png' class="imgCity" alt=""  *ngIf="!showDiv">
                 </div>
             </div>
 

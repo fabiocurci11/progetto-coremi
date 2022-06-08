@@ -17,10 +17,17 @@ export class CoesioneSpaziale implements Corema{
         this.name = 'Coesione Spaziale';
         this.type = 'spazialeOP';
         this.means = 'il significato è';
+        this.icon = 'coesioneSpaziale.png'
     
         this.value = value;
     }
 
+  
+
+    calculateColor(value: number): void {
+        let valueFloor =  Math.floor(value);
+        this.color = ColorMapping.mapValueToColor(valueFloor);
+    }
 
     getName(): string {
         return this.name;

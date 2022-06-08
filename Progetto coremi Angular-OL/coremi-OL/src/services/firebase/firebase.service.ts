@@ -15,6 +15,7 @@ export class FirebaseService {
   //Proprietà
   items: Observable<any>;
   valuesOfFenUrb = new Map<string, number>();
+  static varNotify: boolean = false
 
   constructor(private db: AngularFireDatabase) {
     this.items = db.object('distretti').valueChanges()
@@ -26,7 +27,7 @@ export class FirebaseService {
     
 
     this.items.forEach( (value) => {
-      alert('in foreach: '+value.nomeDistretto )
+     // alert('in foreach: '+value.nomeDistretto )
       this.setValueFenUrbFromFirebase(distretto, value, feature)
     });  
 
@@ -35,8 +36,11 @@ export class FirebaseService {
   }
 
   setValueFenUrbFromFirebase(distretto: Distretto, value: any, feature: Feature<Geometry>){
-    //Assegno valori dei fen urb agli oggetti
+    //Assegno valori dei fen urb agli oggetti + calcolo colore background
+    //alert('in set value fireservice. Color or ped: '+ value.orientamentoPedonale)
     distretto.urbanArea.orientamentoPedonale.setValue(value.orientamentoPedonale)
+    distretto.urbanArea.orientamentoPedonale.calculateColor(value.orientamentoPedonale)
+
     distretto.urbanArea.elementiAmbientali.setValue(value.elementiAmbientali.valoreElementiAmbientali)
       distretto.urbanArea.elementiAmbientali.caffeRistoranti.setValue(value.elementiAmbientali.caffeRistoranti)
       distretto.urbanArea.elementiAmbientali.panchine.setValue(value.elementiAmbientali.panchine)
@@ -44,19 +48,26 @@ export class FirebaseService {
       distretto.urbanArea.elementiAmbientali.fontane.setValue(value.elementiAmbientali.fontane)
       distretto.urbanArea.elementiAmbientali.illuminazione.setValue(value.elementiAmbientali.illuminazione)
       distretto.urbanArea.elementiAmbientali.accessoWC.setValue(value.elementiAmbientali.accessoWC)
+      
     distretto.urbanArea.coesioneSpaziale.setValue(value.coesioneSpaziale)
+    distretto.urbanArea.coesioneSpaziale.calculateColor(value.coesioneSpaziale)
+
     distretto.urbanArea.orientamentoCiclabile.setValue(value.orientamentoCiclabile)
+    distretto.urbanArea.orientamentoCiclabile.calculateColor(value.orientamentoCiclabile)
+
     distretto.urbanArea.qualitaDelloSpazio.setValue(value.qualitaDelloSpazio.valoreQualitaDelloSpazio)
       distretto.urbanArea.qualitaDelloSpazio.varieta.setValue(value.qualitaDelloSpazio.varieta)
       distretto.urbanArea.qualitaDelloSpazio.penFis.setValue(value.qualitaDelloSpazio.penetrabilitaFisica)
       distretto.urbanArea.qualitaDelloSpazio.identLuogo.setValue(value.qualitaDelloSpazio.identitaLuogo)
       distretto.urbanArea.qualitaDelloSpazio.fless.setValue(value.qualitaDelloSpazio.flessibilita)
       distretto.urbanArea.qualitaDelloSpazio.legg.setValue(value.qualitaDelloSpazio.leggibilita)
+
     distretto.urbanArea.buonaVegetazione.setValue(value.buonaVegetazione)
+    distretto.urbanArea.buonaVegetazione.calculateColor(value.buonaVegetazione)
 
     //Calcolo indice di felicità (UHI) del distretto
     let uhiDistretto = distretto.calculateUHI()
-    alert(uhiDistretto);
+    //alert(uhiDistretto);
     
     //Calcolo colore del distretto in base all'indice di felicità
     distretto.calculateColor(uhiDistretto);  
@@ -68,6 +79,8 @@ export class FirebaseService {
 
     //Salva/aggiorna i valori presi da firebase in firebase
    // this.saveDistrettoFirebase(distretto)
+    FirebaseService.varNotify = true
+   
   } 
 
 
@@ -98,6 +111,8 @@ export class FirebaseService {
     promise
       .then(_ => console.log('success update'))
       .catch(err => console.log(err, 'You dont have access!'));
+
+    
   }
 
   

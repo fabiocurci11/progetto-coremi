@@ -64,6 +64,7 @@ export class FeatureHandlerService {
     //Coesione spaziale
     let coesSpazValue: number = feature.get('CoesioneSpaziale');
     let coesSpazObj = new CoesioneSpaziale(coesSpazValue);
+    coesSpazObj.calculateColor(coesSpazValue);
 
     //Qualità dello spazio
     let qualSpazValue: number = feature.get('QualitaDelloSpazio')['Value'];
@@ -91,6 +92,7 @@ export class FeatureHandlerService {
     //Orientamento pedonale
     let orPedValue: number = feature.get('OrientamentoPedonale');
     let orPedObj = new OrientamentoPedonale(orPedValue);
+    orPedObj.calculateColor(orPedValue);
 
     //Elementi Ambientali
     let elAmbValue: number = feature.get('ElementiAmbientali')['Value'];
@@ -126,6 +128,7 @@ export class FeatureHandlerService {
     //Orientamento Ciclabile
     let orCiclValue: number = feature.get('OrientamentoCiclabile');
     let orCiclObj = new OrientamentoCiclabile(orCiclValue);
+    orCiclObj.calculateColor(orCiclValue);
 
     //Creo area urbana
     let areaUrbana = new AreaUrbana(nomeAreaUrbana, coesSpazObj, elAmbObj ,qualSpazObj, orPedObj, buonaVegObj, orCiclObj);

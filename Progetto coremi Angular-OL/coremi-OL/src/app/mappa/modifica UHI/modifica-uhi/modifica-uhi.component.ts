@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Distretto } from 'src/app/classi/distretti/distretto';
 import { FeatureHandlerService } from 'src/services/feature-handler.service';
 import { FirebaseService } from 'src/services/firebase/firebase.service';
@@ -29,24 +29,29 @@ export class ModificaUhiComponent implements OnInit {
   //@Input() dati dal padre (mappa)
   @Input() showModUHIComp: boolean = false;
   @Input() idDistretto: number = 0;
+
+  //@Output() dati da passare al padre (mappa)
+  @Output() modUhiChildUpdateBackColorFenUrb: EventEmitter<boolean> = new EventEmitter<boolean>()
+  updateBackColorFenUrb: boolean = false
   
 
   //Proprietà
   showModUHI: boolean = false; 
   valueOfRange = 0;
   distretto!: Distretto 
+  pathImg = 'assets/fen_urb_icon/';
 
   //tuple
   tupla: [string, string, number, string][] = [] //= [["Steve", "prova", 9], ["Steve", "prova", 7], ["Steve", "prova", 8]]
   tuplaElAmb: [string, string, number, string][] = []
 
   createTuplaFenUrb(distretto: Distretto){
-    this.tupla!.push([distretto.urbanArea.orientamentoPedonale.getIcon(), distretto.urbanArea.orientamentoPedonale.getName(), distretto.urbanArea.orientamentoPedonale.getValue(),'rangeInput1'])
-    this.tupla!.push([distretto.urbanArea.elementiAmbientali.getIcon(), distretto.urbanArea.elementiAmbientali.getName(), distretto.urbanArea.elementiAmbientali.getValue(),'rangeInput2'])
-    this.tupla!.push([distretto.urbanArea.coesioneSpaziale.getIcon(), distretto.urbanArea.coesioneSpaziale.getName(), distretto.urbanArea.coesioneSpaziale.getValue(),'rangeInput3'])
-    this.tupla!.push([distretto.urbanArea.orientamentoCiclabile.getIcon(), distretto.urbanArea.orientamentoCiclabile.getName(), distretto.urbanArea.orientamentoCiclabile.getValue(),'rangeInput4'])
-    this.tupla!.push([distretto.urbanArea.qualitaDelloSpazio.getIcon(), distretto.urbanArea.qualitaDelloSpazio.getName(), distretto.urbanArea.qualitaDelloSpazio.getValue(),'rangeInput5'])
-    this.tupla!.push([distretto.urbanArea.buonaVegetazione.getIcon(), distretto.urbanArea.buonaVegetazione.getName(), distretto.urbanArea.buonaVegetazione.getValue(),'rangeInput6'])
+    this.tupla!.push([this.pathImg + distretto.urbanArea.orientamentoPedonale.getIcon(), distretto.urbanArea.orientamentoPedonale.getName(), distretto.urbanArea.orientamentoPedonale.getValue(),'rangeInput1'])
+    this.tupla!.push([this.pathImg + distretto.urbanArea.elementiAmbientali.getIcon(), distretto.urbanArea.elementiAmbientali.getName(), distretto.urbanArea.elementiAmbientali.getValue(),'rangeInput2'])
+    this.tupla!.push([this.pathImg + distretto.urbanArea.coesioneSpaziale.getIcon(), distretto.urbanArea.coesioneSpaziale.getName(), distretto.urbanArea.coesioneSpaziale.getValue(),'rangeInput3'])
+    this.tupla!.push([this.pathImg + distretto.urbanArea.orientamentoCiclabile.getIcon(), distretto.urbanArea.orientamentoCiclabile.getName(), distretto.urbanArea.orientamentoCiclabile.getValue(),'rangeInput4'])
+    this.tupla!.push([this.pathImg + distretto.urbanArea.qualitaDelloSpazio.getIcon(), distretto.urbanArea.qualitaDelloSpazio.getName(), distretto.urbanArea.qualitaDelloSpazio.getValue(),'rangeInput5'])
+    this.tupla!.push([this.pathImg + distretto.urbanArea.buonaVegetazione.getIcon(), distretto.urbanArea.buonaVegetazione.getName(), distretto.urbanArea.buonaVegetazione.getValue(),'rangeInput6'])
   }
 
   createTuplaFenUrbElAmb(distretto: Distretto){
@@ -71,18 +76,9 @@ export class ModificaUhiComponent implements OnInit {
     idString = idString + this.distretto!.getId()
     console.log('ID string: ' + idString)
     this.mapValueOfTuplaToDistretto();
-    this.firebaseService.updateDistretto(idString, this.distretto)
-
-  
-    /*
-    console.log('SAVE')
-    console.log('OrPed'+this.distretto.urbanArea.orientamentoPedonale.getValue())
-    console.log('ElAmb'+this.distretto.urbanArea.elementiAmbientali.getValue())
-    console.log('CoesSpaz'+this.distretto.urbanArea.coesioneSpaziale.getValue())
-    console.log('OrCicl'+this.distretto.urbanArea.orientamentoCiclabile.getValue())
-    console.log('QualSpaz'+this.distretto.urbanArea.qualitaDelloSpazio.getValue())    
-    console.log('BuonVeg'+this.distretto.urbanArea.buonaVegetazione.getValue())
-    */
+    this.firebaseService.updateDistretto(idString, this.distretto);
+    this.modUhiChildUpdateBackColorFenUrb.emit(this.updateBackColorFenUrb)
+    
   }
 
   

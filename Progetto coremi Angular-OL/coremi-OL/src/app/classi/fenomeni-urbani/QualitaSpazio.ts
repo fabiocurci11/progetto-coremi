@@ -11,28 +11,29 @@ export class QualitaSpazio implements Corema{
     type?: string;
     means: string;
     icon?: string;
-    value: number;
+    value!: number;
     color?: string;
 
-    varieta: Varieta;
-    penFis: PenetrabilitaFisica;
-    identLuogo: IdentitaLuogo;
-    fless: Flessibilita;
-    legg: Leggibilita;
+    varieta!: Varieta;
+    penFis!: PenetrabilitaFisica;
+    identLuogo!: IdentitaLuogo;
+    fless!: Flessibilita;
+    legg!: Leggibilita;
 
 
-    constructor(value: number, varieta: Varieta, penFis: PenetrabilitaFisica, identLuogo: IdentitaLuogo, fless: Flessibilita, legg: Leggibilita){
+    constructor(value?: number, varieta?: Varieta, penFis?: PenetrabilitaFisica, identLuogo?: IdentitaLuogo, fless?: Flessibilita, legg?: Leggibilita){
         this.name = 'Qualita dello spazio';
         this.type = 'spaziale';
         this.means = 'il significato è';
+        this.icon = 'qualitaDelloSpazio.png'
     
-        this.value = value;
+        if(value) this.value = value;
 
-        this.varieta = varieta
-        this.penFis = penFis
-        this.identLuogo = identLuogo;
-        this.fless = fless;
-        this.legg = legg
+        if(varieta) this.varieta = varieta
+        if(penFis) this.penFis = penFis
+        if(identLuogo) this.identLuogo = identLuogo;
+        if(fless) this.fless = fless;
+        if(legg) this.legg = legg
     }
 
     
