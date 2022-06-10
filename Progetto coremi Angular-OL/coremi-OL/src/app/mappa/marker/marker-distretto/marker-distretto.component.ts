@@ -106,9 +106,12 @@ export class MarkerDistrettoComponent implements OnInit {
   
   //Metodi
 
-  clickFenUrb(): void{
+  clickFenUrbElAmb(): void{
     this.showDiv = !this.showDiv;
-    console.log('showDiv = ' + this.showDiv);
+  }
+
+  clickFenUrbQualSpaz(): void{
+    this.showDiv = !this.showDiv;
   }
 
   

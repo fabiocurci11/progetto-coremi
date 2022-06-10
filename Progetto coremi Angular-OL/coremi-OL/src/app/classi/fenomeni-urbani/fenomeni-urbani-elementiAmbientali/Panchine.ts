@@ -14,6 +14,7 @@ export class Panchine implements Corema{
         this.name = 'Panchine';
         this.type = 'spazialeOP';
         this.means = 'il significato è';
+        this.icon = 'panchine.png'
     
         this.value = value;
     }

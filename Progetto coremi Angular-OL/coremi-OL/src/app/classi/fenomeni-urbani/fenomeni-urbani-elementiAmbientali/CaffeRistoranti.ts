@@ -14,6 +14,7 @@ export class CaffeRistoranti implements Corema{
         this.name = 'Caffe e Ristorani';
         this.type = 'spazialeOP';
         this.means = 'il significato è';
+        this.icon = 'caffeRistoranti.png'
     
         this.value = value;
     }

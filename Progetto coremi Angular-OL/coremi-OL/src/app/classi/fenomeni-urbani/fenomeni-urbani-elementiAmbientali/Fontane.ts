@@ -14,6 +14,7 @@ export class Fontane implements Corema{
         this.name = 'Fontane';
         this.type = 'spazialeOP';
         this.means = 'il significato è';
+        this.icon = 'fontane.png'
     
         this.value = value;
     }

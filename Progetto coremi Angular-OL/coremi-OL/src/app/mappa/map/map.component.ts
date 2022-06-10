@@ -44,7 +44,7 @@ export class MapComponent implements OnInit{
 
   
 //Proprietà
-  jsonPath: string = 'assets/data/geoJSON2.geojson'
+  jsonPath: string = 'assets/data/geoJSON.geojson'
   public static mappa: Map | undefined;
   //Coordinate Salerno
   long: number = 14.7226162;

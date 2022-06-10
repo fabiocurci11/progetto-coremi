@@ -14,6 +14,7 @@ export class OpereDarte implements Corema{
         this.name = 'Opere di arte';
         this.type = 'spazialeOP';
         this.means = 'il significato è';
+        this.icon = 'opereDarte.png'
     
         this.value = value;
     }

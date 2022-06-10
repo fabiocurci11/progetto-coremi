@@ -14,6 +14,7 @@ export class Illuminazione implements Corema{
         this.name = 'Illuminazione';
         this.type = 'spazialeOP';
         this.means = 'il significato è';
+        this.icon = 'illuminazione.png'
     
         this.value = value;
     }

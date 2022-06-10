@@ -14,6 +14,7 @@ export class AccessoWC implements Corema{
         this.name = 'Accesso ai WC';
         this.type = 'spazialeOP';
         this.means = 'il significato è';
+        this.icon = 'accessoWC.png'
     
         this.value = value;
     }
