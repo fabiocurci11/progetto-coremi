@@ -14,7 +14,8 @@
 #btn-filtro{
     width: 50px;
     height: 100%;
-    background-color: #11bb3266;
+    background-color: #00ad7c9e;
+    border-radius: 1rem;
 }
 
 #row-filtro{
@@ -24,6 +25,7 @@
     margin-right:0px;
     background-color: white;
     z-index: 1;
+    border-radius: 1rem;
 }
 
 h1{
@@ -47,4 +49,9 @@ p{
     margin-top: 10%;
     margin-left: 0px;
     margin-bottom: 5%;
+}
+
+#btnSave{
+    color: white;
+    margin-bottom: 0px;
 }

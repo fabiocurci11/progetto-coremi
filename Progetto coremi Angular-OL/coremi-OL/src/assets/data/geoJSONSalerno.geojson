@@ -1,0 +1,199 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 1,
+      "properties": {
+        "nomeDistretto": "Distretto1",
+        "AreaUrbana": "areaUrbDistretto1",
+
+        
+          "OrientamentoPedonale": 5,
+          "ElementiAmbientali": {
+            "Value": 0,
+            "CaffeRistoranti": 0,
+            "Panchine": 0,
+            "OpereDarte": 4,
+            "Fontane": 1,
+            "Illuminazione": 0,
+            "AccessoWC": 0
+          },
+
+          "CoesioneSpaziale": 0,
+          "OrientamentoCiclabile": 0,
+          "QualitaDelloSpazio": {
+            "Value": 0,
+            "Varieta": 0,
+            "PenetrabilitaFisica": 0,
+            "IdentitaLuogo": 4,
+            "Flessibilita": 1,
+            "Leggibilita": 0
+          },
+
+          "BuonaVegetazione": 9
+          
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.758415222167969,
+          40.67832728653328
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2,
+      "properties": {
+        "nomeDistretto": "Distretto2",
+        "AreaUrbana": "areaUrbDistretto3",
+
+          "OrientamentoPedonale": 1,
+          "ElementiAmbientali": {
+            "Value": 0,
+            "CaffeRistoranti": 0,
+            "Panchine": 0,
+            "OpereDarte": 4,
+            "Fontane": 2,
+            "Illuminazione": 0,
+            "AccessoWC": 0
+          },
+
+          "CoesioneSpaziale": 0,
+          "OrientamentoCiclabile": 0,
+          "QualitaDelloSpazio": {
+            "Value": 0,
+            "Varieta": 0,
+            "PenetrabilitaFisica": 0,
+            "IdentitaLuogo": 4,
+            "Flessibilita": 1,
+            "Leggibilita": 0
+          },
+          "BuonaVegetazione": 0
+        
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.7841215133667,
+          40.67058084583907
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 3,
+      "properties": {
+        "nomeDistretto": "Distretto3",
+        "AreaUrbana": "areaUrbDistretto3",
+
+          "OrientamentoPedonale": 7,
+          "ElementiAmbientali": {
+            "Value": 0,
+            "CaffeRistoranti": 0,
+            "Panchine": 0,
+            "OpereDarte": 4,
+            "Fontane": 3,
+            "Illuminazione": 0,
+            "AccessoWC": 0
+          },
+
+          "CoesioneSpaziale": 0,
+          "OrientamentoCiclabile": 0,
+          "QualitaDelloSpazio": {
+            "Value": 0,
+            "Varieta": 0,
+            "PenetrabilitaFisica": 0,
+            "IdentitaLuogo": 4,
+            "Flessibilita": 1,
+            "Leggibilita": 0
+          },
+          "BuonaVegetazione": 10
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.795901775360107,
+          40.66385894013736
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 4,
+      "properties": {
+        "nomeDistretto": "Distretto4",
+        "AreaUrbana": "areaUrbDistretto4",
+
+          "OrientamentoPedonale": 0,
+          "ElementiAmbientali": {
+            "Value": 1,
+            "CaffeRistoranti": 2,
+            "Panchine": 3,
+            "OpereDarte": 4,
+            "Fontane": 5,
+            "Illuminazione": 6,
+            "AccessoWC": 7
+          }, 
+
+          "CoesioneSpaziale": 0,
+          "OrientamentoCiclabile": 0,
+          "QualitaDelloSpazio": {
+            "Value": 7,
+            "Varieta": 7,
+            "PenetrabilitaFisica": 7,
+            "IdentitaLuogo": 7,
+            "Flessibilita": 7,
+            "Leggibilita": 7
+          },
+          "BuonaVegetazione": 0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.802618026733398,
+          40.65793398696206
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 5,
+      "properties": {
+        "nomeDistretto": "Distretto5",
+        "AreaUrbana": "areaUrbDistretto5",
+
+          "OrientamentoPedonale": 0,
+          "ElementiAmbientali": {
+            "Value": 0,
+            "CaffeRistoranti": 0,
+            "Panchine": 0,
+            "OpereDarte": 4,
+            "Fontane": 5,
+            "Illuminazione": 0,
+            "AccessoWC": 0
+          },
+
+          "CoesioneSpaziale": 0,
+          "OrientamentoCiclabile": 0,
+          "QualitaDelloSpazio": {
+            "Value": 0,
+            "Varieta": 0,
+            "PenetrabilitaFisica": 0,
+            "IdentitaLuogo": 4,
+            "Flessibilita": 1,
+            "Leggibilita": 0
+          },
+          "BuonaVegetazione": 7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.813368320465086,
+          40.65236665583303
+        ]
+      }
+    }
+  ]
+}

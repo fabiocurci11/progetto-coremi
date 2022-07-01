@@ -68,6 +68,9 @@ export class MenuLeggendaComponent implements OnInit, AfterViewInit {
   buonaVegNome: string = this.distretto.urbanArea.buonaVegetazione.getName()
   buonaVegImg: string = this.pathImg + this.distretto.urbanArea.buonaVegetazione.getIcon()
 
+  //caffeRistNome: string = this.distretto.urbanArea.elementiAmbientali.caffeRistoranti.getName()
+  //caffeRistImg: string = this.pathImg + this.distretto.urbanArea.elementiAmbientali.caffeRistoranti.getIcon()
+
   //Metodi 
 
   showDivLeg(): void{

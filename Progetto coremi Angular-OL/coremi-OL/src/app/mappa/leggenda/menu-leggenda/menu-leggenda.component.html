@@ -1,8 +1,8 @@
 <div class="container" id="container-Leggenda">
     <div class="row">
        <div class="col">
-        <button class="btn" id="btn-ShowHideLeggenda" (click)="showDivLeg()"> 
-            <img  src="assets/info.png" width="100%" height="100%" alt="">
+        <button class="btn" id="btn-ShowHideLeggenda2" (click)="showDivLeg()"> 
+            <img  src="assets/info2.png" width="100%" height="100%" alt="">
         </button>
        </div>
    </div>
@@ -10,7 +10,7 @@
     <div class="row">
          <button class="btn" id="btn-ShowHideLeggenda" (click)="showDivLeg()"> 
             <img  src="assets/info.png" width="100%" height="100%" alt="">
-        </button>
+        </button> 
     </div>
     -->
 </div>
@@ -92,7 +92,7 @@
     <div class="row row-cor">
         <div class="col-3 text-center" (click)="showInfoCorema(qualSpazNome, qualSpazImg, $event)">
             <img class="img-fluid" src="{{qualSpazImg}}" width="30" height="30" alt="">
-            <p>{{qualSpazNome}}</p>
+            <p>Qualità Spazio</p>
         </div>
 
         <div class="col-3 text-center" (click)="showInfoCorema(buonaVegNome, buonaVegImg, $event)">
@@ -101,30 +101,30 @@
         </div>
 
         <div class="col-3 text-center" >
-            <img class="img-fluid" src="assets/fen_urb_icon/fenUrb2.png" width="30" height="30" alt="">
-            <p>Fen 7</p>
+            <img class="img-fluid" src="assets/fen_urb_icon/caffeRistoranti.png" width="30" height="30" alt="">
+            <p>Caffè e Ristoranti</p>
         </div>
 
         <div class="col-3 text-center">
-            <img class="img-fluid" src="assets/icon.png" width="30" height="30" alt="">
-            <p>Fen 8</p>
+            <img class="img-fluid" src="assets/fen_urb_icon/fontane.png" width="30" height="30" alt="">
+            <p>Fontane</p>
         </div>
     </div>
 
     <div class="container-fluid text-white text-center mt-3 mb-3" id="contcorema" tabindex="0" *ngIf='infoCorema'>
-        <p mb-2>
+        <h5 mb-2>
             {{nomeCorema}}
             <img class="img-fluid" src={{imgCorema}} width="20" height="20" alt="">
-        </p>
+        </h5>
 
-        <div class="row">
+        <div class="row" style="margin-top: 15px;">
             <div class="col-6">
-                <h5>Significato</h5>
-                <p class="text-left">Il seguente corema <br> è cosi</p>
+                <h6>Significato</h6>
+                <p class="text-left">Indica il livello di facilità di percorrenza di un'area, tenendo conto di fattori come la forma e la continuità dei marciapiedi o delle aree pedonali, la presenza di attraversamenti di strade congestionate, parcheggi non autorizzati e pendenze difficili.<br></p>
             </div>
     
             <div class="col-6">
-                <h5>Tipo</h5>
+                <h6>Tipo</h6>
                 <p>Diffusione spaziale</p>
             </div>
             

@@ -7,7 +7,7 @@ export class OrientamentoPedonale implements Corema{
     type?: string;
     means: string;
     icon?: string;
-
+ 
     value: number
     color?: string;
     
@@ -15,7 +15,7 @@ export class OrientamentoPedonale implements Corema{
     constructor(value: number){
         this.name = 'Orientamento Pedonale';
         this.type = 'spazialeOP';
-        this.means = 'il significato è';
+        this.means = "Indica il livello di facilità di percorrenza di un'area, tenendo conto di fattori come la forma e la continuità dei marciapiedi o delle aree pedonali, la presenza di attraversamenti di strade congestionate, parcheggi non autorizzati e pendenze difficili";
         this.icon = 'orientamentoPedonale.png'
     
         this.value = value;

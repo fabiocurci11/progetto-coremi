@@ -149,7 +149,7 @@ export class MarkerDistrettoComponent implements OnInit {
         overlayLayer.setPosition(clickedCoordinate);
 
         MapComponent.mappa!.getView().setCenter(e.coordinate);
-        MapComponent.mappa!.getView().setZoom(7);
+        MapComponent.mappa!.getView().setZoom(14);
         this.showMenu = true;
         console.log('Marker - showMenu: ' + this.showMenu);
         this.markerChildNotify.emit(this.showMenu);

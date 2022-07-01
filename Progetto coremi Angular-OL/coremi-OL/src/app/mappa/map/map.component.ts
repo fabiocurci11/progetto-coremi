@@ -44,11 +44,12 @@ export class MapComponent implements OnInit{
 
   
 //Proprietà
-  jsonPath: string = 'assets/data/geoJSON.geojson'
+  //jsonPath: string = 'assets/data/geoJSON.geojson'
+  jsonPath: string = 'assets/data/geoJSONSalerno.geojson'
   public static mappa: Map | undefined;
   //Coordinate Salerno
-  long: number = 14.7226162;
-  lat: number = 40.6747225;
+  long: number = 14.795901775360107;
+  lat: number = 40.66385894013736;
 
   //Dati da passare ai figli (filtro, modificaUHI)
   showChild: boolean = false;
@@ -89,8 +90,8 @@ export class MapComponent implements OnInit{
       view: new View({
         //center: [0, 0],
         center: fromLonLat([this.long, this.lat],'EPSG:4326'),
-        zoom: 6,
-        minZoom: 4.8,
+        zoom: 14,
+        minZoom: 5,
         projection: 'EPSG:4326',
       })
     });

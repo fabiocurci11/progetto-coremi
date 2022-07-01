@@ -71,6 +71,7 @@ export class ModificaUhiComponent implements OnInit {
  
 
   saveOnFirebase(){
+    alert("Modifiche effettuate con successo!");
     console.log('ID DISTRETTO: ' + this.distretto!.getId())
     let idString = 'id'
     idString = idString + this.distretto!.getId()
