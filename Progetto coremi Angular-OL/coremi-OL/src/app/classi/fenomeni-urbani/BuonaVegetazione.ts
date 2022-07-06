@@ -10,15 +10,18 @@ export class BuonaVegetazione implements Corema{
 
     value: number
     color?: string;
+
+    weigth!: number | undefined
     
 
-    constructor(value: number){
+    constructor(value: number, peso6?: number){
         this.name = 'Buona Vegetazione';
         this.type = 'spazialeOP';
         this.means = 'il significato è';
         this.icon = 'buonaVegetazione.png'
     
         this.value = value;
+        this.weigth = peso6;
     }
 
     
@@ -82,4 +85,7 @@ export class BuonaVegetazione implements Corema{
         this.color = color;
     }
 
+    getWeigth(): number | undefined {
+        return this.weigth;
+    }
 }

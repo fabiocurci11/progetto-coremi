@@ -35,7 +35,9 @@ export class MarkerDistrettoComponent implements OnInit {
 
   //Proprietà
   showDiv: boolean = true;
+  showDivQS: boolean = true
   showMenu: boolean = false;
+  showMenuLegenda: boolean = false;
   figlioString: string = 'string figlio';
   distrettoClicked!: Distretto
   
@@ -44,6 +46,12 @@ export class MarkerDistrettoComponent implements OnInit {
   @Output() markerChildNotify: EventEmitter<boolean> = new EventEmitter<boolean>()
 
   @Output() markerChildIdDistretto: EventEmitter<number> = new EventEmitter<number>()
+
+  @Output() showDivELeQS: EventEmitter<boolean> = new EventEmitter<boolean>()
+
+  @Output() showDivQSModUhi: EventEmitter<boolean> = new EventEmitter<boolean>()
+
+  @Output() markerNotifyLegenda: EventEmitter<boolean> = new EventEmitter<boolean>()
 
   @Input() updateBackColorFenUrb: boolean = false;
 
@@ -102,16 +110,24 @@ export class MarkerDistrettoComponent implements OnInit {
   buonaVegImg = ''; 
   buonaVegBackColor: string = '';
 
-  
+  showDivElEsp: boolean = false
+  showDivQsEst: boolean = false
   
   //Metodi
 
   clickFenUrbElAmb(): void{
     this.showDiv = !this.showDiv;
+
+    this.showDivElEsp = !this.showDivElEsp
+    this.showDivELeQS.emit(this.showDivElEsp)
   }
 
   clickFenUrbQualSpaz(): void{
-    this.showDiv = !this.showDiv;
+    this.showDivQS = !this.showDivQS;
+    this.showDiv = !this.showDiv 
+    
+    this.showDivQsEst = !this.showDivQsEst
+    this.showDivQSModUhi.emit(this.showDivQsEst)
   }
 
   
@@ -131,6 +147,9 @@ export class MarkerDistrettoComponent implements OnInit {
       this.showMenu = false;
       this.markerChildNotify.emit(this.showMenu);
 
+      this.showMenuLegenda = false;
+      this.markerNotifyLegenda.emit(this.showMenuLegenda)
+
     
       MapComponent.mappa!.forEachFeatureAtPixel(e.pixel, (feature: any, layer: any) =>{
         console.log("click point");
@@ -148,11 +167,19 @@ export class MarkerDistrettoComponent implements OnInit {
         let clickedCoordinate = e.coordinate;
         overlayLayer.setPosition(clickedCoordinate);
 
+
         MapComponent.mappa!.getView().setCenter(e.coordinate);
         MapComponent.mappa!.getView().setZoom(14);
+        
         this.showMenu = true;
         console.log('Marker - showMenu: ' + this.showMenu);
         this.markerChildNotify.emit(this.showMenu);
+        
+
+        //Nascondere i 2 menu legenda
+        this.showMenuLegenda = true;
+        this.markerNotifyLegenda.emit(this.showMenuLegenda)
+
       },
       )}
     )
@@ -191,6 +218,7 @@ export class MarkerDistrettoComponent implements OnInit {
     this.elAmbBackColor = distretto.urbanArea.elementiAmbientali.getColor();
     //alert('elAmb: '+ this.elAmbBackColor)
     this.elAmbBackColor = ColorMapping.setFenUrbColor(this.elAmbBackColor);
+    //alert(this.elAmbBackColor)
   
       this.caffeRistoBackColor = distretto.urbanArea.elementiAmbientali.caffeRistoranti.getColor();
       this.caffeRistoBackColor = ColorMapping.setFenUrbColor(this.caffeRistoBackColor);

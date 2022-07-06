@@ -1,3 +1,4 @@
+import { ColorMapping } from "src/services/ColorMapping";
 import { Corema } from "../../coremi/coremi";
 
 export class PenetrabilitaFisica implements Corema{
@@ -14,10 +15,15 @@ export class PenetrabilitaFisica implements Corema{
         this.name = 'PenetrabilitaFisica';
         this.type = 'spazialeOP';
         this.means = 'il significato è';
+        this.icon = 'penetrabilitaFisica.png'
     
         this.value = value;
     }
 
+    calculateColor(value: number): void {
+        let valueFloor =  Math.floor(value);
+        this.color = ColorMapping.mapValueToColor(valueFloor);
+    }
 
     getName(): string {
         return this.name;

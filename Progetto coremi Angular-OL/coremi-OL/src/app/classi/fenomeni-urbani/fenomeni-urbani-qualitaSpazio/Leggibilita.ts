@@ -1,3 +1,4 @@
+import { ColorMapping } from "src/services/ColorMapping";
 import { Corema } from "../../coremi/coremi";
 
 export class Leggibilita implements Corema{
@@ -14,8 +15,14 @@ export class Leggibilita implements Corema{
         this.name = 'Leggibilita';
         this.type = 'spazialeOP';
         this.means = 'il significato è';
+        this.icon = 'leggibilita.png'
     
         this.value = value;
+    }
+
+    calculateColor(value: number): void {
+        let valueFloor =  Math.floor(value);
+        this.color = ColorMapping.mapValueToColor(valueFloor);
     }
 
 

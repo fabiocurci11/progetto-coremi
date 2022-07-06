@@ -16,19 +16,44 @@ export class ModificaUhiComponent implements OnInit {
   ngOnInit(): void {
     console.log("ModificaUHI - showModUHI: " + this.showModUHI)
     console.log("ModificaUHI - idDistretto: "+ this.idDistretto);
+    this.distretto = this.featureHandlerService.getDistrettoById(this.idDistretto)
+    console.log('NOME DISTRETTO: ' + this.distretto.getNome());
+    
+    this.createTuplaFenUrb(this.distretto)
+    this.createTuplaFenUrbElAmb(this.distretto)
+    this.createTuplaFenUrbQualSpaz(this.distretto)
+
+    console.log('SHOW DIV EL' + this.showDivEleQS);
+    console.log('SHOW DIV QS' + this.showDivQS);
   }
 
+  /*
   ngOnChanges() {
+    alert('in on change');
     //console.log("ngOnChange ModificaUHI - showModUHIComp: " + this.showModUHIComp)
     this.distretto = this.featureHandlerService.getDistrettoById(this.idDistretto)
     console.log('NOME DISTRETTO: ' + this.distretto.getNome());
     
     this.createTuplaFenUrb(this.distretto)
+
+    //console.log("ngOnChange ModificaUHI - showDivEleQS: " + this.showDivEleQS)
+    //alert(''+this.showDivEleQS)
+    
   }
+  */
+ 
+  trackByProductId(index: number, product: any) {  
+    //alert(product[4])
+    return product[4];  
+  } 
+
 
   //@Input() dati dal padre (mappa)
   @Input() showModUHIComp: boolean = false;
   @Input() idDistretto: number = 0;
+
+  @Input() showDivEleQS: boolean = false
+  @Input() showDivQS: boolean = false
 
   //@Output() dati da passare al padre (mappa)
   @Output() modUhiChildUpdateBackColorFenUrb: EventEmitter<boolean> = new EventEmitter<boolean>()
@@ -44,6 +69,7 @@ export class ModificaUhiComponent implements OnInit {
   //tuple
   tupla: [string, string, number, string][] = [] //= [["Steve", "prova", 9], ["Steve", "prova", 7], ["Steve", "prova", 8]]
   tuplaElAmb: [string, string, number, string][] = []
+  tuplaQualSpaz: [string, string, number, string][] = []
 
   createTuplaFenUrb(distretto: Distretto){
     this.tupla!.push([this.pathImg + distretto.urbanArea.orientamentoPedonale.getIcon(), distretto.urbanArea.orientamentoPedonale.getName(), distretto.urbanArea.orientamentoPedonale.getValue(),'rangeInput1'])
@@ -55,12 +81,22 @@ export class ModificaUhiComponent implements OnInit {
   }
 
   createTuplaFenUrbElAmb(distretto: Distretto){
-    this.tuplaElAmb!.push([distretto.urbanArea.elementiAmbientali.caffeRistoranti.getIcon(), distretto.urbanArea.elementiAmbientali.caffeRistoranti.getName(), distretto.urbanArea.elementiAmbientali.caffeRistoranti.getValue(),'rangeInput7'])
-    this.tuplaElAmb!.push([distretto.urbanArea.elementiAmbientali.panchine.getIcon(), distretto.urbanArea.elementiAmbientali.panchine.getName(), distretto.urbanArea.elementiAmbientali.panchine.getValue(),'rangeInput8'])
-    this.tuplaElAmb!.push([distretto.urbanArea.elementiAmbientali.opereDarte.getIcon(), distretto.urbanArea.elementiAmbientali.opereDarte.getName(), distretto.urbanArea.elementiAmbientali.opereDarte.getValue(),'rangeInput9'])
-    this.tuplaElAmb!.push([distretto.urbanArea.elementiAmbientali.fontane.getIcon(), distretto.urbanArea.elementiAmbientali.fontane.getName(), distretto.urbanArea.elementiAmbientali.fontane.getValue(),'rangeInput10'])
-    this.tuplaElAmb!.push([distretto.urbanArea.elementiAmbientali.illuminazione.getIcon(), distretto.urbanArea.elementiAmbientali.illuminazione.getName(), distretto.urbanArea.elementiAmbientali.illuminazione.getValue(),'rangeInput11'])
-    this.tuplaElAmb!.push([distretto.urbanArea.elementiAmbientali.accessoWC.getIcon(), distretto.urbanArea.elementiAmbientali.accessoWC.getName(), distretto.urbanArea.elementiAmbientali.accessoWC.getValue(),'rangeInput12'])
+    this.tuplaElAmb!.push([this.pathImg + distretto.urbanArea.elementiAmbientali.caffeRistoranti.getIcon(), distretto.urbanArea.elementiAmbientali.caffeRistoranti.getName(), distretto.urbanArea.elementiAmbientali.caffeRistoranti.getValue(),'rangeInput7'])
+    this.tuplaElAmb!.push([this.pathImg + distretto.urbanArea.elementiAmbientali.panchine.getIcon(), distretto.urbanArea.elementiAmbientali.panchine.getName(), distretto.urbanArea.elementiAmbientali.panchine.getValue(),'rangeInput8'])
+    this.tuplaElAmb!.push([this.pathImg + distretto.urbanArea.elementiAmbientali.opereDarte.getIcon(), distretto.urbanArea.elementiAmbientali.opereDarte.getName(), distretto.urbanArea.elementiAmbientali.opereDarte.getValue(),'rangeInput9'])
+    this.tuplaElAmb!.push([this.pathImg + distretto.urbanArea.elementiAmbientali.fontane.getIcon(), distretto.urbanArea.elementiAmbientali.fontane.getName(), distretto.urbanArea.elementiAmbientali.fontane.getValue(),'rangeInput10'])
+    this.tuplaElAmb!.push([this.pathImg + distretto.urbanArea.elementiAmbientali.illuminazione.getIcon(), distretto.urbanArea.elementiAmbientali.illuminazione.getName(), distretto.urbanArea.elementiAmbientali.illuminazione.getValue(),'rangeInput11'])
+    this.tuplaElAmb!.push([this.pathImg + distretto.urbanArea.elementiAmbientali.accessoWC.getIcon(), distretto.urbanArea.elementiAmbientali.accessoWC.getName(), distretto.urbanArea.elementiAmbientali.accessoWC.getValue(),'rangeInput12'])
+  }
+
+  createTuplaFenUrbQualSpaz(distretto: Distretto){
+    this.tuplaQualSpaz!.push([this.pathImg + distretto.urbanArea.qualitaDelloSpazio.varieta.getIcon(), distretto.urbanArea.qualitaDelloSpazio.varieta.getName(), distretto.urbanArea.qualitaDelloSpazio.varieta.getValue(),'rangeInput13'])
+    this.tuplaQualSpaz!.push([this.pathImg + distretto.urbanArea.qualitaDelloSpazio.penFis.getIcon(), distretto.urbanArea.qualitaDelloSpazio.penFis.getName(), distretto.urbanArea.qualitaDelloSpazio.penFis.getValue(),'rangeInput14'])
+    this.tuplaQualSpaz!.push([this.pathImg + distretto.urbanArea.qualitaDelloSpazio.identLuogo.getIcon(), distretto.urbanArea.qualitaDelloSpazio.identLuogo.getName(), distretto.urbanArea.qualitaDelloSpazio.identLuogo.getValue(),'rangeInput15'])
+    this.tuplaQualSpaz!.push([this.pathImg + distretto.urbanArea.qualitaDelloSpazio.fless.getIcon(), distretto.urbanArea.qualitaDelloSpazio.fless.getName(), distretto.urbanArea.qualitaDelloSpazio.fless.getValue(),'rangeInput16'])
+    this.tuplaQualSpaz!.push([this.pathImg + distretto.urbanArea.qualitaDelloSpazio.legg.getIcon(), distretto.urbanArea.qualitaDelloSpazio.legg.getName(), distretto.urbanArea.qualitaDelloSpazio.legg.getValue(),'rangeInput17'])
+
+    //this.tuplaQualSpaz!.push([this.pathImg + distretto.urbanArea.qualitaDelloSpazio.getIcon(), distretto.urbanArea.qualitaDelloSpazio.getName(), distretto.urbanArea.qualitaDelloSpazio.getValue(),'rangeInput18'])
   }
 
   //metodi
@@ -87,7 +123,7 @@ export class ModificaUhiComponent implements OnInit {
   updateValueRange(idRange: string): void{
     let valueUHI = <HTMLInputElement>document.getElementById(idRange);
     //console.log('value: '+valueUHI!.value);
-
+    
     if(idRange == 'rangeInput1') {
       //OrientamentoPedonale
       console.log("rangeinput1")
@@ -134,6 +170,89 @@ export class ModificaUhiComponent implements OnInit {
       this.tupla[5][2] =   <number><unknown>valueUHI!.value
       console.log('tupls: ' + this.tupla[5])
     }
+
+
+    //elAmbientali
+
+    if(idRange == 'rangeInput7'){
+      //Buona vegetazione
+      console.log("rangeinput7")
+      this.tuplaElAmb[0][2] =   <number><unknown>valueUHI!.value
+      console.log('tupls: ' + this.tuplaElAmb[0])
+    }
+
+    if(idRange == 'rangeInput8'){
+      //Buona vegetazione
+      console.log("rangeinput8")
+      this.tuplaElAmb[1][2] =   <number><unknown>valueUHI!.value
+      console.log('tupls: ' + this.tuplaElAmb[1])
+    }
+
+    if(idRange == 'rangeInput9'){
+      //Buona vegetazione
+      console.log("rangeinput9")
+      this.tuplaElAmb[2][2] =   <number><unknown>valueUHI!.value
+      console.log('tupls: ' + this.tuplaElAmb[2])
+    }
+
+    if(idRange == 'rangeInput10'){
+      //Buona vegetazione
+      console.log("rangeinput10")
+      this.tuplaElAmb[3][2] =   <number><unknown>valueUHI!.value
+      console.log('tupls: ' + this.tuplaElAmb[3])
+    }
+
+    if(idRange == 'rangeInput11'){
+      //Buona vegetazione
+      console.log("rangeinput11")
+      this.tuplaElAmb[4][2] =   <number><unknown>valueUHI!.value
+      console.log('tupls: ' + this.tuplaElAmb[4])
+    }
+
+    if(idRange == 'rangeInput12'){
+      //Buona vegetazione
+      console.log("rangeinput12")
+      this.tuplaElAmb[5][2] =   <number><unknown>valueUHI!.value
+      console.log('tupls: ' + this.tuplaElAmb[5])
+    }
+
+
+    //qualSpazio
+
+    if(idRange == 'rangeInput13'){
+      //Buona vegetazione
+      console.log("rangeinput13")
+      this.tuplaQualSpaz[0][2] =   <number><unknown>valueUHI!.value
+      console.log('tupls: ' + this.tuplaQualSpaz[0])
+    }
+
+    if(idRange == 'rangeInput14'){
+      //Buona vegetazione
+      console.log("rangeinput14")
+      this.tuplaQualSpaz[1][2] =   <number><unknown>valueUHI!.value
+      console.log('tupls: ' + this.tuplaQualSpaz[1])
+    }
+
+    if(idRange == 'rangeInput15'){
+      //Buona vegetazione
+      console.log("rangeinput15")
+      this.tuplaQualSpaz[2][2] =   <number><unknown>valueUHI!.value
+      console.log('tupls: ' + this.tuplaQualSpaz[2])
+    }
+
+    if(idRange == 'rangeInput16'){
+      //Buona vegetazione
+      console.log("rangeinput16")
+      this.tuplaQualSpaz[3][2] =   <number><unknown>valueUHI!.value
+      console.log('tupls: ' + this.tuplaQualSpaz[3])
+    }
+
+    if(idRange == 'rangeInput17'){
+      //Buona vegetazione
+      console.log("rangeinput17")
+      this.tuplaQualSpaz[4][2] =   <number><unknown>valueUHI!.value
+      console.log('tupls: ' + this.tuplaQualSpaz[4])
+    }
   }
 
   mapValueOfTuplaToDistretto(): void{
@@ -149,7 +268,31 @@ export class ModificaUhiComponent implements OnInit {
     this.distretto.urbanArea.coesioneSpaziale.setValue(this.tupla[2][2])
     this.distretto.urbanArea.orientamentoCiclabile.setValue(this.tupla[3][2])
     this.distretto.urbanArea.qualitaDelloSpazio.setValue(this.tupla[4][2])    
-    this.distretto.urbanArea.buonaVegetazione.setValue(this.tupla[5][2])    
+    this.distretto.urbanArea.buonaVegetazione.setValue(this.tupla[5][2])  
+    
+    this.distretto.urbanArea.elementiAmbientali.caffeRistoranti.setValue(this.tuplaElAmb[0][2])
+    this.distretto.urbanArea.elementiAmbientali.panchine.setValue(this.tuplaElAmb[1][2])
+    this.distretto.urbanArea.elementiAmbientali.opereDarte.setValue(this.tuplaElAmb[2][2])
+    this.distretto.urbanArea.elementiAmbientali.fontane.setValue(this.tuplaElAmb[3][2])
+    this.distretto.urbanArea.elementiAmbientali.illuminazione.setValue(this.tuplaElAmb[4][2])    
+    this.distretto.urbanArea.elementiAmbientali.accessoWC.setValue(this.tuplaElAmb[5][2])   
+
+    let valueUHIElAmb = this.distretto.urbanArea.elementiAmbientali.calculateUHIElemAmb()
+    this.distretto.urbanArea.elementiAmbientali.calculateColor(valueUHIElAmb)
+    
+    this.distretto.urbanArea.elementiAmbientali.setValue(valueUHIElAmb)  
+
+    this.distretto.urbanArea.qualitaDelloSpazio.varieta.setValue(this.tuplaQualSpaz[0][2])
+    this.distretto.urbanArea.qualitaDelloSpazio.penFis.setValue(this.tuplaQualSpaz[1][2])
+    this.distretto.urbanArea.qualitaDelloSpazio.identLuogo.setValue(this.tuplaQualSpaz[2][2])
+    this.distretto.urbanArea.qualitaDelloSpazio.fless.setValue(this.tuplaQualSpaz[3][2])
+    this.distretto.urbanArea.qualitaDelloSpazio.legg.setValue(this.tuplaQualSpaz[4][2])  
+    
+    let valueUHIQualSpaz = this.distretto.urbanArea.qualitaDelloSpazio.calculateUHIQualSpaz()
+    this.distretto.urbanArea.qualitaDelloSpazio.calculateColor(valueUHIQualSpaz)
+    
+    this.distretto.urbanArea.qualitaDelloSpazio.setValue(valueUHIQualSpaz)    
+      
   }
 
   

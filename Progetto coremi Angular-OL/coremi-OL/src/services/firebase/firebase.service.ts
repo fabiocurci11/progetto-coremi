@@ -22,10 +22,9 @@ export class FirebaseService {
     
    }
   
-   retrieveObservableItems(id: string, distretto: Distretto, feature: Feature<Geometry>){
+  retrieveObservableItems(id: string, distretto: Distretto, feature: Feature<Geometry>){
     this.items = this.db.object('distretti/'+id).valueChanges()
     
-
     this.items.forEach( (value) => {
      // alert('in foreach: '+value.nomeDistretto )
       this.setValueFenUrbFromFirebase(distretto, value, feature)
@@ -38,16 +37,30 @@ export class FirebaseService {
   setValueFenUrbFromFirebase(distretto: Distretto, value: any, feature: Feature<Geometry>){
     //Assegno valori dei fen urb agli oggetti + calcolo colore background
     //alert('in set value fireservice. Color or ped: '+ value.orientamentoPedonale)
+    //alert('pre error')
     distretto.urbanArea.orientamentoPedonale.setValue(value.orientamentoPedonale)
     distretto.urbanArea.orientamentoPedonale.calculateColor(value.orientamentoPedonale)
 
     distretto.urbanArea.elementiAmbientali.setValue(value.elementiAmbientali.valoreElementiAmbientali)
+    distretto.urbanArea.elementiAmbientali.calculateColor(value.elementiAmbientali.valoreElementiAmbientali);
+
       distretto.urbanArea.elementiAmbientali.caffeRistoranti.setValue(value.elementiAmbientali.caffeRistoranti)
+      distretto.urbanArea.elementiAmbientali.caffeRistoranti.calculateColor(value.elementiAmbientali.caffeRistoranti)
+      
       distretto.urbanArea.elementiAmbientali.panchine.setValue(value.elementiAmbientali.panchine)
+      distretto.urbanArea.elementiAmbientali.panchine.calculateColor(value.elementiAmbientali.panchine)
+
       distretto.urbanArea.elementiAmbientali.opereDarte.setValue(value.elementiAmbientali.opereDarte)
+      distretto.urbanArea.elementiAmbientali.opereDarte.calculateColor(value.elementiAmbientali.opereDarte)
+
       distretto.urbanArea.elementiAmbientali.fontane.setValue(value.elementiAmbientali.fontane)
+      distretto.urbanArea.elementiAmbientali.fontane.calculateColor(value.elementiAmbientali.fontane)
+
       distretto.urbanArea.elementiAmbientali.illuminazione.setValue(value.elementiAmbientali.illuminazione)
+      distretto.urbanArea.elementiAmbientali.illuminazione.calculateColor(value.elementiAmbientali.illuminazione)
+
       distretto.urbanArea.elementiAmbientali.accessoWC.setValue(value.elementiAmbientali.accessoWC)
+      distretto.urbanArea.elementiAmbientali.accessoWC.calculateColor(value.elementiAmbientali.accessoWC)
       
     distretto.urbanArea.coesioneSpaziale.setValue(value.coesioneSpaziale)
     distretto.urbanArea.coesioneSpaziale.calculateColor(value.coesioneSpaziale)
@@ -56,11 +69,22 @@ export class FirebaseService {
     distretto.urbanArea.orientamentoCiclabile.calculateColor(value.orientamentoCiclabile)
 
     distretto.urbanArea.qualitaDelloSpazio.setValue(value.qualitaDelloSpazio.valoreQualitaDelloSpazio)
+    distretto.urbanArea.qualitaDelloSpazio.calculateColor(value.qualitaDelloSpazio.valoreQualitaDelloSpazio);
+
       distretto.urbanArea.qualitaDelloSpazio.varieta.setValue(value.qualitaDelloSpazio.varieta)
+      distretto.urbanArea.qualitaDelloSpazio.varieta.calculateColor(value.qualitaDelloSpazio.varieta);
+
       distretto.urbanArea.qualitaDelloSpazio.penFis.setValue(value.qualitaDelloSpazio.penetrabilitaFisica)
+      distretto.urbanArea.qualitaDelloSpazio.penFis.calculateColor(value.qualitaDelloSpazio.penetrabilitaFisica)
+
       distretto.urbanArea.qualitaDelloSpazio.identLuogo.setValue(value.qualitaDelloSpazio.identitaLuogo)
+      distretto.urbanArea.qualitaDelloSpazio.identLuogo.calculateColor(value.qualitaDelloSpazio.identitaLuogo)
+
       distretto.urbanArea.qualitaDelloSpazio.fless.setValue(value.qualitaDelloSpazio.flessibilita)
+      distretto.urbanArea.qualitaDelloSpazio.fless.calculateColor(value.qualitaDelloSpazio.flessibilita)
+
       distretto.urbanArea.qualitaDelloSpazio.legg.setValue(value.qualitaDelloSpazio.leggibilita)
+      distretto.urbanArea.qualitaDelloSpazio.legg.calculateColor(value.qualitaDelloSpazio.leggibilita)
 
     distretto.urbanArea.buonaVegetazione.setValue(value.buonaVegetazione)
     distretto.urbanArea.buonaVegetazione.calculateColor(value.buonaVegetazione)
@@ -98,14 +122,25 @@ export class FirebaseService {
     
     let promise2 = this.db.object('distretti/'+ id + '/elementiAmbientali').update
       ({
-        valoreElementiAmbientali: distretto.urbanArea.elementiAmbientali.getValue(),
+        accessoWC: distretto.urbanArea.elementiAmbientali.accessoWC.getValue(),
+        caffeRistoranti: distretto.urbanArea.elementiAmbientali.caffeRistoranti.getValue(),
+        fontane: distretto.urbanArea.elementiAmbientali.fontane.getValue(),
+        illuminazione: distretto.urbanArea.elementiAmbientali.illuminazione.getValue(),
+        opereDarte: distretto.urbanArea.elementiAmbientali.opereDarte.getValue(),
+        panchine: distretto.urbanArea.elementiAmbientali.panchine.getValue(),
+        valoreElementiAmbientali: distretto.urbanArea.elementiAmbientali.getValue()
         
       })
 
     let promise3 =   this.db.object('distretti/'+ id + '/qualitaDelloSpazio').update
     ({
+      flessibilita: <number>distretto.urbanArea.qualitaDelloSpazio.fless.getValue(),
+      identitaLuogo: <number>distretto.urbanArea.qualitaDelloSpazio.identLuogo.getValue(),
+      leggibilita: <number>distretto.urbanArea.qualitaDelloSpazio.legg.getValue(),
+      penetrabilitaFisica: <number>distretto.urbanArea.qualitaDelloSpazio.penFis.getValue(),
       valoreQualitaDelloSpazio: <number>distretto.urbanArea.qualitaDelloSpazio.getValue(),
-     
+      varieta: <number>distretto.urbanArea.qualitaDelloSpazio.varieta.getValue()
+      
     })
     
     promise
@@ -140,12 +175,19 @@ export class FirebaseService {
       })
 
     let valueElAmb: number = distretto.urbanArea.elementiAmbientali.getValue();
+    //alert(distretto.urbanArea.elementiAmbientali.getValue())
     let caffRist: number = distretto.urbanArea.elementiAmbientali.caffeRistoranti.getValue();
+    //alert(distretto.urbanArea.elementiAmbientali.caffeRistoranti.getValue())
     let panchine: number = distretto.urbanArea.elementiAmbientali.panchine.getValue();
+    //alert(distretto.urbanArea.elementiAmbientali.panchine.getValue())
     let opereDarte: number = distretto.urbanArea.elementiAmbientali.opereDarte.getValue();
+    //alert(distretto.urbanArea.elementiAmbientali.opereDarte.getValue())
     let fontane: number = distretto.urbanArea.elementiAmbientali.fontane.getValue();
+   // alert(distretto.urbanArea.elementiAmbientali.fontane.getValue())
     let illuminazione: number = distretto.urbanArea.elementiAmbientali.illuminazione.getValue();
+    //alert(distretto.urbanArea.elementiAmbientali.illuminazione.getValue())
     let accessoWC: number = distretto.urbanArea.elementiAmbientali.accessoWC.getValue();
+    //alert(distretto.urbanArea.elementiAmbientali.accessoWC.getValue())
     
     //Salvo fen urb composti
     this.db.object('distretti/'+ id + '/elementiAmbientali').update
@@ -160,6 +202,7 @@ export class FirebaseService {
       })
 
       let valueQualSpaz: number = distretto.urbanArea.qualitaDelloSpazio.getValue();
+      //alert(distretto.urbanArea.qualitaDelloSpazio.getValue());
       let varieta: number = distretto.urbanArea.qualitaDelloSpazio.varieta.getValue();
       let penFis: number = distretto.urbanArea.qualitaDelloSpazio.penFis.getValue();
       let identLuogo: number = distretto.urbanArea.qualitaDelloSpazio.identLuogo.getValue();

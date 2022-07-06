@@ -1,3 +1,4 @@
+import { ColorMapping } from "src/services/ColorMapping";
 import { Corema } from "../../coremi/coremi";
 
 export class Fontane implements Corema{
@@ -19,6 +20,10 @@ export class Fontane implements Corema{
         this.value = value;
     }
 
+    calculateColor(value: number): void {
+        let valueFloor =  Math.floor(value);
+        this.color = ColorMapping.mapValueToColor(valueFloor);
+    }
 
     getName(): string {
         return this.name;

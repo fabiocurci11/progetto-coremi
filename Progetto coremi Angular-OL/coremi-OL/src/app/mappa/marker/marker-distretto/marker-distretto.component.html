@@ -3,99 +3,164 @@
 
     <div class="container">
         <div class="row mt-0">
-            <div class="col-4" *ngIf="showDiv">
+            <div class="col-4" *ngIf="showDiv && showDivQS">
                 <div class="container-icon" 
                     [ngStyle]="{'backgroundColor': orPedBackColor }">
 
-                    <img src='{{ orPedImg }}' class="imgCity" alt="" *ngIf="showDiv">
+                    <img src='{{ orPedImg }}' class="imgCity" alt="" *ngIf="showDiv && showDivQS">
                 </div>
             </div>
 
-            <div class="col-4 offset-4" *ngIf="showDiv">
-                <div class="container-icon"
+            <div class="col-4 offset-4" *ngIf="showDiv && showDivQS">
+                <div class="container-icon" style="border: 3px solid blue;"
                     [ngStyle]="{'backgroundColor': elAmbBackColor }">
 
-                    <img src='{{ elAmbImg }}' class="imgCity" style="cursor: pointer;" alt="" (click)="clickFenUrbElAmb()" *ngIf="showDiv">
+                    <img src='{{ elAmbImg }}' class="imgCity" style="cursor: pointer;" alt="" (click)="clickFenUrbElAmb()" *ngIf="showDiv && showDivQS">
                 </div>
             </div>
 
              <!--div appaiono dopo click elementi ambientali-->
-             <div class="col-4" *ngIf="!showDiv">
-                <div class="container-icon">
-                    <img src='{{caffeRistoImg}}' class="imgCity" alt="" *ngIf="!showDiv">
+             <div class="col-4" *ngIf="!showDiv && showDivQS"> 
+                <div class="container-icon"
+                    [ngStyle]="{'backgroundColor': caffeRistoBackColor }">
+                    
+            
+                    <img src='{{caffeRistoImg}}' class="imgCity" alt="" *ngIf="!showDiv && showDivQS">
                 </div>
             </div>
 
             
-            <div class="col-4 offset-4" *ngIf="!showDiv">
-                <div class="container-icon">
-                    <img src='{{panchineImg}}' class="imgCity" alt="" *ngIf="!showDiv">
+            <div class="col-4 offset-4" *ngIf="!showDiv && showDivQS">
+                <div class="container-icon"
+                    [ngStyle]="{'backgroundColor': panchineBackColor }">
+                    <img src='{{panchineImg}}' class="imgCity" alt="" *ngIf="!showDiv && showDivQS">
                 </div>
             </div>
+
+              <!--div appaiono dopo click qualità dello spazio -->
+              <div class="col-4" *ngIf="!showDivQS"> 
+                <div class="container-icon"
+                    [ngStyle]="{'backgroundColor': varietaBackColor }">
+                    
+            
+                    <img src='{{varietaImg}}' class="imgCity" alt="" *ngIf="!showDivQS">
+                </div>
+            </div>
+
+            
+            <div class="col-4 offset-4" *ngIf="!showDivQS">
+                <div class="container-icon"
+                    [ngStyle]="{'backgroundColor': penFisBackColor }">
+                    <img src='{{penFisImg}}' class="imgCity" alt="" *ngIf="!showDivQS">
+                </div>
+            </div>
+
+            
         </div>
 
         <div class="row">
-            <div class="col-4" *ngIf="showDiv">
+            <div class="col-4" *ngIf="showDiv && showDivQS">
                 <div class="container-icon"
                     [ngStyle]="{'backgroundColor': coesSpazBackColor }">
-                    <img src='{{ coesSpazImg }}'  class="imgCity" alt="" *ngIf="showDiv">
+                    <img src='{{ coesSpazImg }}'  class="imgCity" alt="" *ngIf="showDiv && showDivQS">
                 </div>
             </div>
 
-            <div class="col-4 offset-4" *ngIf="showDiv">
+            <div class="col-4 offset-4" *ngIf="showDiv && showDivQS">
                 <div class="container-icon"
                     [ngStyle]="{'backgroundColor': orCiclBackColor }">
-                    <img src='{{ orCiclImg }}'  class="imgCity" alt="" *ngIf="showDiv">
+                    <img src='{{ orCiclImg }}'  class="imgCity" alt="" *ngIf="showDiv && showDivQS">
                 </div>
             </div>
 
              <!--div appaiono dopo click elementi ambientali-->
-             <div class="col-4" *ngIf="!showDiv">
-                <div class="container-icon">
-                    <img src='{{ opereDarteImg }}' class="imgCity" alt=""  *ngIf="!showDiv">
+             <div class="col-4" *ngIf="!showDiv && showDivQS">
+                <div class="container-icon"
+                    [ngStyle]="{'backgroundColor': opereDarteBackColor }">
+                    <img src='{{ opereDarteImg }}' class="imgCity" alt=""  *ngIf="!showDiv && showDivQS">
                 </div>
             </div>
 
-            <div class="col-4" *ngIf="!showDiv">
+            <div class="col-4" *ngIf="!showDiv && showDivQS">
                 <div class="container-back-icon">
-                    <img src='assets/back-arrow-black.png' class="imgCity" alt="" style="cursor: pointer;" (click)="clickFenUrbElAmb()" *ngIf="!showDiv">
+                    <img src='assets/back-arrow-black.png' class="imgCity" alt="" style="cursor: pointer;" (click)="clickFenUrbElAmb()" *ngIf="!showDiv && showDivQS">
                 </div>
             </div>
 
-            <div class="col-4 " *ngIf="!showDiv">
-                <div class="container-icon">
-                    <img src='{{fontaneImg}}' class="imgCity" alt=""  *ngIf="!showDiv">
+            <div class="col-4 " *ngIf="!showDiv && showDivQS">
+                <div class="container-icon"
+                    [ngStyle]="{'backgroundColor': fontaneBackColor }">
+                    <img src='{{fontaneImg}}' class="imgCity" alt=""  *ngIf="!showDiv && showDivQS">
                 </div>
             </div>
+
+
+              <!--div appaiono dopo click qualità dello spazio -->
+            <div class="col-4" *ngIf="!showDivQS">
+                <div class="container-icon"
+                    [ngStyle]="{'backgroundColor': idLuogBackColor }">
+                    <img src='{{ idLuogImg }}' class="imgCity" alt=""  *ngIf="!showDivQS">
+                </div>
+            </div>
+
+            <div class="col-4" *ngIf="!showDivQS">
+                <div class="container-back-icon">
+                    <img src='assets/back-arrow-black.png' class="imgCity" alt="" style="cursor: pointer;" (click)="clickFenUrbQualSpaz()" *ngIf="!showDivQS">
+                </div>
+            </div>
+
+            <div class="col-4 " *ngIf="!showDivQS">
+                <div class="container-icon"
+                    [ngStyle]="{'backgroundColor': flessImgBackColor }">
+                    <img src='{{flessImg}}' class="imgCity" alt=""  *ngIf="!showDivQS">
+                </div>
+            </div>
+
         </div>
 
+
         <div class="row">
-            <div class="col-4" *ngIf="showDiv">
-                <div class="container-icon"
+            <div class="col-4" *ngIf="showDiv && showDivQS">
+                <div class="container-icon" style="border: 3px solid blue;"
                     [ngStyle]="{'backgroundColor': qualSpazBackColor }">
-                    <img src='{{ qualSpazImg }}' class="imgCity" alt="" style="cursor: pointer;" (click)="clickFenUrbQualSpaz()" *ngIf="showDiv">
+                    <img src='{{ qualSpazImg }}' class="imgCity" alt="" style="cursor: pointer;" (click)="clickFenUrbQualSpaz()" *ngIf="showDiv && showDivQS">
                 </div>
             </div>
 
-            <div class="col-4 offset-4" *ngIf="showDiv">
+            <div class="col-4 offset-4" *ngIf="showDiv && showDivQS">
                 <div class="container-icon"
                     [ngStyle]="{'backgroundColor': buonaVegBackColor }">
-                    <img src='{{ buonaVegImg }}'  class="imgCity" alt="" *ngIf="showDiv">
+                    <img src='{{ buonaVegImg }}'  class="imgCity" alt="" *ngIf="showDiv && showDivQS">
                 </div>
             </div>
 
             <!--div appaiono dopo click elementi ambientali-->
-            <div class="col-4" *ngIf="!showDiv">
-                <div class="container-icon">
-                    <img src='{{ illumImg }}' class="imgCity" alt=""  *ngIf="!showDiv">
+            <div class="col-4" *ngIf="!showDiv && showDivQS">
+                <div class="container-icon"
+                    [ngStyle]="{'backgroundColor': illumBackColor }">
+                    <img src='{{ illumImg }}' class="imgCity" alt=""  *ngIf="!showDiv && showDivQS">
+                </div>
+            </div>
+            
+            <div class="col-4 offset-4" *ngIf="!showDiv && showDivQS">
+                <div class="container-icon"
+                    [ngStyle]="{'backgroundColor': accessoWCBackColor }">
+                    <img src='{{ accessoWCImg }}' class="imgCity" alt=""  *ngIf="!showDiv && showDivQS">
                 </div>
             </div>
 
-            <div class="col-4 offset-4" *ngIf="!showDiv">
-                <div class="container-icon">
-                    <img src='{{ accessoWCImg }}' class="imgCity" alt=""  *ngIf="!showDiv">
+
+              <!--div appaiono dopo click qualità dello spazio -->
+              <div class="col-4" *ngIf="!showDivQS"> 
+                <div class="container-icon"
+                    [ngStyle]="{'backgroundColor': leggBackColor }">
+                    
+            
+                    <img src='{{leggImg}}' class="imgCity" alt="" *ngIf="!showDivQS">
                 </div>
             </div>
+
+            
 
         </div>
 
@@ -106,10 +171,5 @@
 
     
 </div>
-
-
-
-
-
 
 

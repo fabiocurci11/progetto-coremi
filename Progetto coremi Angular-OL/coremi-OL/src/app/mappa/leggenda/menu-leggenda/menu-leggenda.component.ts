@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, NgZone, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { left } from '@popperjs/core';
 import { getPointResolution } from 'ol/proj';
 import { AreaUrbana } from 'src/app/classi/distretti/areaUrbana';
@@ -28,6 +28,13 @@ export class MenuLeggendaComponent implements OnInit, AfterViewInit {
 
   }
 
+  ngOnChanges() {
+    //alert('in on change');
+    this.showLeggenda = this.showMenuLegenda
+    this.showLeggenda2 = this.showMenuLegenda
+    
+  }
+
   pathImg = 'assets/fen_urb_icon/';
 
   coesSpazObj = new CoesioneSpaziale(-1)
@@ -38,7 +45,7 @@ export class MenuLeggendaComponent implements OnInit, AfterViewInit {
   orCiclObj = new OrientamentoCiclabile(-1)
 
    //Creo area urbana
-   areaUrbana = new AreaUrbana('areaUrbanaLegenda', this.coesSpazObj, this.elAmbObj ,this.qualSpazObj, this.orPedObj, this.buonaVegObj, this.orCiclObj);
+   areaUrbana = new AreaUrbana('areaUrbanaLegenda', this.orPedObj, this.elAmbObj, this.coesSpazObj, this.orCiclObj,this.qualSpazObj, this.buonaVegObj);
     
    //Creo distretto
    distretto = new Distretto(-1,'distrettoLegenda', this.areaUrbana);
@@ -46,9 +53,12 @@ export class MenuLeggendaComponent implements OnInit, AfterViewInit {
 
    //Proprietà
   showLeggenda: boolean = false; 
+  showLeggenda2: boolean = false; 
   infoCorema: boolean = false; 
   nomeCorema: string = '';
   imgCorema: string = '';
+
+  @Input() showMenuLegenda: boolean = false;
 
   orPedNome: string = this.distretto.urbanArea.orientamentoPedonale.getName()
   orPedImg: string = this.pathImg + this.distretto.urbanArea.orientamentoPedonale.getIcon()
@@ -75,13 +85,19 @@ export class MenuLeggendaComponent implements OnInit, AfterViewInit {
 
   showDivLeg(): void{
     this.showLeggenda = !this.showLeggenda
+    /*
     if(this.showLeggenda){
       document.getElementById("container-Leggenda")!.style.left = "30%";
     }
     else if(!this.showLeggenda){
       document.getElementById("container-Leggenda")!.style.left = "0px";
     }
-    console.log('showLeg = ' + this.showLeggenda);
+    console.log('showLeg = ' + this.showLeggenda)*/
+  }
+
+  showDivLeg2(): void{
+    this.showLeggenda2 = !this.showLeggenda2
+   
   }
 
 

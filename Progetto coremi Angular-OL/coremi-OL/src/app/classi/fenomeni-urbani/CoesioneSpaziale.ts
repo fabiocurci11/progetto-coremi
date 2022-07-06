@@ -11,15 +11,17 @@ export class CoesioneSpaziale implements Corema{
     
     value: number
     color?: string;
-    
 
-    constructor(value: number){
+    weigth!: number | undefined 
+    
+    constructor(value: number, peso2?: number){
         this.name = 'Coesione Spaziale';
         this.type = 'spazialeOP';
         this.means = 'il significato è';
         this.icon = 'coesioneSpaziale.png'
     
         this.value = value;
+        this.weigth = peso2;
     }
 
   
@@ -82,4 +84,7 @@ export class CoesioneSpaziale implements Corema{
         this.color = color;
     }
 
+    getWeigth(): number | undefined  {
+        return this.weigth;
+    }
 }

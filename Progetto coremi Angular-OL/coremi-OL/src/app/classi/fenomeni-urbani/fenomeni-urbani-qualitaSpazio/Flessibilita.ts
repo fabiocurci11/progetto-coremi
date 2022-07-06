@@ -1,3 +1,4 @@
+import { ColorMapping } from "src/services/ColorMapping";
 import { Corema } from "../../coremi/coremi";
 
 export class Flessibilita implements Corema{
@@ -14,10 +15,15 @@ export class Flessibilita implements Corema{
         this.name = 'Flessibilita';
         this.type = 'spazialeOP';
         this.means = 'il significato è';
+        this.icon = 'flessibilita.png'
     
         this.value = value;
     }
 
+calculateColor(value: number): void {
+        let valueFloor =  Math.floor(value);
+        this.color = ColorMapping.mapValueToColor(valueFloor);
+    }
 
     getName(): string {
         return this.name;

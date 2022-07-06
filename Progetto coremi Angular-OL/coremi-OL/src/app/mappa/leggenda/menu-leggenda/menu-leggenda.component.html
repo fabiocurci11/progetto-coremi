@@ -6,19 +6,13 @@
         </button>
        </div>
    </div>
-    <!--
-    <div class="row">
-         <button class="btn" id="btn-ShowHideLeggenda" (click)="showDivLeg()"> 
-            <img  src="assets/info.png" width="100%" height="100%" alt="">
-        </button> 
-    </div>
-    -->
 </div>
 
-<div class="container rounded-3" id="divLeggenda" *ngIf="showLeggenda" style="overflow-y: scroll">
-    <div class="container-fluid text-white text-center" id="cont-leg-cor">Legenda coremi</div>
+
+<div class="container rounded-3" id="divLeggenda" *ngIf="!showLeggenda" >
+    <div class="container-fluid text-white text-center" id="cont-leg-cor">Legenda</div>
     <div class="row">
-        <div class="table-responsive p-4"> 
+        <div class="table-responsive" id="table-legenda"> 
             <div class="container text-center mb-2" id="container-indiceFelicità">Indice di felicità</div>
             <table class="table table-striped table-hover table-borderless text-center">
                 <thead id="table-head" class="text-white">
@@ -63,7 +57,7 @@
             </table>
         </div>
     </div>
-
+<!--
     <div class="container-fluid text-center mb-2" id="container-indiceFelicità">Corema</div>
 
     <div class="row row-cor m-20px">
@@ -131,6 +125,97 @@
         </div>
 
     </div>
-
+-->
     
 </div>
+
+<div>
+
+    <div class="container" id="container-Leggenda2">
+        <div class="row">
+        <div class="col">
+            <button class="btn" id="btn-ShowHideLeggenda2" (click)="showDivLeg2()"> 
+                <img  src="assets/helpCoremi.png" width="100%" height="100%" alt=""> 
+                
+            </button>
+        </div>
+    </div>
+    </div>
+
+    <div class="container rounded-3" id="divLeggenda2" *ngIf="!showLeggenda2" style="overflow-y: scroll">
+        <div class="container-fluid text-white text-center" id="cont-leg-cor2">Coremi</div>
+
+
+        <!--<div class="container-fluid text-center mb-2" id="container-indiceFelicità">Corema</div>--->
+
+        <div class="row row-cor m-20px">
+        
+                <div class="col-3 text-center" (click)="showInfoCorema(orPedNome, orPedImg, $event)">
+                    <img class="img-fluid" src="{{orPedImg}}" width="30" height="30" alt="">
+                    <p>{{orPedNome}} </p>
+                </div>
+
+                <div class="col-3 text-center" (click)="showInfoCorema(elAmbNome, elAmbImg, $event)">
+                    <img class="img-fluid" src="{{elAmbImg}}" width="30" height="30" alt="">
+                    <p>{{elAmbNome}}</p>
+                </div>
+
+                <div class="col-3 text-center" (click)="showInfoCorema(coesSpazNome, coesSpazImg, $event)">
+                    <img class="img-fluid" src="{{coesSpazImg}}" width="30" height="30" alt="">
+                    <p>{{coesSpazNome}}</p>
+                </div>
+
+                <div class="col-3 text-center" (click)="showInfoCorema(orCiclNome, orCiclImg, $event)">
+                    <img class="img-fluid" src="{{orCiclImg}}" width="30" height="30" alt="">
+                    <p>{{orCiclNome}}</p>
+                </div>
+        </div>
+
+        <div class="row row-cor">
+            <div class="col-3 text-center" (click)="showInfoCorema(qualSpazNome, qualSpazImg, $event)">
+                <img class="img-fluid" src="{{qualSpazImg}}" width="30" height="30" alt="">
+                <p>Qualità Spazio</p>
+            </div>
+
+            <div class="col-3 text-center" (click)="showInfoCorema(buonaVegNome, buonaVegImg, $event)">
+                <img class="img-fluid" src="{{buonaVegImg}}" width="30" height="30" alt="">
+                <p>{{buonaVegNome}}</p>
+            </div>
+
+            <div class="col-3 text-center" >
+                <img class="img-fluid" src="assets/fen_urb_icon/caffeRistoranti.png" width="30" height="30" alt="">
+                <p>Caffè e Ristoranti</p>
+            </div>
+
+            <div class="col-3 text-center">
+                <img class="img-fluid" src="assets/fen_urb_icon/fontane.png" width="30" height="30" alt="">
+                <p>Fontane</p>
+            </div>
+        </div>
+
+        <div class="container-fluid text-white text-center mt-3 mb-3" id="contcorema" tabindex="0" *ngIf='infoCorema'>
+            <h5 mb-2>
+                {{nomeCorema}}
+                <img class="img-fluid" src={{imgCorema}} width="20" height="20" alt="">
+            </h5>
+
+            <div class="row" style="margin-top: 15px;">
+                <div class="col-6">
+                    <h6>Significato</h6>
+                    <p class="text-left">Indica il livello di facilità di percorrenza di un'area, tenendo conto di fattori come la forma e la continuità dei marciapiedi o delle aree pedonali, la presenza di attraversamenti di strade congestionate, parcheggi non autorizzati e pendenze difficili.<br></p>
+                </div>
+        
+                <div class="col-6">
+                    <h6>Tipo</h6>
+                    <p>Diffusione spaziale</p>
+                </div>
+                
+            </div>
+
+        </div>
+
+</div>
+   
+
+
+

@@ -1,11 +1,16 @@
 <!-- div mappa -->
 <div id="js-map" class="map container-fluid">
-    <app-menu-leggenda></app-menu-leggenda>
+    <app-menu-leggenda
+        [showMenuLegenda] = 'showLegenda'>
+    </app-menu-leggenda>
 
     <app-marker-distretto 
         (markerChildNotify)='markerNotifyMappa($event)'
         (markerChildIdDistretto)='markerChildGetIdDistretto($event)' 
+        (markerNotifyLegenda)='markerNotifyMappaForLegenda($event)'
         [updateBackColorFenUrb] = "updateBackColorFromModUhi"
+        (showDivELeQS) = 'showDivEleQSMethod($event)'
+        (showDivQSModUhi) = 'showDivQSMethod($event)'
         >
     </app-marker-distretto>
 
@@ -14,6 +19,8 @@
         [showModUHIComp]='showChild'
         [idDistretto] = 'idDistrettoFromMarker'
         (modUhiChildUpdateBackColorFenUrb) = "modUhiUpdateBack($event)"
+        [showDivEleQS] = 'showDivElest'
+        [showDivQS] = 'showDivQSest'
         >
     </app-modifica-uhi>
 
@@ -23,4 +30,4 @@
 
 </div> 
  
-  
+

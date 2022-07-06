@@ -1,3 +1,4 @@
+import { ColorMapping } from "src/services/ColorMapping";
 import { Corema } from "../coremi/coremi";
 import { AccessoWC } from "./fenomeni-urbani-elementiAmbientali/AccessoWC";
 import { CaffeRistoranti } from "./fenomeni-urbani-elementiAmbientali/CaffeRistoranti";
@@ -21,14 +22,20 @@ export class ElementiAmbientali implements Corema{
     illuminazione!: Illuminazione;
     accessoWC!: AccessoWC;
 
+    weigth!: number | undefined
 
-    constructor(value?: number, cafRist?: CaffeRistoranti, panchine?: Panchine, opereDarte?: OpereDarte, fontane?: Fontane, illuminazione?: Illuminazione, accessoWC?: AccessoWC){
+
+    constructor(value?: number, peso2?: number, cafRist?: CaffeRistoranti, panchine?: Panchine, opereDarte?: OpereDarte, fontane?: Fontane, illuminazione?: Illuminazione, accessoWC?: AccessoWC){
+        //alert('constructor')
         this.name = 'Elemanenti Ambientali';
         this.type = 'spaziale';
         this.means = 'il significato è';
         this.icon = 'elementiAmbientali.png'
     
-        if(value) this.value = value;
+        if(value) {
+           // alert('value in el amb: '+ this.value +' = ' + value)
+            this.value = value;
+        }
 
         if(cafRist) this.caffeRistoranti = cafRist
         if(panchine) this.panchine = panchine
@@ -36,11 +43,13 @@ export class ElementiAmbientali implements Corema{
         if(fontane) this.fontane = fontane;
         if(illuminazione) this.illuminazione = illuminazione;
         if(accessoWC) this.accessoWC = accessoWC;
+
+        this.weigth = peso2
     }
 
     
     
-    calculateUHIElemAmb(): void{
+    calculateUHIElemAmb() {
         let cafRistVal = this.caffeRistoranti.value;
         let panchineVal = this.panchine.value;
         let opereDarteVal = this.opereDarte.value;
@@ -48,12 +57,25 @@ export class ElementiAmbientali implements Corema{
         let illuminazioneVal = this.illuminazione.value;
         let accessoWCVal = this.accessoWC.value;
 
-        let w = 1/6
-
-        this.value = cafRistVal * w + panchineVal * w + opereDarteVal * w + fontaneVal * w + illuminazioneVal * w + accessoWCVal * w;
-        //console.log('this.valueElAmb: ' + this.value);
+        let w1 = 1
+        let w2 = 1
+        let w3 = 1
+        let w4 = 1
+        let w5 = 1
+        let w6 = 1
+        
+        //Uso il metodo floor per arrotondare un numero con la virgola
+        let uhiFloor = (cafRistVal * w1! + panchineVal * w2! + opereDarteVal * w3! + fontaneVal * w4! + illuminazioneVal * w5! + accessoWCVal * w6!)/6;
+        console.log('UHI elAmb ' + uhiFloor);
+        uhiFloor = Math.floor(uhiFloor);
+        return uhiFloor;
     }
     
+    calculateColor(value: number): void {
+       // console.log('valueColorEl: '+ value)
+        this.color = ColorMapping.mapValueToColor(value);
+       // console.log('color: '+this.color)
+    }
 
     getName(): string {
         return this.name;
@@ -106,6 +128,10 @@ export class ElementiAmbientali implements Corema{
 
     setColor(color: string): void {
         this.color = color;
+    }
+
+    getWeigth(): number| undefined {
+        return this.weigth;
     }
 
 

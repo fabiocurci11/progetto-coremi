@@ -1,15 +1,28 @@
 #container-Leggenda{
     z-index: 1;
-    top: 48%;
+    top: 2%;
+    left: 2%;
     width: 4%;
     padding-left: 0px;
     padding-right: 0px;
     margin-left: 0px;
     position: absolute;
-
-    /*background-color: yellow;*/
     
 }
+
+#container-Leggenda2{
+    z-index: 1;
+    top: 90%;
+    left: 2%;
+    width: 4%;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 0px;
+    position: absolute;
+    
+}
+
+
 
 #btn-ShowHideLeggenda{
     width: 100%;
@@ -21,6 +34,7 @@
     padding-left: 3px;
     padding-bottom: 3px;
     padding-top: 3px;
+    border: 3px solid blue;
     
 }
 
@@ -29,15 +43,31 @@
     height: 100%;
     background-color: #00ad7c9e;
     border-radius: 2rem;
+
+    border: 3px solid blue;
     
 }
 
 #divLeggenda{
     z-index: 1;
-    height: 53vh;
+    height: 44vh;
     width: 30vw;
     position: absolute;
-    top: 15%;
+    top: 56px;
+    left: 2%;
+    background-color: white;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-radius: 1rem !important;
+}
+
+#divLeggenda2{
+    z-index: 1;
+    height: 30vh;
+    width: 50vw;
+    position: absolute;
+    top: 60%;
+    left: 2%;
     background-color: white;
     padding-right: 0px;
     padding-left: 0px;
@@ -48,6 +78,7 @@
     /*background-color: #00AD7C;*/
     font-size: 20px;
     color: #00AD7C;
+    padding-top: 12px;
 }
 
 #table-corema{
@@ -55,6 +86,11 @@
 }
 
 #cont-leg-cor{
+    background-color: #00AD7C;
+    font-size: 23px;
+}
+
+#cont-leg-cor2{
     background-color: #00AD7C;
     font-size: 23px;
 }
@@ -91,3 +127,12 @@ p{
     background-color: #00AD7C;
 }
 
+.col-3{
+    cursor: pointer;
+}
+
+#table-legenda{
+    
+    padding-left: 20px;
+    padding-right: 20px;
+}

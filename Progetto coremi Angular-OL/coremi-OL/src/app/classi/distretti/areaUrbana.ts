@@ -17,13 +17,14 @@ export class AreaUrbana implements Corema{
     value?: number;
 
     coesioneSpaziale: CoesioneSpaziale;
-    elementiAmbientali: ElementiAmbientali
+    elementiAmbientali: ElementiAmbientali 
     qualitaDelloSpazio: QualitaSpazio;
     orientamentoPedonale: OrientamentoPedonale;
     buonaVegetazione: BuonaVegetazione;
     orientamentoCiclabile: OrientamentoPedonale;
+    
 
-    constructor(nome: string, coesSpaz: CoesioneSpaziale, elAmb: ElementiAmbientali, qualSpaz: QualitaSpazio, orPed: OrientamentoPedonale, buonVeg: BuonaVegetazione, orCicl: OrientamentoCiclabile, tipo?: string, icona?: string){
+    constructor(nome: string,  orPed: OrientamentoPedonale,  elAmb: ElementiAmbientali, coesSpaz: CoesioneSpaziale, orCicl: OrientamentoCiclabile, qualSpaz: QualitaSpazio, buonVeg: BuonaVegetazione, tipo?: string, icona?: string){
         this.name = nome;
         this.type = tipo;
         this.means = 'significato';

@@ -42,7 +42,7 @@ export class ColorMapping {
       })
 
       static iconMarkerStyleVoid = new Icon({
-        src: 'assets/distretti_icon/home_icon.png', 
+        src: 'assets/', 
         offset: [0,0],
         opacity: 1,
         scale: 0.1

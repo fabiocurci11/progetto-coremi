@@ -11,14 +11,16 @@ export class OrientamentoCiclabile implements Corema{
     value: number
     color?: string;
     
+    weigth!: number | undefined 
 
-    constructor(value: number){
+    constructor(value: number, peso4?: number){
         this.name = 'Orientamento Ciclabile';
         this.type = 'spazialeOC';
         this.means = 'il significato è';
         this.icon = 'orientamentoCiclabile.png'
     
         this.value = value;
+        this.weigth = peso4;
     }
 
     calculateColor(value: number): void {
@@ -80,4 +82,7 @@ export class OrientamentoCiclabile implements Corema{
     }
 
 
+    getWeigth(): number | undefined  {
+        return this.weigth;
+    }
 }

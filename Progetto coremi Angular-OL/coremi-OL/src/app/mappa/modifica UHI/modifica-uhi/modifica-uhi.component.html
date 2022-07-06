@@ -2,7 +2,7 @@
     <div class='row' >
         <div class='col-12'>
             <button class='btn' id='btn-filtro' (click)='showMenuModUHI()' style='float: right;'> 
-                <img  src='assets/icon-menu2.png' width='100%' height='100%' >
+                <img  src='assets/editUHI.png' width='100%' height='100%' >
             </button>
         </div>
     </div>
@@ -10,28 +10,79 @@
     <div class='row' *ngIf='showModUHI' id='row-filtro' style="overflow-y: scroll;">
         <h1 class="text-center mb-3">Simula Modifica UHI</h1>
            
-        <div class="row item-row" *ngFor="let fenUrb of tupla">
-            <div class="col-4 text-end">
-                <img  src={{fenUrb[0]}} class="img-modUHI">
-            </div>
-            <div class="col-8 name-modUHI">
-                <p>{{fenUrb[1]}}</p>
-            </div>
 
-            <div class="col-2 text-end">
-                <p>1</p>
+        <div *ngIf="!showDivEleQS && !showDivQS"> 
+            <div class="row item-row" *ngFor="let fenUrb of tupla; let i = index; trackBy:trackByProductId">
+                
+                <div class="col-4 text-end">
+                    <img  src={{fenUrb[0]}} class="img-modUHI">
+                </div>
+                <div class="col-8 name-modUHI">
+                    <p>{{fenUrb[1]}}</p>
+                </div>
+
+                <div class="col-2 text-end">
+                    <p>1</p>
+                </div>
+                <div class="col-8 text-center">
+                    <input type="range" id='{{fenUrb[3]}}' class="form-range" name="points" min="1" step="0.5" max="10" value={{fenUrb[2]}} (click)="updateValueRange(fenUrb[3])"><br>
+                    <h5>UHI: {{fenUrb[2]}}</h5>
+                </div>
+                <div class="col-2">
+                    <p>10</p>
+                </div>
+                <hr>
             </div>
-            <div class="col-8 text-center">
-                <input type="range" id='{{fenUrb[3]}}' class="form-range" name="points" min="1" step="0.5" max="10" value={{fenUrb[2]}} (click)="updateValueRange(fenUrb[3])"><br>
-                <h5>UHI: {{fenUrb[2]}}</h5>
-            </div>
-            <div class="col-2">
-                <p>10</p>
-            </div>
-            <hr>
         </div>
 
+        <div *ngIf="showDivEleQS"> 
+            <div class="row item-row" *ngFor="let fenUrb of tuplaElAmb; let i = index; trackBy:trackByProductId">
+                
+                <div class="col-4 text-end">
+                    <img  src={{fenUrb[0]}} class="img-modUHI">
+                </div>
+                <div class="col-8 name-modUHI">
+                    <p>{{fenUrb[1]}}</p>
+                </div>
+
+                <div class="col-2 text-end">
+                    <p>1</p>
+                </div>
+                <div class="col-8 text-center">
+                    <input type="range" id='{{fenUrb[3]}}' class="form-range" name="points" min="1" step="0.5" max="10" value={{fenUrb[2]}} (click)="updateValueRange(fenUrb[3])"><br>
+                    <h5>UHI: {{fenUrb[2]}}</h5>
+                </div>
+                <div class="col-2">
+                    <p>10</p>
+                </div>
+                <hr>
+            </div>
+        </div>
         
+        <div *ngIf="showDivQS"> 
+            <div class="row item-row" *ngFor="let fenUrb of tuplaQualSpaz; let i = index; trackBy:trackByProductId">
+  
+                <div class="col-4 text-end">
+                    <img  src={{fenUrb[0]}} class="img-modUHI">
+                </div>
+                <div class="col-8 name-modUHI">
+                    <p>{{fenUrb[1]}}</p>
+                </div>
+
+                <div class="col-2 text-end">
+                    <p>1</p>
+                </div>
+                <div class="col-8 text-center">
+                    <input type="range" id='{{fenUrb[3]}}' class="form-range" name="points" min="1" step="0.5" max="10" value={{fenUrb[2]}} (click)="updateValueRange(fenUrb[3])"><br>
+                    <h5>UHI: {{fenUrb[2]}}</h5>
+                </div>
+                <div class="col-2">
+                    <p>10</p>
+                </div>
+                <hr>
+            </div>
+        </div>
+
         <div class="row item-row">
             <div class="col-12" style="text-align: center;">
                 <button class="btn" type="submit" (click)="saveOnFirebase()" style="background-color: #00AD7C;"> <h5 id="btnSave">Salva modifiche</h5></button>

@@ -20,33 +20,56 @@ export class QualitaSpazio implements Corema{
     fless!: Flessibilita;
     legg!: Leggibilita;
 
+    weigth!: number | undefined
 
-    constructor(value?: number, varieta?: Varieta, penFis?: PenetrabilitaFisica, identLuogo?: IdentitaLuogo, fless?: Flessibilita, legg?: Leggibilita){
+    constructor(value?: number, peso5?: number, varieta?: Varieta, penFis?: PenetrabilitaFisica, identLuogo?: IdentitaLuogo, fless?: Flessibilita, legg?: Leggibilita){
+        //alert('constructor qs')
         this.name = 'Qualita dello spazio';
         this.type = 'spaziale';
         this.means = 'il significato è';
         this.icon = 'qualitaDelloSpazio.png'
     
-        if(value) this.value = value;
+        if(value) {
+            //alert('value in qual spaz: '+ this.value +' = ' + value)
+            this.value = value;
+        }
 
         if(varieta) this.varieta = varieta
         if(penFis) this.penFis = penFis
         if(identLuogo) this.identLuogo = identLuogo;
         if(fless) this.fless = fless;
         if(legg) this.legg = legg
+
+        this.weigth = peso5;
     }
 
     
-    calculateUHIQualSpaz(): void{
+    calculateUHIQualSpaz() {
         let varietaVal = this.varieta.value;
         let penFisVal = this.penFis.value;
         let identLuogoVal = this.identLuogo.value;
         let flessVal = this.fless.value;
         let leggVal = this.legg.value;
 
-        this.value = varietaVal * 1 + penFisVal * 1 + identLuogoVal * 1 + flessVal * 1 + leggVal * 1;
-        //console.log('this.valueQualSpaz: ' + this.value);
+        let w1 = 1
+        let w2 = 1
+        let w3 = 1
+        let w4 = 1
+        let w5 = 1
+        let w6 = 1
+        
+        //Uso il metodo floor per arrotondare un numero con la virgola
+        let uhiFloor = (varietaVal * w1! + penFisVal * w2! + identLuogoVal * w3! + flessVal * w4! + leggVal * w5!)/5;
+        console.log('UHI qualSpaz ' + uhiFloor);
+        uhiFloor = Math.floor(uhiFloor);
+        return uhiFloor;
     }
+
+    calculateColor(value: number): void {
+        console.log('valueColorQS: '+ value)
+         this.color = ColorMapping.mapValueToColor(value);
+         console.log('color: '+this.color)
+     }
     
 
     getName(): string {
@@ -102,5 +125,9 @@ export class QualitaSpazio implements Corema{
         this.color = color;
     }
 
+    getWeigth(): number | undefined {
+        return this.weigth;
+    }
 
+    
 }

@@ -45,16 +45,22 @@ export class MapComponent implements OnInit{
   
 //Proprietà
   //jsonPath: string = 'assets/data/geoJSON.geojson'
-  jsonPath: string = 'assets/data/geoJSONSalerno.geojson'
+  //jsonPath: string = 'assets/data/geoJSONSalerno.geojson'
+  jsonPath: string = 'assets/data/geoJSONFinalSalerno.geojson'
   public static mappa: Map | undefined;
   //Coordinate Salerno
   long: number = 14.795901775360107;
   lat: number = 40.66385894013736;
 
+  static vectorLayer: any 
+
   //Dati da passare ai figli (filtro, modificaUHI)
   showChild: boolean = false;
+  showLegenda: boolean = false;
   idDistrettoFromMarker: number = 0;
   updateBackColorFromModUhi: boolean = false;
+  showDivElest: boolean = false;
+  showDivQSest: boolean = false;
 
   //Dati dal figlio (marker)
   markerNotifyMappa(showMenu: boolean): void{
@@ -67,9 +73,24 @@ export class MapComponent implements OnInit{
     //console.log('ID DISTRETTO DAL MARKER A MAPPA: ' + idDistretto)
   }
 
+  markerNotifyMappaForLegenda(showLegenda: boolean): void{
+    this.showLegenda = showLegenda;
+    console.log('MappaForLegenda: ' + this.showLegenda);
+  }
+
   modUhiUpdateBack(updateBackColorFenUrb: boolean){
     console.log('MODUHIBACK: ' + updateBackColorFenUrb)
     this.updateBackColorFromModUhi = updateBackColorFenUrb
+  }
+
+  showDivEleQSMethod(showDivELeQS: boolean): void{
+    this.showDivElest = showDivELeQS;
+    console.log('SHOW DIV EL AMB: ' + this.showDivElest)
+  }
+
+  showDivQSMethod(showDivQS: boolean): void{
+    this.showDivQSest = showDivQS;
+    console.log('SHOW DIV QUAL SPAZ: ' + this.showDivQSest)
   }
 
 
@@ -106,7 +127,7 @@ export class MapComponent implements OnInit{
     let featureService = this.featureHandlerService
     let fireService = this.firebaseService
 
-    let vectorLayer = new VectorLayer({
+     MapComponent.vectorLayer = new VectorLayer({
       source: new VectorSource({
         url: this.jsonPath,
         format: new GeoJSON()
@@ -115,13 +136,16 @@ export class MapComponent implements OnInit{
       visible: true,
 
       style: function(){ //imposta un'icona diversa per ogni feature (punto sulla mappa)
-        vectorLayer.getSource()!.getFeatures().map(feature => featureService.elaborateFeature(feature))   
+       // vectorLayer.getSource()!.getFeatures().map(feature => featureService.elaborateFeature(feature))   
+       MapComponent.vectorLayer.getSource()!.getFeatures().map((feature: Feature<Geometry>) => featureService.elaborateFeature(feature))   
         //fireService.retrieveObservableItems('id1')
+       
       }
         
     })
-
-    MapComponent.mappa!.addLayer(vectorLayer);
+    
+    MapComponent.mappa!.addLayer(MapComponent.vectorLayer);
+    //MapComponent.vectorLayer.setVisible(false)
     
   }//fine metodo
 
