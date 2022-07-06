@@ -8,7 +8,8 @@
     padding-right: 24px;
     left: 15%;
     top: 2%;
-    margin-right: 0px
+    margin-right: 0px;
+    width: 25%;
 }
 
 #btn-filtro{
@@ -17,11 +18,10 @@
     /*background-color: #11bb3266;*/
     background-color: #00ad7c9e;
     border-radius: 1rem;
-    border: 3px solid blue;
 }
 
 #row-filtro{
-    width: 30%;
+    /*width: 30%;*/
     float: right;
     margin-right:0px;
     background-color: white;

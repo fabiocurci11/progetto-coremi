@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Map, Overlay } from 'ol';
+import { Coordinate } from 'ol/coordinate';
 import { ObjectEvent } from 'ol/Object';
 import { Distretto } from 'src/app/classi/distretti/distretto';
 import { ColorMapping } from 'src/services/ColorMapping';
@@ -25,11 +26,13 @@ export class MarkerDistrettoComponent implements OnInit {
     if(this.updateBackColorFenUrb){
      // alert('update back color')
       this.addBackColorForImg(this.distrettoClicked)
+      this.addBackColorForImg(this.distrettoClicked2)
       //alert(this.distrettoClicked.urbanArea.orientamentoPedonale.getColor())
     }
     //alert(FirebaseService.varNotify)
     if(FirebaseService.varNotify){
       this.addBackColorForImg(this.distrettoClicked)
+      this.addBackColorForImg(this.distrettoClicked2)
     }
   }
 
@@ -40,6 +43,7 @@ export class MarkerDistrettoComponent implements OnInit {
   showMenuLegenda: boolean = false;
   figlioString: string = 'string figlio';
   distrettoClicked!: Distretto
+  distrettoClicked2!: Distretto
   
   //@Output() dati dal figlio (marker) al padre (mappa)
  
@@ -61,54 +65,71 @@ export class MarkerDistrettoComponent implements OnInit {
   //var Img impostano l'immagine, var BackColor impostano il colore dello sfondo dell'immagine
   orPedImg = '';
   orPedBackColor: string = '';
+  orPedBackColor2: string = '';
 
   elAmbImg = '';
   elAmbBackColor: string = '';
+  elAmbBackColor2: string = '';
 
     caffeRistoImg = '';
     caffeRistoBackColor: string = '';
+    caffeRistoBackColor2: string = '';
 
     panchineImg = '';
     panchineBackColor: string = '';
+    panchineBackColor2: string = '';
 
     opereDarteImg = '';
     opereDarteBackColor: string = '';
+    opereDarteBackColor2: string = '';
 
     fontaneImg = '';
     fontaneBackColor: string = '';
+    fontaneBackColor2: string = '';
 
     illumImg = '';
     illumBackColor: string = '';
+    illumBackColor2: string = '';
 
     accessoWCImg = '';
     accessoWCBackColor: string = '';
+    accessoWCBackColor2: string = '';
 
   coesSpazImg = ''; 
   coesSpazBackColor: string = '';
+  coesSpazBackColor2: string = '';
 
   orCiclImg = ''; 
   orCiclBackColor: string = '';
+  orCiclBackColor2: string = '';
 
   qualSpazImg = ''; 
   qualSpazBackColor: string = '';
+  qualSpazBackColor2: string = '';
 
     varietaImg = '';  
     varietaBackColor: string = '';
+    varietaBackColor2: string = '';
 
     penFisImg = '';   
     penFisBackColor: string = '';
+    penFisBackColor2: string = '';
 
     idLuogImg = '';   
     idLuogBackColor: string = '';
+    idLuogBackColor2: string = '';
 
     flessImg = '';   
     flessImgBackColor: string = '';
+    flessImgBackColor2: string = '';
 
     leggImg = '';   
     leggBackColor: string = ''; 
+    leggBackColor2: string = ''; 
 
   buonaVegImg = ''; 
   buonaVegBackColor: string = '';
+  buonaVegBackColor2: string = '';
 
   showDivElEsp: boolean = false
   showDivQsEst: boolean = false
@@ -130,60 +151,142 @@ export class MarkerDistrettoComponent implements OnInit {
     this.showDivQSModUhi.emit(this.showDivQsEst)
   }
 
-  
+  displayedFeatures = 0
+  clickedOnEmptyArea!: boolean
+  firstOverlay: boolean = false
+  clickFirstDistretto: boolean = false
+  coordinate2!: Coordinate
+  clickedCoordinate!: Coordinate
+  resetOverlay: boolean = true
+  comparisonDistretti: boolean = false
+  nomeDistretto2!: string;
+  nomeDistretto!: string;
+  overlayLayer2!: Overlay
+  overlayLayer!: Overlay
 
   clickOnMarker(){
     //create Overlay
     let overlayContainerElement = document.querySelector('.overlay-container')
-    let overlayLayer = new Overlay({
+    this.overlayLayer = new Overlay({
         element: overlayContainerElement,
-      })
-      MapComponent.mappa!.addOverlay(overlayLayer);
+    })
+    MapComponent.mappa!.addOverlay(this.overlayLayer);
+
+    let overlayContainerElement2 = document.querySelector('.overlay-container2')
+    this.overlayLayer2 = new Overlay({
+        element: overlayContainerElement2,
+    })
+    MapComponent.mappa!.addOverlay(this.overlayLayer2);
 
     //click on Map
     MapComponent.mappa!.on('click', (e) =>{
       console.log("click map");
-      overlayLayer.setPosition(undefined);
+      //this.i = 0;
+      this.overlayLayer.setPosition(undefined);
+      this.overlayLayer2.setPosition(undefined);
       this.showMenu = false;
       this.markerChildNotify.emit(this.showMenu);
 
       this.showMenuLegenda = false;
       this.markerNotifyLegenda.emit(this.showMenuLegenda)
+      this.clickedOnEmptyArea = MapComponent.mappa!.getFeaturesAtPixel(e.pixel).length==0
+      //alert(MapComponent.mappa!.getFeaturesAtPixel())
+      if(this.clickedOnEmptyArea || this.displayedFeatures==2) {
+        this.displayedFeatures = 0;
+      }
+
+      
+
+      if(this.resetOverlay == false){
+        //alert('set resetOverlay '+this.resetOverlay);
+        this.firstOverlay = false
+        this.resetOverlay = true
+        this.comparisonDistretti = false
+      } 
+    
+      //alert('firstOv: '+this.firstOverlay + ' clickFirstDistr: '+this.clickFirstDistretto + ' resetOv: '+this.resetOverlay)
+     
+      if(this.firstOverlay == true && this.clickFirstDistretto == false && this.resetOverlay == true){
+        //this.resetOverlay = false
+      }
 
     
-      MapComponent.mappa!.forEachFeatureAtPixel(e.pixel, (feature: any, layer: any) =>{
-        console.log("click point");
-      
-        let distretto: Distretto = this.featureHandlerService.getDistrettoById(feature.getId());
-        this.distrettoClicked = distretto
-        this.addPathForImg(distretto);
-        this.addBackColorForImg(distretto);
+      MapComponent.mappa!.forEachFeatureAtPixel(e.pixel, (feature: any, layer: any) =>{        
+        //if(this.firstOverlay == false){
+        if(this.displayedFeatures == 0){  
+          //Setto i valori da visualizzare del distretto cliccato
+          let distretto2: Distretto = this.featureHandlerService.getDistrettoById(feature.getId());
+          this.distrettoClicked2 = distretto2
+          this.addPathForImg(distretto2);
+          this.addBackColorForImg2(distretto2);
+          this.nomeDistretto2 = distretto2.getNome()
+
+          this.displayedFeatures=1
+          this.coordinate2 = e.coordinate;
+          this.firstOverlay = true
+          this.clickFirstDistretto = true
+          this.overlayLayer2.setPosition(this.coordinate2);
+          
+          //MapComponent.mappa!.getView().setCenter(e.coordinate);
+          //MapComponent.mappa!.getView().setZoom(14);
+        }
 
 
-        console.log('ID in Marker: '+ feature.getId())
+        //else if(this.resetOverlay == true && this.firstOverlay == true  && this.clickFirstDistretto == true){
+        else if(this.displayedFeatures == 1){
+          //Setto i valori da visualizzare del distretto cliccato
+          let distretto: Distretto = this.featureHandlerService.getDistrettoById(feature.getId());
+          this.distrettoClicked = distretto
+          this.addPathForImg(distretto);
+          this.addBackColorForImg(distretto);
+          this.nomeDistretto = distretto.getNome()
+          
+          this.clickedCoordinate = e.coordinate;
+          
+          this.overlayLayer2.setPosition(this.coordinate2);
+          this.overlayLayer.setPosition(this.clickedCoordinate);
+
+          //MapComponent.mappa!.getView().setCenter(e.coordinate);
+          //MapComponent.mappa!.getView().setZoom(14);
+
+          this.resetOverlay = false
+          this.comparisonDistretti = true
+          this.displayedFeatures = 2
+        }
+
+
         this.markerChildIdDistretto.emit(feature.getId())
-
-
-        let clickedCoordinate = e.coordinate;
-        overlayLayer.setPosition(clickedCoordinate);
-
-
-        MapComponent.mappa!.getView().setCenter(e.coordinate);
-        MapComponent.mappa!.getView().setZoom(14);
-        
         this.showMenu = true;
         console.log('Marker - showMenu: ' + this.showMenu);
         this.markerChildNotify.emit(this.showMenu);
         
-
         //Nascondere i 2 menu legenda
         this.showMenuLegenda = true;
         this.markerNotifyLegenda.emit(this.showMenuLegenda)
-
       },
       )}
     )
 
+  }
+
+  eliminaConfronto(){
+    alert('Confronto eliminato')
+    this.overlayLayer.setPosition(undefined);
+    this.overlayLayer2.setPosition(undefined);
+    /*
+    if(this.resetOverlay == false){
+      alert('set resetOverlay '+this.resetOverlay);
+      this.firstOverlay = false
+      this.resetOverlay = true
+      this.comparisonDistretti = false
+      this.overlayLayer.setPosition(undefined);
+      this.overlayLayer2.setPosition(undefined);
+
+      this.showMenu = false;
+      this.markerChildNotify.emit(this.showMenu);
+      this.showMenuLegenda = false;
+      this.markerNotifyLegenda.emit(this.showMenuLegenda)
+    }*/
   }
   
 
@@ -210,6 +313,7 @@ export class MarkerDistrettoComponent implements OnInit {
   }
 
   addBackColorForImg(distretto: Distretto){
+    //alert('backgrond color for img');
     //Prende il colore di ogni fen urb (in italiano), e lo imposta nel css corrispondente
     this.orPedBackColor = distretto.urbanArea.orientamentoPedonale.getColor();
     //alert('orPed: '+ this.orPedBackColor)
@@ -265,7 +369,65 @@ export class MarkerDistrettoComponent implements OnInit {
     this.buonaVegBackColor = distretto.urbanArea.buonaVegetazione.getColor();
     this.buonaVegBackColor = ColorMapping.setFenUrbColor(this.buonaVegBackColor);
   }
- 
 
+  addBackColorForImg2(distretto: Distretto){
+    //alert('backgrond color for img');
+    //Prende il colore di ogni fen urb (in italiano), e lo imposta nel css corrispondente
+    this.orPedBackColor2 = distretto.urbanArea.orientamentoPedonale.getColor();
+    //alert('orPed: '+ this.orPedBackColor)
+    this.orPedBackColor2 = ColorMapping.setFenUrbColor(this.orPedBackColor2);
+
+    this.elAmbBackColor2 = distretto.urbanArea.elementiAmbientali.getColor();
+    //alert('elAmb: '+ this.elAmbBackColor)
+    this.elAmbBackColor2 = ColorMapping.setFenUrbColor(this.elAmbBackColor2);
+    //alert(this.elAmbBackColor)
+  
+      this.caffeRistoBackColor2 = distretto.urbanArea.elementiAmbientali.caffeRistoranti.getColor();
+      this.caffeRistoBackColor2 = ColorMapping.setFenUrbColor(this.caffeRistoBackColor2);
+      
+      this.panchineBackColor2 = distretto.urbanArea.elementiAmbientali.panchine.getColor();
+      this.panchineBackColor2 = ColorMapping.setFenUrbColor(this.panchineBackColor2);
+      
+      this.opereDarteBackColor2 = distretto.urbanArea.elementiAmbientali.opereDarte.getColor();
+      this.opereDarteBackColor2 = ColorMapping.setFenUrbColor(this.opereDarteBackColor2);
+  
+      this.fontaneBackColor2 = distretto.urbanArea.elementiAmbientali.fontane.getColor();
+      this.fontaneBackColor2 = ColorMapping.setFenUrbColor(this.fontaneBackColor2);
+  
+      this.illumBackColor2 = distretto.urbanArea.elementiAmbientali.illuminazione.getColor();
+      this.illumBackColor2 = ColorMapping.setFenUrbColor(this.illumBackColor2);
+  
+      this.accessoWCBackColor2 = distretto.urbanArea.elementiAmbientali.accessoWC.getColor();
+      this.accessoWCBackColor2 = ColorMapping.setFenUrbColor(this.accessoWCBackColor2);
+  
+    this.coesSpazBackColor2 = distretto.urbanArea.coesioneSpaziale.getColor();
+    this.coesSpazBackColor2 = ColorMapping.setFenUrbColor(this.coesSpazBackColor2);
+    
+    this.orCiclBackColor2 = distretto.urbanArea.orientamentoCiclabile.getColor();
+    this.orCiclBackColor2 = ColorMapping.setFenUrbColor(this.orCiclBackColor2);
+    
+    this.qualSpazBackColor2 = distretto.urbanArea.qualitaDelloSpazio.getColor();
+    this.qualSpazBackColor2 = ColorMapping.setFenUrbColor(this.qualSpazBackColor2);
+      
+      this.varietaBackColor2 = distretto.urbanArea.qualitaDelloSpazio.varieta.getColor();
+      this.varietaBackColor2 = ColorMapping.setFenUrbColor(this.varietaBackColor2);
+  
+      this.penFisBackColor2 = distretto.urbanArea.qualitaDelloSpazio.penFis.getColor();
+      this.penFisBackColor2 = ColorMapping.setFenUrbColor(this.penFisBackColor2);
+          
+      this.idLuogBackColor2 = distretto.urbanArea.qualitaDelloSpazio.identLuogo.getColor();
+      this.idLuogBackColor2 = ColorMapping.setFenUrbColor(this.idLuogBackColor2);
+       
+      this.flessImgBackColor2 = distretto.urbanArea.qualitaDelloSpazio.fless.getColor();
+      this.flessImgBackColor2 = ColorMapping.setFenUrbColor(this.flessImgBackColor2);
+  
+      this.leggBackColor2 = distretto.urbanArea.qualitaDelloSpazio.legg.getColor();
+      this.leggBackColor2 = ColorMapping.setFenUrbColor(this.leggBackColor2); 
+  
+    this.buonaVegBackColor2 = distretto.urbanArea.buonaVegetazione.getColor();
+    this.buonaVegBackColor2 = ColorMapping.setFenUrbColor(this.buonaVegBackColor2);
+  }
+ 
+ 
 
 }

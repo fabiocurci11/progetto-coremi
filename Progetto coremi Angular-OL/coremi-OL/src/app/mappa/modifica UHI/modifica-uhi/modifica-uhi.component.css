@@ -8,7 +8,8 @@
     padding-right: 24px;
     left: 15%;
     top: 2%;
-    margin-right: 0px
+    margin-right: 0px;
+    width: 25%;
 }
 
 #btn-filtro{
@@ -20,7 +21,7 @@
 }
 
 #row-filtro{
-    width: 30%;
+   /* width: 30%;*/
     height: 650px;
     float: right;
     margin-right:0px;
@@ -50,6 +51,7 @@ p{
     margin-top: 10%;
     margin-left: 0px;
     margin-bottom: 5%;
+    margin-right: 0px;
 }
 
 #btnSave{

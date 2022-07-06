@@ -26,7 +26,7 @@ export class FiltroDistrettoComponent implements OnInit {
   }
 
   ngOnChanges() {
-    console.log("ngOnChange Filtro - showFiltroComp: " + this.showFiltroComp);
+    console.log("ngOnChange Filtro - showFiltroComp: " + this.showFiltroComp)
   }
 
   //Proprietà
