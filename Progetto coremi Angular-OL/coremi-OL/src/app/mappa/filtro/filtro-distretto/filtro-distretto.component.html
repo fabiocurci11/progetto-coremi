@@ -1,10 +1,10 @@
 <div class="container" id="container-legenda">
     <div class="row" >
         <div class="col-12">
-            <button class="btn" id="btn-filtro" (click)="showDivFil()" style="float: right; border: 3px solid blue;" *ngIf="showFiltro"> 
+            <button class="btn" id="btn-filtro" (click)="showDivFil()" style="float: right; border: 2px solid blue;" *ngIf="showFiltro"> 
                 <img  src="assets/filterDistretti.png" width="100%" height="100%" alt="">
             </button>
-            <button class="btn" id="btn-filtro" (click)="showDivFil()" style="float: right;  border: 3px solid black;" *ngIf="!showFiltro"> 
+            <button class="btn" id="btn-filtro" (click)="showDivFil()" style="float: right;  border: 2px solid black;" *ngIf="!showFiltro"> 
                 <img  src="assets/filterDistretti.png" width="100%" height="100%" alt="">
             </button>
         </div>
@@ -24,11 +24,11 @@
         </div>
     
         <div class="col-12 mt-20" style="text-align: center; margin-bottom: 20px; margin-top: 20px;">
-            <button class="btn" type="submit" (click)="filtraDistretti()" style="background-color: #00AD7C;"> <h5 id="btnSave">Filtra distretti</h5></button>
+            <button class="btn" type="submit" (click)="filtraDistretti()" style="background-color: #00AD7C; width: 30%;"> <h5 id="btnSave">Filtra</h5></button>
         </div>
 
         <div class="col-12 mt-20" style="text-align: center; margin-bottom: 20px; margin-top: 20px;">
-            <button class="btn" type="submit" (click)="eliminaFiltro()" style="background-color: red;"> <h5 id="btnSave"> Elimina filtro </h5></button>
+            <button class="btn" type="submit" (click)="eliminaFiltro()" style="background-color: red; width: 30%;"> <h5 id="btnSave">Elimina</h5></button>
         </div>
         
 

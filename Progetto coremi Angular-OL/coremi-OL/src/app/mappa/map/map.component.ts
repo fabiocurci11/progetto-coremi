@@ -102,6 +102,10 @@ export class MapComponent implements OnInit{
 
       target: 'js-map',
 
+      controls: [
+        
+      ],
+
       layers: [
         new TileLayer({
           source: new OSM(),

@@ -5,7 +5,7 @@
       "type": "Feature",
       "id": 1,
       "properties": {
-        "nomeDistretto": "Distretto1",
+        "nomeDistretto": "Salerno Centro",
         "AreaUrbana": "areaUrbDistretto1",
 
         
@@ -51,7 +51,7 @@
       "type": "Feature",
       "id": 2,
       "properties": {
-        "nomeDistretto": "Distretto2",
+        "nomeDistretto": "Torrione",
         "AreaUrbana": "areaUrbDistretto2",
 
           "OrientamentoPedonale": 1,
@@ -96,7 +96,7 @@
       "type": "Feature",
       "id": 3,
       "properties": {
-        "nomeDistretto": "Distretto3",
+        "nomeDistretto": "Pastena",
         "AreaUrbana": "areaUrbDistretto3",
 
           "OrientamentoPedonale": 7,
@@ -140,7 +140,7 @@
       "type": "Feature",
       "id": 4,
       "properties": {
-        "nomeDistretto": "Distretto4",
+        "nomeDistretto": "Mercatello",
         "AreaUrbana": "areaUrbDistretto4",
 
           "OrientamentoPedonale": 8,
@@ -184,7 +184,7 @@
       "type": "Feature",
       "id": 5,
       "properties": {
-        "nomeDistretto": "Distretto5",
+        "nomeDistretto": "Arbostella",
         "AreaUrbana": "areaUrbDistretto5",
 
           "OrientamentoPedonale": 8,
@@ -229,7 +229,7 @@
       "type": "Feature",
       "id": 6,
       "properties": {
-        "nomeDistretto": "Distretto6",
+        "nomeDistretto": "Fratte",
         "AreaUrbana": "areaUrbDistretto6",
 
           "OrientamentoPedonale": 8,
@@ -275,7 +275,7 @@
       "type": "Feature",
       "id": 7,
       "properties": {
-        "nomeDistretto": "Distretto7",
+        "nomeDistretto": "Sala Abbagnano",
         "AreaUrbana": "areaUrbDistretto7",
 
           "OrientamentoPedonale": 8,
@@ -320,7 +320,7 @@
       "type": "Feature",
       "id": 8,
       "properties": {
-        "nomeDistretto": "Distretto8",
+        "nomeDistretto": "Rione Carmine",
         "AreaUrbana": "areaUrbDistretto8",
 
           "OrientamentoPedonale": 8,
@@ -365,7 +365,7 @@
       "type": "Feature",
       "id": 9,
       "properties": {
-        "nomeDistretto": "Distretto9",
+        "nomeDistretto": "Rione Carmine Alto",
         "AreaUrbana": "areaUrbDistretto9",
 
           "OrientamentoPedonale": 4,

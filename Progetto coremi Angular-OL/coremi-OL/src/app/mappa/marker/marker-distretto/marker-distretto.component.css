@@ -93,7 +93,7 @@
 
   #comparisonDiv{
     z-index: 1;
-    top: 75%;
+    top: 71%;
     position: absolute;
     margin: auto;
     text-align: center;
@@ -106,7 +106,7 @@
     background-color: white;
     padding-right: 0px;
     padding-left: 0px;
-    height: 20vh;
+    height: fit-content;
 }
 
 #cont-confronto{
@@ -121,4 +121,35 @@
 
 .comparisonRow{
   font-size: 20px;
+}
+
+#nomeDistretto{
+  position: absolute;
+  background-color: #00ad7cbf;
+  top: -27px;
+  margin: auto;
+  text-align: center;
+  right: 0px;
+  left: 0px;
+  border-radius: 32px;
+  height: 10%;
+  width: fit-content;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#confronto-row{
+  font-size: 23px;
+}
+
+.row-cor{
+  margin-bottom: 8%;
+  padding-left: 10px;
+  padding-right: 10px;
+  
+}
+
+#img-comparison{
+  height: 100%;
+  width: 100%;
 }

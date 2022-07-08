@@ -1,6 +1,6 @@
 <!--Il click su un distretto(marker), mostra un'area urbana(div quadrato) con i fenomeni urbani(immagini) al suo interno-->
 <div class="overlay-container">
-
+    <div id="nomeDistretto"><h5>{{nomeDistrettoCliccato}}</h5></div>
     <div class="container">
         <div class="row mt-0">
             <div class="col-4" *ngIf="showDiv && showDivQS">
@@ -174,7 +174,7 @@
 
 
 <div class="overlay-container2">
-
+    <div id="nomeDistretto"><h5>{{nomeDistrettoCliccato2}}</h5></div>
     <div class="container">
         <div class="row mt-0">
             <div class="col-4" *ngIf="showDiv && showDivQS">
@@ -350,16 +350,23 @@
 <!--<div *ngIf="comparisonDistretti" class="container-fluid text-white text-center" id="comparisonDiv">-->
 <div class="container rounded-3" id="comparisonDiv" *ngIf="comparisonDistretti" style="overflow-y: scroll">
     <div class="container-fluid text-white text-center" id="cont-confronto">Confronto</div>
-    <div class="row row-cor m-20px">
+
+    <div class="row row-cor m-20px" *ngIf="!comparisonDistrettiStart">
+        <div class="text-center" id="confronto-row{">Seleziona un altro distretto per confrontare</div> 
+    </div>
+
+    <div class="row row-cor m-20px" *ngIf="comparisonDistrettiStart" style="top: 70%;">
         <div class="col-5 text-center comparisonRow">{{nomeDistretto2}}</div> 
-        <div class="col-2 text-center comparisonRow">VS</div> 
+        <div class="col-2 text-center comparisonRow"> <img src='assets/comparison.png' id="img-comparison" alt=""></div> 
         <div class="col-5 text-center comparisonRow">{{nomeDistretto}}</div> 
     </div>
-    <div class="row">
+
+    <div class="row" *ngIf="comparisonDistrettiStart">
         <div class="col-12 " style="text-align: center; margin-bottom: 10px;">
-            <button class="btn" type="submit" (click)="eliminaConfronto()" style="background-color: red;"> <h5 id="btnDelete"> Elimina Confronto </h5></button>
+            <button class="btn" type="submit" (click)="eliminaConfronto()" style="background-color: red; width: 30%;"> <h5 id="btnDelete">Elimina</h5></button>
         </div>
     </div>
+
 </div>
 
 

@@ -159,10 +159,13 @@ export class MarkerDistrettoComponent implements OnInit {
   clickedCoordinate!: Coordinate
   resetOverlay: boolean = true
   comparisonDistretti: boolean = false
+  comparisonDistrettiStart: boolean = false
   nomeDistretto2!: string;
   nomeDistretto!: string;
   overlayLayer2!: Overlay
   overlayLayer!: Overlay
+  nomeDistrettoCliccato2!: string
+  nomeDistrettoCliccato!: string
 
   clickOnMarker(){
     //create Overlay
@@ -193,6 +196,7 @@ export class MarkerDistrettoComponent implements OnInit {
       //alert(MapComponent.mappa!.getFeaturesAtPixel())
       if(this.clickedOnEmptyArea || this.displayedFeatures==2) {
         this.displayedFeatures = 0;
+        this.comparisonDistretti = false
       }
 
       
@@ -220,15 +224,18 @@ export class MarkerDistrettoComponent implements OnInit {
           this.addPathForImg(distretto2);
           this.addBackColorForImg2(distretto2);
           this.nomeDistretto2 = distretto2.getNome()
+          this.nomeDistrettoCliccato2 = distretto2.getNome()
 
           this.displayedFeatures=1
           this.coordinate2 = e.coordinate;
           this.firstOverlay = true
           this.clickFirstDistretto = true
           this.overlayLayer2.setPosition(this.coordinate2);
-          
-          //MapComponent.mappa!.getView().setCenter(e.coordinate);
-          //MapComponent.mappa!.getView().setZoom(14);
+          this.comparisonDistretti = true
+          this.comparisonDistrettiStart = false
+
+          MapComponent.mappa!.getView().setCenter(e.coordinate);
+          MapComponent.mappa!.getView().setZoom(14);
         }
 
 
@@ -240,17 +247,23 @@ export class MarkerDistrettoComponent implements OnInit {
           this.addPathForImg(distretto);
           this.addBackColorForImg(distretto);
           this.nomeDistretto = distretto.getNome()
+          this.nomeDistrettoCliccato = distretto.getNome()
           
           this.clickedCoordinate = e.coordinate;
           
           this.overlayLayer2.setPosition(this.coordinate2);
           this.overlayLayer.setPosition(this.clickedCoordinate);
 
-          //MapComponent.mappa!.getView().setCenter(e.coordinate);
-          //MapComponent.mappa!.getView().setZoom(14);
+          this.comparisonDistrettiStart = true
+          //let compDiv = <HTMLInputElement>document.getElementById("comparisonDiv");
+          //compDiv.style.top = '70%';
+
+
+          MapComponent.mappa!.getView().setCenter(e.coordinate);
+          MapComponent.mappa!.getView().setZoom(14);
 
           this.resetOverlay = false
-          this.comparisonDistretti = true
+          //this.comparisonDistretti = true
           this.displayedFeatures = 2
         }
 
@@ -270,9 +283,16 @@ export class MarkerDistrettoComponent implements OnInit {
   }
 
   eliminaConfronto(){
-    alert('Confronto eliminato')
+    //alert('Confronto eliminato')
     this.overlayLayer.setPosition(undefined);
     this.overlayLayer2.setPosition(undefined);
+
+    this.showMenu = false;
+    this.markerChildNotify.emit(this.showMenu);
+    this.showMenuLegenda = false;
+    this.markerNotifyLegenda.emit(this.showMenuLegenda)
+    this.comparisonDistretti = false
+    this.comparisonDistrettiStart = false
     /*
     if(this.resetOverlay == false){
       alert('set resetOverlay '+this.resetOverlay);
